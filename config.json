@@ -1,0 +1,8 @@
+{
+	"bottoken" : "YOURBOTTOKEN",
+	"prefix" : "!!",
+	"botname" : "WHATSHOULDYOURBOTBECALLED",
+	"version" : "1.0pre",
+	"masterlogloc" : "masterlog.txt",
+	"owner " : "YOURID"
+}
