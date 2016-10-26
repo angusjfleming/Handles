@@ -12,6 +12,7 @@ var fs = require("fs");
 var mkdirp = require('mkdirp');
 var masterlogloc = ConfigFile.masterlogloc;
 var msgno = 0;
+var commandrole = ConfigFile.commandrole
 
 bot.login(token);
 
@@ -57,14 +58,14 @@ bot.on('message', msg => {
     cmd.run(bot, msg, params);
     } catch(err) {
     msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
-  } else if(modcommands.has(command) && msg.member.roles.find('name','Admin')) {
+  } else if(modcommands.has(command) && msg.member.roles.find('name', commandrole)) {
     var cmd = modcommands.get(command);
     try {
     cmd.run(bot, msg, params);
     } catch(err) {
     msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
-  } else if(!msg.member.roles.find('name','Admin') && modcommands.has(command)){
-    msg.channel.sendMessage("`You do not have valid permissions for this command.`")
+  } else if(!msg.member.roles.find('name', commandrole) && modcommands.has(command)){
+    msg.channel.sendMessage("You do not have valid role `" + commandrole + "` for this command.")
   } else {
     msg.channel.sendMessage("`" + command + " is not a valid command.`")
   }
