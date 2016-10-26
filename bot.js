@@ -20,7 +20,7 @@ bot.login(token);
 bot.on('ready', () => {
   startdate = new Date()
   console.log("Bot online (" + startdate + ")")
-  bot.user.setStatus('online', "a dangerous game.")
+  bot.user.setGame("a dangerous game.")
 });
 
 const commands = new Map();
