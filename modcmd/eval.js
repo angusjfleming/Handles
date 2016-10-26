@@ -1,5 +1,5 @@
-exports.run = (bot, msg, params = []) => {
-  if (msg.author.id != "83697112432246784") return;
+exports.run = (bot, msg, params, owner = []) => {
+  if (msg.author.id != owner) return;
   evalstring = params.join("");
     try{
       msg.channel.sendMessage('**EVALUATING CODE:** ```js\n' + evalstring + '```\n**OUTPUT:** ```js\n' + eval(evalstring) + '```')

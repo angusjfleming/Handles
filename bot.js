@@ -13,6 +13,7 @@ var mkdirp = require('mkdirp');
 var masterlogloc = ConfigFile.masterlogloc;
 var msgno = 0;
 var commandrole = ConfigFile.commandrole
+var owner = ConfigFile.owner
 
 bot.login(token);
 
@@ -61,7 +62,7 @@ bot.on('message', msg => {
   } else if(modcommands.has(command) && msg.member.roles.find('name', commandrole)) {
     var cmd = modcommands.get(command);
     try {
-    cmd.run(bot, msg, params);
+    cmd.run(bot, msg, params, owner);
     } catch(err) {
     msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
   } else if(!msg.member.roles.find('name', commandrole) && modcommands.has(command)){
