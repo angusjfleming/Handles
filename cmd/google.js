@@ -1,16 +1,19 @@
-var GoogleSearch = require('google-search');
-
-var googleSearch = new GoogleSearch({
-  key: 'AIzaSyB9UAxIaSXK-cOUvm8HRkHStf_GEukb-p8',
-  cx: '011142711664808476551:kizdemxgas8'
-});
+var request = require('request');
 
 exports.run = (bot, msg, params = []) => {
-		googleSearch.build({
-			q: params.join(""),
-			num: 1, // Number of search results to return between 1 and 10, inclusive
-		}, function(error, response) {
-			msg.channel.sendMessage(response.items[0].link)
+		searchTerm = params.join(' ');
+		msg.channel.sendMessage("Searching...").then(msg => {
+			request('https://www.google.com/search?safe=active&q=' + encodeURI(searchTerm), function(err, res, body) {
+				if (err) callback(err);
+				else {
+					if (body.indexOf('/url?q=') > -1) {
+						body = body.slice(body.indexOf('/url?q=') + 7);
+						body = body.slice(0, body.indexOf('&'));
+						body = decodeURIComponent(body);
+						msg.edit("First result found for query `" + searchTerm + "`: " + body);
+					} else msg.edit("There is no result found for query `" + searchTerm + "`");
+				}
+			});
 		});
 };
 

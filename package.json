@@ -14,7 +14,8 @@
     "mkdirp": "0.5.1",
     "sqlite": "^2.2.0",
     "discord.js": "github:hydrabolt/discord.js",
-    "performance-now": "0.2.0"
+    "performance-now": "0.2.0",
+    "google" : "2.1.0"
   },
   "devDependencies": {}
 }
