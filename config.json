@@ -4,5 +4,6 @@
 	"version" : "1.0pre",
 	"masterlogloc" : "masterlog.txt",
 	"owner" : "YOURID",
-	"commandrole" : "Admin"
+	"commandrole" : "Admin",
+	"logging" : true
 }

@@ -8,6 +8,7 @@ const bot = new Discord.Client();
 var ConfigFile = require("./config.json");
 var prefix = ConfigFile.prefix;
 var token = ConfigFile.bottoken;
+var logging = ConfigFile.logging;
 var fs = require("fs");
 var mkdirp = require('mkdirp');
 var masterlogloc = ConfigFile.masterlogloc;
@@ -46,7 +47,12 @@ fs.readdir(`./admincmd/`, (err, files) => {
 });
 
 bot.on('message', msg => {
-  log(msg)
+  
+  if(msg.channel.type !== 'text') return;
+
+  if (logging){
+  	log(msg)
+  }
 
   if(!msg.content.startsWith(prefix)) return;
 
