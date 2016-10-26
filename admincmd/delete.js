@@ -4,7 +4,7 @@ exports.run = (bot, msg, params = []) => {
     	.then( messages => {
     		msg_array = messages.array();
     		msg_array.length = messagecount + 1;
-    		msg_array.map(m => m.delete().catch(console.error));
+        msg.channel.bulkDelete(msg_array)
     	}).catch(console.error);
 };
 
