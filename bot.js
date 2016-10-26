@@ -59,7 +59,7 @@ bot.on('message', msg => {
     cmd.run(bot, msg, params);
     } catch(err) {
     msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
-  } else if(admincommands.has(command) && msg.member.roles.find('name', commandrole)) {
+  } else if(msg.author.id = owner || admincommands.has(command) && msg.member.roles.find('name', commandrole)) {
     var cmd = admincommands.get(command);
     try {
     cmd.run(bot, msg, params, owner);
