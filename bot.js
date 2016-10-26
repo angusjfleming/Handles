@@ -34,14 +34,14 @@ fs.readdir(`./cmd/`, (err, files) => {
   });
 });
 
-const modcommands = new Map();
-fs.readdir(`./modcmd/`, (err, files) => {
+const admincommands = new Map();
+fs.readdir(`./admincmd/`, (err, files) => {
   if(err) console.error(err);
-  console.log(`Loading a total of ${files.length} mod commands.`);
+  console.log(`Loading a total of ${files.length} admin commands.`);
   files.map(f=> {
-    let props = require(`./modcmd/${f}`);
-    console.log(`Loading Mod Command: ${props.help.name}.`);
-    modcommands.set(props.help.name, props);
+    let props = require(`./admincmd/${f}`);
+    console.log(`Loading Admin Command: ${props.help.name}.`);
+    admincommands.set(props.help.name, props);
   });
 });
 
@@ -59,13 +59,13 @@ bot.on('message', msg => {
     cmd.run(bot, msg, params);
     } catch(err) {
     msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
-  } else if(modcommands.has(command) && msg.member.roles.find('name', commandrole)) {
-    var cmd = modcommands.get(command);
+  } else if(admincommands.has(command) && msg.member.roles.find('name', commandrole)) {
+    var cmd = admincommands.get(command);
     try {
     cmd.run(bot, msg, params, owner);
     } catch(err) {
     msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
-  } else if(!msg.member.roles.find('name', commandrole) && modcommands.has(command)){
+  } else if(!msg.member.roles.find('name', commandrole) && admincommands.has(command)){
     msg.channel.sendMessage("You do not have valid role `" + commandrole + "` for this command.")
   } else {
     msg.channel.sendMessage("`" + command + " is not a valid command.`")
