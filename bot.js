@@ -27,8 +27,19 @@ fs.readdir(`./cmd/`, (err, files) => {
   console.log(`Loading a total of ${files.length} commands.`);
   files.map(f=> {
     let props = require(`./cmd/${f}`);
-    console.log(`Loading Command: ${props.help.name}. :ok_hand:`);
+    console.log(`Loading Command: ${props.help.name}.`);
     commands.set(props.help.name, props);
+  });
+});
+
+const modcommands = new Map();
+fs.readdir(`./modcmd/`, (err, files) => {
+  if(err) console.error(err);
+  console.log(`Loading a total of ${files.length} mod commands.`);
+  files.map(f=> {
+    let props = require(`./modcmd/${f}`);
+    console.log(`Loading Mod Command: ${props.help.name}.`);
+    modcommands.set(props.help.name, props);
   });
 });
 
@@ -36,18 +47,28 @@ bot.on('message', msg => {
   log(msg)
 
   if(!msg.content.startsWith(prefix)) return;
-  if (msg.member.roles.find('name','Admin')){
+
   var command = msg.content.split(" ")[0].slice(prefix.length);
   var params = msg.content.split(" ").slice(1);
+  
   if(commands.has(command)) {
     var cmd = commands.get(command);
     try {
     cmd.run(bot, msg, params);
     } catch(err) {
-    msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "```")
+    msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
+  } else if(modcommands.has(command) && msg.member.roles.find('name','Admin')) {
+    var cmd = modcommands.get(command);
+    try {
+    cmd.run(bot, msg, params);
+    } catch(err) {
+    msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")}
+  } else if(!msg.member.roles.find('name','Admin') && modcommands.has(command)){
+    msg.channel.sendMessage("`You do not have valid permissions for this command.`")
+  } else {
+    msg.channel.sendMessage("`" + command + " is not a valid command.`")
   }
-  }
-}
+
 });
 
 function log(msg){
