@@ -15,6 +15,7 @@ var masterlogloc = ConfigFile.masterlogloc;
 var msgno = 0;
 var commandrole = ConfigFile.commandrole
 var owner = ConfigFile.owner
+console.log(owner)
 
 bot.login(token);
 
@@ -57,27 +58,22 @@ bot.on('message', msg => {
 
     var command = msg.content.split(" ")[0].slice(prefix.length);
     var params = msg.content.split(" ").slice(1);
+    var admin = false;
 
     if (commands.has(command)) {
-        var cmd = commands.get(command);
-        try {
-            cmd.run(bot, msg, params);
-        } catch (err) {
-            msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")
-        }
-    } else if (msg.author.id = owner && admincommands.has(command) || admincommands.has(command) && msg.member.roles.find('name', commandrole)) {
-        var cmd = admincommands.get(command);
-        try {
-            cmd.run(bot, msg, params, owner);
-        } catch (err) {
-            msg.channel.sendMessage("```xl\nCommand '" + cmd.help.name + "' failed \nCorrect usage: " + cmd.help.usage + "\nWith error: " + err + "```")
-        }
-    } else if (!msg.member.roles.find('name', commandrole) && admincommands.has(command)) {
-        msg.channel.sendMessage("You do not have valid role `" + commandrole + "` for this command.")
-    } else {
-        msg.channel.sendMessage("`" + command + " is not a valid command.`")
+        cmd = commands.get(command);
+    } else if (admincommands.has(command)) {
+        admin = true
+        cmd = admincommands.get(command);
     }
 
+    if (cmd && !admin) {
+        cmd.run(bot, msg, params);
+    } else if (msg.member.roles.find('name', commandrole) && admin && cmd || msg.author.id == owner && admin && cmd) {
+        cmd.run(bot, msg, params, owner);
+    } else {
+        console.log("um")
+    }
 });
 
 function log(msg) {
@@ -91,5 +87,5 @@ function log(msg) {
 }
 
 process.on("unhandledRejection", err => {
-    console.error("Uncaught Promise Error: \n" + err.stack);
+    console.log("Uncaught Promise Error: \n" + err.stack);
 });

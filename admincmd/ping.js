@@ -1,5 +1,6 @@
 const now = require('performance-now');
 exports.run = (bot, msg, conf, params = []) => {
+  console.log(msg)
     var startTime = now();
     msg.delete();
     msg.channel.sendMessage("Let's see if this works")
