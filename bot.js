@@ -47,7 +47,6 @@ fs.readdir(`./admincmd/`, (err, files) => {
 });
 
 bot.on('message', msg => {
-  
   if(msg.channel.type !== 'text') return;
 
   if (logging){
