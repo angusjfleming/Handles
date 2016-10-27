@@ -3,7 +3,6 @@ exports.run = (bot, msg, params = []) => {
     	msg.channel.fetchMessages({limit: 100})
     	.then( messages => {
     		msg_array = messages.array();
-        /*basically if msgcount is higher than the length of the  array, just delete the number of messages in the array*/
         if (messagecount + 1 > msg_array.length){
           msg.channel.bulkDelete(msg_array)
         } else {
