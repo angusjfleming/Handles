@@ -1,16 +1,16 @@
-exports.run = (bot, msg, params = []) => {
-  msg.channel.fetchMessages({limit: 100})
-  .then( messages => {
-    msg_array = messages.array();
-    console.log(msg_array)
-    if (msg_array.includes(params.join(" "))){
-      console.log(msg_array.message.content)
-    }
-  }).catch(console.error);
+const now = require('performance-now');
+exports.run = (bot, msg, conf, params = []) => {
+    var startTime = now();
+    msg.delete();
+    msg.channel.sendMessage("Let's see if this works")
+        .then(message => {
+            var endTime = now();
+            message.edit(`Ping took ${(endTime - startTime).toFixed(3)}ms.`).catch(console.error);
+        }).catch(console.error);
 };
 
 exports.help = {
-  name : "msgsearch",
-  description: "Searches through last 250 messages in each channel",
-  usage: "msgsearch"
+    name: "ping",
+    description: "Ping/Pong. What do you *think* this does?",
+    usage: "ping"
 };
