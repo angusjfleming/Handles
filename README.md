@@ -1,5 +1,5 @@
 ### JSPublic
-A javascript discordbot
+A javascript discordbot currently going by the name of ¿¡SOY?!
 
 Nothing more than very early release-ish right now.
 
