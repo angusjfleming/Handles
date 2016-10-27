@@ -65,6 +65,8 @@ bot.on('message', msg => {
     } else if (admincommands.has(command)) {
         admin = true
         cmd = admincommands.get(command);
+    } else {
+        cmd = false
     }
 
     if (cmd && !admin) {
@@ -72,7 +74,7 @@ bot.on('message', msg => {
     } else if (msg.member.roles.find('name', commandrole) && admin && cmd || msg.author.id == owner && admin && cmd) {
         cmd.run(bot, msg, params, owner);
     } else {
-        console.log("um")
+        msg.channel.sendMessage("Command: ` " + command + " ` does not exist.")
     }
 });
 
