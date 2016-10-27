@@ -15,7 +15,6 @@ var masterlogloc = ConfigFile.masterlogloc;
 var msgno = 0;
 var commandrole = ConfigFile.commandrole
 var owner = ConfigFile.owner
-console.log(owner)
 
 bot.login(token);
 
@@ -89,5 +88,6 @@ function log(msg) {
 }
 
 process.on("unhandledRejection", err => {
-    console.log("Uncaught Promise Error: \n" + err.stack);
+    fs.appendFile("error.txt", err.stack + "\n", function(error) {});
+    console.log("Unhandled Error: \n" + err.stack);
 });
