@@ -1,4 +1,5 @@
 const util = require('util');
+var fs = require("fs");
 
 function clean(text) {
     if (typeof(text) === "string") {
@@ -17,7 +18,7 @@ exports.run = (bot, msg, params, owner = []) => {
         if (typeof evaled !== 'string')
             evaled = require('util').inspect(evaled);
         if (evaled.length > 2000) {
-            msg.channel.sendMessage("Trying to eval: `" + code + "` failed because the output was greater than 2000 characters")
+            msg.channel.sendMessage("Trying to eval: ` " + code + " ` failed because the output was greater than 2000 characters")
         }
         return;
         msg.channel.sendMessage("```xl\n" + clean(evaled) + "\n```");
