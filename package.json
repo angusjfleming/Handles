@@ -1,6 +1,6 @@
 {
-  "name": "XIVserverbot",
-  "version": "1.0.0",
+  "name": "JSPublic",
+  "version": "0.0.2",
   "description": "public serverbot",
   "main": "bot.js",
   "scripts": {
