@@ -1,50 +1,41 @@
-try {
-    var Discord = require('discord.js');
-} catch (e) {
-    console.log("Please install discord.js")
-}
+const Discord = require('discord.js');
 
-const bot = new Discord.Client();
-var ConfigFile = require("./config.json");
-var prefix = ConfigFile.prefix;
-var token = ConfigFile.bottoken;
-var logging = ConfigFile.logging;
+const bot = new Discord.Client({"shard_id": process.argv[2], "shard_count": process.argv[3]});
+
+var config = require("./config.json");
+var prefix = config.prefix;
+var token = config.bottoken;
+var logging = config.logging;
 var fs = require("fs");
 var mkdirp = require('mkdirp');
-var masterlogloc = ConfigFile.masterlogloc;
+var masterlogloc = config.masterlogloc;
 var msgno = 0;
-var commandrole = ConfigFile.commandrole
-var owner = ConfigFile.owner
+var commandrole = config.commandrole
+var ownerid = config.ownerid
 
 bot.login(token);
 
 bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
-    bot.user.setGame("a dangerous game.")
+    bot.user.setGame("a dangerous game. Shard #" + bot.shard.id)
 });
 
-const commands = new Map();
-fs.readdir(`./cmd/`, (err, files) => {
-    if (err) console.error(err);
-    console.log(`Loading a total of ${files.length} commands.`);
-    files.map(f => {
-        let props = require(`./cmd/${f}`);
-        console.log(`Loading Command: ${props.help.name}.`);
-        commands.set(props.help.name, props);
+bot.commands = new Discord.Collection();
+bot.aliases = new Discord.Collection();
+fs.readdir("./cmd/", (err, files) => {
+  if (err) console.error(err);
+  console.log(`Loading a total of ${files.length} commands.`);
+  files.forEach(f => {
+    let props = require(`./cmd/${f}`);
+    console.log('Shard ' + bot.shard.id + ` Loading Command: ${props.help.name}.`);
+    bot.commands.set(props.help.name, props);
+    props.conf.aliases.forEach(alias => {
+      bot.aliases.set(alias, props.help.name);
     });
+  });
 });
 
-const admincommands = new Map();
-fs.readdir(`./admincmd/`, (err, files) => {
-    if (err) console.error(err);
-    console.log(`Loading a total of ${files.length} admin commands.`);
-    files.map(f => {
-        let props = require(`./admincmd/${f}`);
-        console.log(`Loading Admin Command: ${props.help.name}.`);
-        admincommands.set(props.help.name, props);
-    });
-});
 
 bot.on('message', msg => {
     if (msg.channel.type !== 'text') return;
@@ -55,25 +46,20 @@ bot.on('message', msg => {
 
     if (!msg.content.startsWith(prefix)) return;
 
-    var command = msg.content.split(" ")[0].slice(prefix.length);
-    var params = msg.content.split(" ").slice(1);
-    var admin = false;
+    let command = msg.content.split(" ")[0].slice(prefix.length);
+    let params = msg.content.split(" ").slice(1);
+    let perms = bot.elevation(msg);
+    let cmd;
 
-    if (commands.has(command)) {
-        cmd = commands.get(command);
-    } else if (admincommands.has(command)) {
-        admin = true
-        cmd = admincommands.get(command);
-    } else {
-        cmd = false
+    if (bot.commands.has(command)) {
+        cmd = bot.commands.get(command);
+    } else if (bot.aliases.has(command)) {
+        cmd = bot.commands.get(bot.aliases.get(command));
     }
 
-    if (cmd && !admin) {
-        cmd.run(bot, msg, params);
-    } else if (msg.member.roles.find('name', commandrole) && admin && cmd || msg.author.id == owner && admin && cmd) {
-        cmd.run(bot, msg, params, owner);
-    } else {
-        msg.channel.sendMessage("Command: ` " + command + " ` does not exist.")
+    if (cmd) {
+        if (perms < cmd.conf.permLevel) return;
+        cmd.run(bot, msg, params, perms);
     }
 });
 
@@ -91,3 +77,13 @@ process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
 });
+
+bot.elevation = function(msg) {
+  /* This function should resolve to an ELEVATION level which
+     is then sent to the command handler for verification*/
+  let permlvl = 0;
+  let admin_role = msg.guild.roles.find("name", "Admin");
+  if(admin_role && msg.member.roles.has(admin_role.id)) permlvl = 2;
+  if(msg.author.id === ownerid) permlvl = 3;
+  return permlvl;
+};

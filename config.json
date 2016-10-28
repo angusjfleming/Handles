@@ -3,7 +3,7 @@
 	"prefix" : "!!",
 	"version" : "1.0pre",
 	"masterlogloc" : "masterlog.txt",
-	"owner" : "YOURID",
+	"ownerid" : "YOURID",
 	"commandrole" : "Admin",
 	"logging" : true
 }

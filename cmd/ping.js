@@ -1,6 +1,5 @@
 const now = require('performance-now');
 exports.run = (bot, msg, conf, params = []) => {
-  console.log(msg)
     var startTime = now();
     msg.delete();
     msg.channel.sendMessage("Let's see if this works")
@@ -14,4 +13,10 @@ exports.help = {
     name: "ping",
     description: "Ping/Pong. What do you *think* this does?",
     usage: "ping"
+};
+
+exports.conf = {
+  enabled: true,
+  aliases: [],
+  permLevel: 2
 };

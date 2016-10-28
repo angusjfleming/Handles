@@ -16,3 +16,9 @@ exports.help = {
     description: "Searches through last 250 messages in each channel",
     usage: "msgsearch"
 };
+
+exports.conf = {
+  enabled: true,
+  aliases: ['msearch'],
+  permLevel: 3
+};

@@ -7,3 +7,9 @@ exports.help = {
     description: "Returns misc server info",
     usage: "serverinfo"
 };
+
+exports.conf = {
+  enabled: true,
+  aliases: ['svinfo'],
+  permLevel: 0
+};

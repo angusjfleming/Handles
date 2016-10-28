@@ -16,3 +16,9 @@ exports.help = {
   description: "Deletes message(s)",
   usage: "delete <# of messages>"
 };
+
+exports.conf = {
+  enabled: true,
+  aliases: ['del', 'purge'],
+  permLevel: 2
+};

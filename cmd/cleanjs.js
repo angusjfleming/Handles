@@ -47,7 +47,13 @@ exports.run = (bot, msg, params = []) => {
   };
 
 exports.help = {
-  name : "cleanjs",
-  description: "Makes JavaScript look good like",
-  usage: "cleanjs"
+    name: "cleanjs",
+    description: "Cleans javascript code. Makes it look all lovely like",
+    usage: "cleanjs"
+};
+
+exports.conf = {
+  enabled: true,
+  aliases: ['beautify'],
+  permLevel: 0
 };

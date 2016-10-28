@@ -15,3 +15,9 @@ exports.help = {
     description: "Returns misc user info",
     usage: "whois <usermention>"
 };
+
+exports.conf = {
+  enabled: true,
+  aliases: ['userinfo'],
+  permLevel: 0
+};

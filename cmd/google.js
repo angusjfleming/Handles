@@ -22,3 +22,9 @@ exports.help = {
     description: "Searches google",
     usage: "google <search terms>"
 };
+
+exports.conf = {
+  enabled: true,
+  aliases: ['search'],
+  permLevel: 0
+};
