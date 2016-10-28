@@ -12,13 +12,14 @@ var masterlogloc = config.masterlogloc;
 var msgno = 0;
 var commandrole = config.commandrole
 var ownerid = config.ownerid
+var botname = config.botname
 
 bot.login(token);
 
 bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
-    bot.user.setGame("a dangerous game. Shard #" + bot.shard.id)
+    bot.user.setGame("Prefix = "+ prefix +" || Shard #" + bot.shard.id)
 });
 
 bot.commands = new Discord.Collection();
@@ -55,6 +56,8 @@ bot.on('message', msg => {
         cmd = bot.commands.get(command);
     } else if (bot.aliases.has(command)) {
         cmd = bot.commands.get(bot.aliases.get(command));
+    } else {
+      msg.channel.sendMessage("`" + command + "` is not a valid command or alias." )
     }
 
     if (cmd) {
