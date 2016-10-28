@@ -16,7 +16,8 @@
     "mkdirp": "0.5.1",
     "performance-now": "0.2.0",
     "sqlite": "^2.2.0",
-    "js-beautify": "1.6.4"
+    "js-beautify": "1.6.4",
+    "request": "2.76.1"
   },
   "devDependencies": {}
 }
