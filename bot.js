@@ -13,13 +13,16 @@ var msgno = 0;
 var commandrole = config.commandrole
 var ownerid = config.ownerid
 var botname = config.botname
+var pos = 0;
 
 bot.login(token);
 
 bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
-    bot.user.setGame("Prefix = "+ prefix +" || Shard #" + bot.shard.id)
+    //bot.user.setGame("Prefix = "+ prefix +" || Shard #" + bot.shard.id)
+    changeStatus()
+    setInterval(changeStatus, 20000)
 });
 
 bot.commands = new Discord.Collection();
@@ -111,3 +114,12 @@ bot.reload = function(command) {
     }
   });
 };
+
+function changeStatus() {
+  let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
+  let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
+  var statuses = ['Shard #' + (bot.shard.id + 1) + '/' + bot.shard.count, 'Currently serving: ' + bot.guilds.size + ' guilds.', 'Prefix: ' + prefix, 'Users: ' + bot.users.size, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
+  bot.user.setGame(statuses[pos])
+  pos++
+  if (pos > statuses.length - 1){pos = 0};
+}
