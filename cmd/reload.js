@@ -1,4 +1,4 @@
-exports.run = (bot, msg, params) => {
+exports.run = (bot, msg, params = []) => {
   let command;
   if (bot.commands.has(params[0])) {
     command = params[0];

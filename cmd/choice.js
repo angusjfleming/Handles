@@ -1,11 +1,16 @@
 exports.run = (bot, msg, params = []) => {
-    msg.channel.sendMessage("http://www.textfixer.com/tools/random-choice.php")
+	var choices = params.join(" ")
+	var tokens = [].concat.apply([], choices.split('"').map(function(v,i){
+   return i%2 ? v : v.split(' ')
+})).filter(Boolean);
+  var choice = Math.floor(Math.random()*tokens.length);
+  msg.channel.sendMessage('My choice was: `' + tokens[choice] + '`')
 };
 
 exports.help = {
-    name: "choice",
-    description: "Does work by proxy",
-    usage: "choice"
+  name: "choice",
+  description: "Chooses between parameters entered. Multiple word choices must be contained with speech marks.",
+  usage: "choice <choices>"
 };
 
 exports.conf = {

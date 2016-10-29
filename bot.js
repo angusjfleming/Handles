@@ -65,7 +65,7 @@ bot.on('message', msg => {
 
     if (cmd) {
         if (perms < cmd.conf.permLevel) return;
-        cmd.run(bot, msg, params, perms);
+        cmd.run(bot, msg, params, config, perms);
     }
 });
 
