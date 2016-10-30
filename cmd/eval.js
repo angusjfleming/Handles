@@ -1,11 +1,17 @@
 exports.run = (bot, msg, params, config = []) => {
+    var error = false
     var code = params.join(" ");
-    var evaled = eval(code);
+    try {
+        var evaled = eval(code);
+    } catch (err) {
+        error = true
+        msg.channel.sendMessage("`FAILED` ```xl\n" + code + " failed with error: " + err + "\n```")
+    }
     evaled = require('util').inspect(evaled);
     try {
-        if (evaled.length > 2000) {
+        if (evaled.length > 2000 && error) {
             msg.channel.sendMessage("`FAILED` ```xl\n" + code + " failed because the output was greater than 2000 characters.```")
-        } else {
+        } else if (!error){
             msg.channel.sendMessage("`SUCCESS` ```xl\n" + evaled + "\n```")
         }
     } catch (err) {
@@ -20,7 +26,7 @@ exports.help = {
 };
 
 exports.conf = {
-  enabled: true,
-  aliases: ['ev'],
-  permLevel: 3
+    enabled: true,
+    aliases: ['ev'],
+    permLevel: 3
 };

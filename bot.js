@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-const bot = new Discord.Client({"shard_id": process.argv[2], "shard_count": process.argv[3]});
+const bot = new Discord.Client();
 
 var config = require("./config.json");
 var prefix = config.prefix;
@@ -20,7 +20,6 @@ bot.login(token);
 bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
-    //bot.user.setGame("Prefix = "+ prefix +" || Shard #" + bot.shard.id)
     changeStatus()
     setInterval(changeStatus, 20000)
 });
@@ -32,7 +31,7 @@ fs.readdir("./cmd/", (err, files) => {
   console.log(`Loading a total of ${files.length} commands.`);
   files.forEach(f => {
     let props = require(`./cmd/${f}`);
-    console.log('Shard ' + bot.shard.id + ` Loading Command: ${props.help.name}.`);
+    console.log(` Loading Command: ${props.help.name}.`);
     bot.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
       bot.aliases.set(alias, props.help.name);
@@ -47,6 +46,8 @@ bot.on('message', msg => {
     if (logging) {
         log(msg)
     }
+
+    if(msg.author.bot) return;
 
     if (!msg.content.startsWith(prefix)) return;
 
@@ -118,7 +119,7 @@ bot.reload = function(command) {
 function changeStatus() {
   let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
   let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
-  var statuses = ['Shard #' + (bot.shard.id + 1) + '/' + bot.shard.count, 'Currently serving: ' + bot.guilds.size + ' guilds.', 'Prefix: ' + prefix, 'Users: ' + bot.users.size, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
+  var statuses = ['Currently serving: ' + bot.guilds.size + ' guilds.', 'Prefix: ' + prefix, 'Users: ' + bot.users.size, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
   bot.user.setGame(statuses[pos])
   pos++
   if (pos > statuses.length - 1){pos = 0};

@@ -1,7 +1,0 @@
-const Discord = require('discord.js');
-
-const manager = new Discord.ShardingManager('bot.js');
-manager._spawn(2);
-manager.on('launch', shard => {
-  console.log(`Launched shard ${shard.id}`);
-});
