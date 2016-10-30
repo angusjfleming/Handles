@@ -3,7 +3,7 @@ exports.run = (bot, msg, params = []) => {
   var tokens = [].concat.apply([], choices.split('"').map(function(v, i) {
     return i % 2 ? v : v.split(' ')
   })).filter(Boolean);
-  var choice = Math.round(Math.random() * tokens.length);
+  var choice = Math.floor(Math.random() * tokens.length);
   msg.channel.sendMessage('My choice was: `' + tokens[choice] + '`')
 };
 
