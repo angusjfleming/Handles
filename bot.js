@@ -99,8 +99,6 @@ process.on("unhandledRejection", err => {
 });
 
 bot.elevation = function(msg) {
-    /* This function should resolve to an ELEVATION level which
-       is then sent to the command handler for verification*/
     let permlvl = 0;
     let admin_role = msg.guild.roles.find("name", "Admin");
     if (admin_role && msg.member.roles.has(admin_role.id)) permlvl = 2;
