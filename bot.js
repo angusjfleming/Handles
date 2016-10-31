@@ -2,6 +2,18 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
+var AutoUpdater = require('auto-updater');
+
+var autoupdater = new AutoUpdater({
+    pathToJson: './package.json',
+    autoupdate: true,
+    checkgit: true,
+    jsonhost: 'raw.githubusercontent.com',
+    contenthost: 'codeload.github.com',
+    progressDebounce: 0,
+    devmode: false
+});
+
 var config = require("./config.json");
 var prefix = config.prefix;
 var token = config.bottoken;
@@ -12,7 +24,7 @@ var masterlogloc = config.masterlogloc;
 var msgno = 0;
 var commandrole = config.commandrole
 var ownerid = config.ownerid
-var botname = config.botname
+var botname = config.botnamevvvv
 var pos = 0;
 
 bot.login(token);
@@ -21,22 +33,23 @@ bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
     changeStatus()
-    setInterval(changeStatus, 30000)
+    var statchange = setInterval(changeStatus, 30000);
+    setInterval(checkForUpdates, 60000)
 });
 
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 fs.readdir("./cmd/", (err, files) => {
-  if (err) console.error(err);
-  console.log(`Loading a total of ${files.length} commands.`);
-  files.forEach(f => {
-    let props = require(`./cmd/${f}`);
-    console.log(` Loading Command: ${props.help.name}.`);
-    bot.commands.set(props.help.name, props);
-    props.conf.aliases.forEach(alias => {
-      bot.aliases.set(alias, props.help.name);
+    if (err) console.error(err);
+    console.log(`Loading a total of ${files.length} commands.`);
+    files.forEach(f => {
+        let props = require(`./cmd/${f}`);
+        console.log(` Loading Command: ${props.help.name}.`);
+        bot.commands.set(props.help.name, props);
+        props.conf.aliases.forEach(alias => {
+            bot.aliases.set(alias, props.help.name);
+        });
     });
-  });
 });
 
 
@@ -47,7 +60,7 @@ bot.on('message', msg => {
         log(msg)
     }
 
-    if(msg.author.bot) return;
+    if (msg.author.bot) return;
 
     if (!msg.content.startsWith(prefix)) return;
 
@@ -61,7 +74,7 @@ bot.on('message', msg => {
     } else if (bot.aliases.has(command)) {
         cmd = bot.commands.get(bot.aliases.get(command));
     } else {
-      msg.channel.sendMessage("`" + command + "` is not a valid command or alias." )
+        msg.channel.sendMessage("`" + command + "` is not a valid command or alias.")
     }
 
     if (cmd) {
@@ -86,41 +99,73 @@ process.on("unhandledRejection", err => {
 });
 
 bot.elevation = function(msg) {
-  /* This function should resolve to an ELEVATION level which
-     is then sent to the command handler for verification*/
-  let permlvl = 0;
-  let admin_role = msg.guild.roles.find("name", "Admin");
-  if(admin_role && msg.member.roles.has(admin_role.id)) permlvl = 2;
-  if(msg.author.id === ownerid) permlvl = 3;
-  return permlvl;
+    /* This function should resolve to an ELEVATION level which
+       is then sent to the command handler for verification*/
+    let permlvl = 0;
+    let admin_role = msg.guild.roles.find("name", "Admin");
+    if (admin_role && msg.member.roles.has(admin_role.id)) permlvl = 2;
+    if (msg.author.id === ownerid) permlvl = 3;
+    return permlvl;
 };
 
 bot.reload = function(command) {
-  return new Promise((resolve, reject) => {
-    try {
-      delete require.cache[require.resolve(`./cmd/${command}`)];
-      let cmd = require(`./cmd/${command}`);
-      bot.commands.delete(command);
-      bot.aliases.forEach((cmd, alias) => {
-        if (cmd === command) bot.aliases.delete(alias);
-      });
+    return new Promise((resolve, reject) => {
+        try {
+            delete require.cache[require.resolve(`./cmd/${command}`)];
+            let cmd = require(`./cmd/${command}`);
+            bot.commands.delete(command);
+            bot.aliases.forEach((cmd, alias) => {
+                if (cmd === command) bot.aliases.delete(alias);
+            });
 
-      bot.commands.set(command, cmd);
-      cmd.conf.aliases.forEach(alias => {
-        bot.aliases.set(alias, cmd.help.name);
-      });
-      resolve();
-    } catch (e){
-      reject(e);
-    }
-  });
+            bot.commands.set(command, cmd);
+            cmd.conf.aliases.forEach(alias => {
+                bot.aliases.set(alias, cmd.help.name);
+            });
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    });
 };
 
 function changeStatus() {
-  let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
-  let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
-  var statuses = ['Currently serving: ' + bot.guilds.size + ' guilds.', 'Prefix: ' + prefix, 'Users: ' + bot.users.size, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
-  bot.user.setGame(statuses[pos])
-  pos++
-  if (pos > statuses.length - 1){pos = 0};
+    let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
+    let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
+    var statuses = ['Currently serving: ' + bot.guilds.size + ' guilds.', 'Prefix: ' + prefix, 'Users: ' + bot.users.size, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
+    bot.user.setGame(statuses[pos])
+    pos++
+    if (pos > statuses.length - 1) {
+        pos = 0
+    };
+}
+
+autoupdater.on('check.out-dated', function(v_old, v) {
+    console.log("Your version is outdated. " + v_old + " of " + v);
+    autoupdater.fire('download-update');
+});
+
+autoupdater.on('update.extracted', function() {
+    console.log("Update extracted successfully!");
+    console.warn("RESTART THE APP!");
+});
+
+autoupdater.on('update.downloaded', function() {
+    console.log("Update downloaded and ready for install");
+    autoupdater.fire('extract');
+});
+autoupdater.on('update.not-installed', function() {
+    console.log("The Update was already in your folder! It's read for install");
+    autoupdater.fire('extract');
+});
+
+autoupdater.on('update.extracted', function() {
+    clearInterval(statchange);
+    bot.user.setGame("Going down for update.");
+    console.warn("RESTART THE APP!");
+    process.exit()
+});
+
+function checkForUpdates() {
+    autoupdater.fire('check');
 }
