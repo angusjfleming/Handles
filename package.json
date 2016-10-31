@@ -1,6 +1,10 @@
 {
   "name": "JSPublic",
   "version": "0.1.0",
+  "auto-updater":{
+  "repo":"/realXIV/JSPublic",
+  "branch":"master"
+  },
   "description": "public serverbot",
   "main": "bot.js",
   "scripts": {
