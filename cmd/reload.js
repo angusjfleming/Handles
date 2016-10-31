@@ -8,14 +8,14 @@ exports.run = (bot, msg, params = []) => {
   if (!command) {
     return msg.channel.sendMessage(`I cannot find the command: ${params[0]}`);
   } else {
-    msg.channel.sendMessage(`Reloading: ${command}`)
+    msg.channel.sendMessage('`Reloading: ${command}`')
     .then(m => {
       bot.reload(command)
       .then(() => {
-        m.edit(`Successfully reloaded: ${command}`);
+        m.edit('`Successfully reloaded: ${command}'`);
       })
       .catch(e => {
-        m.edit(`Command reload failed: ${command}\n\`\`\`${e.stack}\`\`\``);
+        m.edit('`Command reload failed: ${command}\n\`\`\`${e.stack}\`\`\`'`);
       });
     });
   }

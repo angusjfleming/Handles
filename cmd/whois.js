@@ -6,7 +6,7 @@ exports.run = (bot, msg, params = []) => {
         currentgame = "null"
     }
     try {
-        msg.channel.sendMessage('```xl\nAvatar URL: ' + checkuser.avatarURL + '\nUsername: ' + checkuser.username + "#" + msg.guild.owner.user.discriminator + '\nJoined on: ' + checkuser.createdAt + '\nUser ID: ' + checkuser.id + '\nCurrently playing: ' + currentgame + '\nStatus: ' + checkuser.presence.status + '\nBot?: ' + checkuser.bot + '```');
+        msg.channel.sendMessage('```xl\nAvatar URL: ' + checkuser.avatarURL + '\nUsername: ' + checkuser.username + "#" + checkuser.discriminator + '\nJoined on: ' + checkuser.createdAt + '\nUser ID: ' + checkuser.id + '\nCurrently playing: ' + currentgame + '\nStatus: ' + checkuser.presence.status + '\nBot?: ' + checkuser.bot + '```');
     } catch (err) {}
 };
 

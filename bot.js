@@ -21,7 +21,7 @@ bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
     changeStatus()
-    setInterval(changeStatus, 20000)
+    setInterval(changeStatus, 30000)
 });
 
 bot.commands = new Discord.Collection();
