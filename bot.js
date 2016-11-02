@@ -34,7 +34,7 @@ bot.on('ready', () => {
     console.log("Bot online (" + startdate + ")")
     changeStatus()
     var statchange = setInterval(changeStatus, 30000);
-    setInterval(checkForUpdates, 60000)
+    setInterval(autoupdater.fire('check'), 60000)
 });
 
 bot.commands = new Discord.Collection();
@@ -163,7 +163,3 @@ autoupdater.on('update.extracted', function() {
     console.warn("RESTART THE APP!");
     process.exit()
 });
-
-function checkForUpdates() {
-    autoupdater.fire('check');
-}
