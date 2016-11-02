@@ -2,18 +2,6 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
-var AutoUpdater = require('auto-updater');
-
-var autoupdater = new AutoUpdater({
-    pathToJson: './package.json',
-    autoupdate: true,
-    checkgit: true,
-    jsonhost: 'raw.githubusercontent.com',
-    contenthost: 'codeload.github.com',
-    progressDebounce: 0,
-    devmode: false
-});
-
 var config = require("./config.json");
 var prefix = config.prefix;
 var token = config.bottoken;
@@ -34,7 +22,6 @@ bot.on('ready', () => {
     console.log("Bot online (" + startdate + ")")
     changeStatus()
     var statchange = setInterval(changeStatus, 30000);
-    setInterval(autoupdater.fire('check'), 60000)
 });
 
 bot.commands = new Discord.Collection();
@@ -137,29 +124,3 @@ function changeStatus() {
         pos = 0
     };
 }
-
-autoupdater.on('check.out-dated', function(v_old, v) {
-    console.log("Your version is outdated. " + v_old + " of " + v);
-    autoupdater.fire('download-update');
-});
-
-autoupdater.on('update.extracted', function() {
-    console.log("Update extracted successfully!");
-    console.warn("RESTART THE APP!");
-});
-
-autoupdater.on('update.downloaded', function() {
-    console.log("Update downloaded and ready for install");
-    autoupdater.fire('extract');
-});
-autoupdater.on('update.not-installed', function() {
-    console.log("The Update was already in your folder! It's read for install");
-    autoupdater.fire('extract');
-});
-
-autoupdater.on('update.extracted', function() {
-    clearInterval(statchange);
-    bot.user.setGame("Going down for update.");
-    console.warn("RESTART THE APP!");
-    process.exit()
-});
