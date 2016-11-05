@@ -1,7 +1,7 @@
 const exec = require('child_process');
 
 exports.run = (bot, msg, params, config = []) => {
-    bot._exec('git pull').then((stdout) => {
+    bot.exec('git pull').then((stdout) => {
 
       if (stdout.includes('Already up-to-date.')) {
         needsDependencies = false;
