@@ -6,11 +6,11 @@ function msToTime(s) {
   var mins = s % 60;
   var hrs = (s - mins) / 60;
 
-  var uptimehms = (hrs + ':' + mins + ':' + secs);
+  return hrs + ':' + mins + ':' + secs);
 }
 
 exports.run = (bot, msg, params = []) => {
-	msgToTime(bot.uptime)
+	uptimehms = msToTime(bot.uptime)
 	msg.channel.sendMessage(uptimehms)
 };
 
