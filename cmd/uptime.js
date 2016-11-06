@@ -6,7 +6,7 @@ function msToTime(s) {
   var mins = s % 60;
   var hrs = (s - mins) / 60;
 
-  return hrs + ':' + mins + ':' + secs);
+  return hrs + ':' + mins + ':' + secs;
 }
 
 exports.run = (bot, msg, params = []) => {
