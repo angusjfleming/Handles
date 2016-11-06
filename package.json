@@ -22,7 +22,7 @@
     "sqlite": "^2.2.0",
     "js-beautify": "1.6.4",
     "request": "2.76.0",
-    "auto-updater": "1.0.2"
+    "exec": "0.2.1"
   },
   "devDependencies": {}
 }
