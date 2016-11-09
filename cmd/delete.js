@@ -13,7 +13,7 @@ exports.run = (bot, msg, params = []) => {
 
 exports.help = {
   name : "delete",
-  description: "Deletes message(s)",
+  description: "Deletes message(s) (up to 100)",
   usage: "delete <# of messages>"
 };
 

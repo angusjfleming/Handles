@@ -12,7 +12,7 @@ var masterlogloc = config.masterlogloc;
 var msgno = 0;
 var commandrole = config.commandrole
 var ownerid = config.ownerid
-var botname = config.botnamevvvv
+var botname = config.botname
 var pos = 0;
 
 bot.login(token);
