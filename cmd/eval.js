@@ -14,10 +14,7 @@ exports.run = (bot, msg, params, config = []) => {
         } else if (!error){
             msg.channel.sendMessage("`SUCCESS` ```xl\n" + evaled + "\n```")
         }
-    } catch (err) {
-        console.log("this should never run")
-        msg.channel.sendMessage("`FAILED` ```xl\n" + code + " failed with error: " + err + "\n```")
-    }
+    } catch (err) {}
 };
 
 exports.help = {
