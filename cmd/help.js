@@ -23,7 +23,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
         })
       ];
 
-      if (perms > 0 || params[0] = "all") {
+      if (perms > 0) {
         message = message.concat([
           ``,
           `ADMIN`,
@@ -33,7 +33,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
           })
         ]);
       }
-      if (perms > 2 || params[0] = "all") {
+      if (perms > 2) {
         message = message.concat([
           ``,
           `OWNER`,
@@ -85,7 +85,7 @@ function permLevelToWord(permLvl) {
 
 exports.help = {
     name: "help",
-    description: "Returns list of commands if no command specified; else returns help about a specific command. By default only shows commands for your command permission. If you want to see all commands type help all",
+    description: "Returns list of commands if no command specified; else returns help about a specific command.",
     usage: "#help [command]"
 };
 
