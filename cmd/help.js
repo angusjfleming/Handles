@@ -19,7 +19,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
         `EVERYONE`,
         ...commandsForEveryone.map(command => {
           let help = command.help;
-          return `${command.help.name} = ${help.summary || help.description}`;
+          return `${command.help.name} = ${help.description}`;
         })
       ];
 
@@ -29,7 +29,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
           `ADMIN`,
           ...commandsForAdmin.map(command => {
             let help = command.help;
-            return `${command.help.name} = ${help.summary || help.description}`;
+            return `${command.help.name} = ${help.description}`;
           })
         ]);
       }
@@ -39,7 +39,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
           `OWNER`,
           ...commandsForOwner.map(command => {
             let help = command.help;
-            return `${command.help.name} = ${help.summary || help.description}`;
+            return `${command.help.name} = ${help.description}`;
           })
         ]);
       }

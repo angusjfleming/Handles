@@ -19,7 +19,7 @@ exports.run = (bot, msg, params, config = []) => {
 
 exports.help = {
     name: "eval",
-    description: "Evaluates js code",
+    description: "Evaluates Javascript",
     usage: "eval <code>"
 };
 
