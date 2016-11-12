@@ -18,9 +18,9 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: "google",
-    description: "Searches google",
-    usage: "google <search terms>"
+    name: `google`,
+    description: `Searches google`,
+    usage: `google <search terms>`
 };
 
 exports.conf = {

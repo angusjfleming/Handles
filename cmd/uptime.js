@@ -6,7 +6,7 @@ function msToTime(s) {
   var mins = s % 60;
   var hrs = (s - mins) / 60;
 
-  return hrs + ':' + mins + ':' + secs;
+  return `${hrs}:${mins}:${secs}`;
 }
 
 exports.run = (bot, msg, params = []) => {
@@ -15,9 +15,9 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: "uptime",
-    description: "Returns bot uptime",
-    usage: "uptime"
+    name: `uptime`,
+    description: `Returns bot uptime`,
+    usage: `uptime`
 };
 
 exports.conf = {

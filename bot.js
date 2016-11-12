@@ -74,12 +74,12 @@ bot.on('message', msg => {
 
 function log(msg) {
     formatguildname = ((msg.guild.name).replace(/[|&;$%@"<>()+,/\/]/g, ''))
-    mkdirp('./logs/' + formatguildname, function(err) {})
+    mkdirp(`./logs/${formatguildname}`, function(err) {})
     currentdate = new Date()
-    writecontent = (currentdate.toUTCString() + " : " + msg.author.username + " said: \"" + msg.content + '\" in (' + msg.channel.name + ')\n')
-    serverwritecontent = (currentdate.toUTCString() + " : " + msg.author.username + " said: \"" + msg.content + '\" in (' + msg.channel.name + ')' + ' in (' + msg.guild.name + ')\n')
-    fs.appendFile("./logs/" + formatguildname + "/" + msg.channel.name + ".txt", writecontent, function(error) {});
-    fs.appendFile("./logs/" + masterlogloc, serverwritecontent, function(error) {});
+    writecontent = (`${currentdate.toUTCString()} : ${msg.author.username} said: "${msg.content}" in (${msg.channel.name})\n`)
+    serverwritecontent = (`${currentdate.toUTCString()} : ${msg.author.username} said: "${msg.content}" in (${msg.channel.name}) in (${msg.guild.name})\n'`)
+    fs.appendFile(`./logs/${formatguildname}/${msg.channel.name}.txt`, writecontent, function(error) {});
+    fs.appendFile(`./logs/${masterlogloc}`, serverwritecontent, function(error) {});
 }
 
 process.on("unhandledRejection", err => {
@@ -119,7 +119,7 @@ bot.reload = function(command) {
 function changeStatus() {
     let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
     let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
-    var statuses = ['Currently serving: ' + bot.guilds.size + ' guilds.', 'Prefix: ' + prefix, 'Users: ' + bot.users.size, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
+    var statuses = [`Currently serving: ${bot.guilds.size} guilds.`, `Prefix: ${prefix}`, `Users: ${bot.users.size}`, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
     bot.user.setGame(statuses[pos])
     pos++
     if (pos > statuses.length - 1) {

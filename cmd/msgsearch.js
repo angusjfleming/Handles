@@ -12,9 +12,9 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: "msgsearch",
-    description: "Searches through last 250 messages in each channel",
-    usage: "msgsearch"
+    name: `msgsearch`,
+    description: `Searches through last 250 messages in each channel`,
+    usage: `msgsearch`
 };
 
 exports.conf = {

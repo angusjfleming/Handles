@@ -84,9 +84,9 @@ function permLevelToWord(permLvl) {
   }
 
 exports.help = {
-    name: "help",
-    description: "Returns list of commands if no command specified; else returns help about a specific command.",
-    usage: "help [command]"
+    name: `help`,
+    description: `Returns list of commands if no command specified; else returns help about a specific command.`,
+    usage: `help [command]`
 };
 
 exports.conf = {

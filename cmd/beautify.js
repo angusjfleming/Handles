@@ -47,9 +47,9 @@ exports.run = (bot, msg, params = []) => {
   };
 
 exports.help = {
-    name: "beautify",
-    description: "Cleans javascript code. Makes it look all lovely like",
-    usage: "beautify"
+    name: `beautify`,
+    description: `Cleans javascript code. Makes it look all lovely like`,
+    usage: `beautify`
 };
 
 exports.conf = {

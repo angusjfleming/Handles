@@ -1,5 +1,5 @@
 exports.run = (bot, msg, params = []) => {
-	msg.channel.sendMessage("Invite for SOY: https://discordapp.com/oauth2/authorize?&client_id=168395434371448832&scope=bot&permissions=8");
+	msg.channel.sendMessage(`Invite for SOY: https://discordapp.com/oauth2/authorize?&client_id=168395434371448832&scope=bot&permissions=8`);
 };
 
 exports.help = {

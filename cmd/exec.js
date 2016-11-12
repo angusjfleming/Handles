@@ -15,9 +15,9 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: "exec",
-    description: "Executes code on the host machine (Must be Linux based)",
-    usage: "exec <code>"
+    name: `exec`,
+    description: `Executes code on the host machine (Must be Linux based)`,
+    usage: `exec <code>`
 };
 
 exports.conf = {
