@@ -1,4 +1,4 @@
-exports.run = (bot, msg, params, config = []) => {
+exports.run = (bot, msg, params = []) => {
     var error = false
     var code = params.join(" ");
     try {
