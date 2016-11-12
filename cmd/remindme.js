@@ -1,6 +1,6 @@
 exports.run = (bot, msg, params = []) => {
     var minno = params[0]
-        (mins) = parseInt(minno) * 60 * 1000;
+    var mins = parseInt(minno) * 60 * 1000;
     if (mins = "undefined") {
         msg.channel.sendMessage("You did not enter any parameters. **At all**.")
         return;
