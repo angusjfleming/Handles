@@ -14,7 +14,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
       let message = [
         `[ Commands List ]`,
         ``,
-        `Use \`${config.prefix}help <command>\` for details`,
+        `Use ${config.prefix}help <command> for details`,
         ``,
         `EVERYONE`,
         ...commandsForEveryone.map(command => {
