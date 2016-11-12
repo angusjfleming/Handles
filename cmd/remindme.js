@@ -7,7 +7,7 @@ exports.run = (bot, msg, params = []) => {
   }
   params.shift();
   var reminder = params.join(" ")
-  msg.channel.sendMessage(`Reminder for \`${reminder}\` set for ${minno}} minute(s).`)
+  msg.channel.sendMessage(`Reminder for \`${reminder}\` set for ${minno} minute(s).`)
   setTimeout(function(){ reply(msg, reminder); }, mins);
 };
 
