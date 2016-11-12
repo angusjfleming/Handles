@@ -1,10 +1,6 @@
 exports.run = (bot, msg, params = []) => {
     var minno = params[0]
     var mins = parseInt(minno) * 60 * 1000;
-    if (mins = "undefined") {
-        msg.channel.sendMessage("You did not enter any parameters. **At all**.")
-        return;
-    }
     if (isNaN(mins)) {
         msg.channel.sendMessage(`${params[0]} is not a valid quantity of time.`)
         return;
