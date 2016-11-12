@@ -13,7 +13,7 @@ exports.run = (bot, msg) => {
     if (reason === "success") {
       msg.channel.sendMessage("Rebooting...")
         .then(() => {
-          bot.user.setGame("Rebooting")
+          bot.user.setGame("Rebooting...")
           process.exit();
         })
         .catch(e => {
