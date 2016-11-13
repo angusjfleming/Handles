@@ -1,13 +1,29 @@
 exports.run = (bot, msg, params = []) => {
-    checkuser = msg.mentions.users.first()
+    try {
+        var checkuser = msg.mentions.users.first()
+    } catch (err) {
+        msg.channel.sendMessage(`You didn't give me a user to analyze.`)
+        return;
+    }
     try {
         currentgame = (checkuser.presence.game.name.toString())
     } catch (err) {
         currentgame = "null"
     }
+
     try {
-        msg.channel.sendMessage(`\`\`\`xl\nAvatar URL: ${checkuser.avatarURL}\nUsername: ${checkuser.username}#${checkuser.discriminator}\nJoined on: ${checkuser.createdAt}\nUser ID: ${checkuser.id}\nCurrently playing: ${currentgame}\nStatus: ${checkuser.presence.status}\nBot?: ${checkuser.bot}\`\`\``);
-    } catch (err) {}
+        msg.channel.sendMessage(
+`\`\`\`xl\nAvatar URL: ${checkuser.avatarURL}
+Username: ${checkuser.username}#${checkuser.discriminator}
+Joined on: ${checkuser.createdAt}
+User ID: ${checkuser.id}
+Currently playing: ${currentgame}
+Status: ${checkuser.presence.status}
+Bot?: ${checkuser.bot}\`\`\``
+);
+    } catch (err) {
+        msg.channel.sendMessage(`You didn't give me a user to analyze.`)
+    }
 };
 
 exports.help = {
@@ -17,7 +33,7 @@ exports.help = {
 };
 
 exports.conf = {
-  enabled: true,
-  aliases: ['userinfo'],
-  permLevel: 0
+    enabled: true,
+    aliases: ['userinfo'],
+    permLevel: 0
 };

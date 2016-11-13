@@ -56,14 +56,15 @@ bot.on('message', msg => {
     let perms = bot.elevation(msg);
     let cmd;
 
+    if (command == "") return;
+
     if (bot.commands.has(command)) {
         cmd = bot.commands.get(command);
     } else if (bot.aliases.has(command)) {
         cmd = bot.commands.get(bot.aliases.get(command));
     } else if (command.includes(prefix)){
-    } else if ((msg.content.split(" ")[0].slice(prefix.length)).toLowerCase() = "")
-    {} else {
-        msg.channel.sendMessage("`" + command + "` is not a valid command or alias.")
+    } else {
+        msg.channel.sendMessage(`\`${command}\` is not a valid command or alias.`)
     }
 
     if (cmd) {
