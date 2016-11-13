@@ -1,13 +1,23 @@
 exports.run = (bot, msg, params = []) => {
-    checkuser = msg.mentions.users.first()
+  try {
+    var checkuser = msg.mentions.users.first()
+  } catch(err) {}
+  try {
+    var checkmention = msg.mentions.roles.first()
+  } catch(err) {}
+  console.log(msg.mentions.roles.members[0].user.username);
+  console.log(checkuser);
     try {
         currentgame = (checkuser.presence.game.name.toString())
     } catch (err) {
         currentgame = "null"
     }
-    try {
+    if (checkuser){
         msg.channel.sendMessage(`\`\`\`xl\nAvatar URL: ${checkuser.avatarURL}\nUsername: ${checkuser.username}#${checkuser.discriminator}\nJoined on: ${checkuser.createdAt}\nUser ID: ${checkuser.id}\nCurrently playing: ${currentgame}\nStatus: ${checkuser.presence.status}\nBot?: ${checkuser.bot}\`\`\``);
-    } catch (err) {}
+      }
+    if (checkmention){
+      msg.channel.sendMessage("yes")
+    }
 };
 
 exports.help = {
