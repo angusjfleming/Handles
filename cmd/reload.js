@@ -1,3 +1,4 @@
+const now = require('performance-now');
 exports.run = (bot, msg, params = []) => {
   let command;
   if (bot.commands.has(params[0])) {
@@ -5,14 +6,17 @@ exports.run = (bot, msg, params = []) => {
   } else if (bot.aliases.has(params[0])) {
     command = bot.aliases.get(params[0]);
   }
+
   if (!command) {
     return msg.channel.sendMessage(`I cannot find the command: ${params[0]}`);
   } else {
     msg.channel.sendMessage(`Reloading: ${command}`)
     .then(m => {
+      var startTime = now();
       bot.reload(command)
       .then(() => {
-        m.edit(`Successfully reloaded: ${command}`);
+        var endTime = now();
+        m.edit(`Successfully reloaded: ${command} in ${(endTime - startTime).toFixed(3)}ms.`);
       })
       .catch(e => {
         m.edit(`Command reload failed: ${command}\n\`\`\`${e.stack}\`\`\``);
