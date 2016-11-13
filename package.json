@@ -1,28 +1,30 @@
 {
-  "name": "JSPublic",
-  "version": "0.2.0",
-  "auto-updater":{
-  "repo":"/realXIV/JSPublic",
-  "branch":"master"
-  },
-  "description": "public serverbot",
+  "name": "soyjspublic",
+  "version": "1.0.0",
+  "description": "Javascript discord bot",
   "main": "bot.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot.js"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "discord.js": "10.0.1",
+    "discord.js": "^10.0.1",
+    "exec": "^0.2.1",
     "google-search": "0.0.4",
-    "google-translate": "1.0.6",
-    "mkdirp": "0.5.1",
-    "performance-now": "0.2.0",
-    "sqlite": "^2.2.0",
-    "js-beautify": "1.6.4",
-    "request": "2.76.0",
-    "exec": "0.2.1"
+    "js-beautify": "^1.6.4",
+    "mkdirp": "^0.5.1",
+    "performance-now": "^0.2.0",
+    "request": "^2.78.0",
+    "sqlite": "^2.2.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realXIV/JSPublic.git"
+  },
+  "author": "XIV",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/realXIV/JSPublic/issues"
+  },
+  "homepage": "https://github.com/realXIV/JSPublic#readme"
 }
