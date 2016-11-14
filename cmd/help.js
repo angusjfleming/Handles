@@ -58,8 +58,16 @@ exports.run = (bot, msg, params, config, perms = []) => {
             `= ${config.prefix}${command.help.usage}`,
             ``,
             `Aliases`,
+            command.conf.aliases && command.conf.aliases.length ?
+            command.conf.aliases.map(e => {
+                return `= ${e}`
+            }).join('\n') :
+            `= N/A`,
             ``,
             `Permission`,
+            command.conf.permLevel ?
+            `= ${permLevelToWord(command.conf.permLevel)}` :
+            '= Everyone',
             '```'
         ]);
     }
@@ -72,6 +80,7 @@ function permLevelToWord(permLvl) {
         return 'Admin';
     if (permLvl === 3)
         return 'Owner';
+}
 
 exports.help = {
     name: `help`,
