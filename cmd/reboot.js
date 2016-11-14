@@ -8,7 +8,7 @@ exports.run = (bot, msg) => {
     if (m.content === `yes`) collector.stop(`success`);
   });
   collector.on(`end`, (collected, reason) => {
-    if (reason === `time`) return msg.channel.sendMessage(`The prompt timed out...`);
+    if (reason === `time`) return msg.channel.sendMessage(`The prompt timed out.`);
     if (reason === `aborted`) return msg.channel.sendMessage(`The reboot has been aborted`);
     if (reason === `success`) {
       msg.channel.sendMessage(`Rebooting...`)
