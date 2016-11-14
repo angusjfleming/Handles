@@ -1,12 +1,14 @@
-function msToTime(s) {
-    var ms = s % 1000;
-    s = (s - ms) / 1000;
-    var secs = s % 60;
-    s = (s - secs) / 60;
-    var mins = s % 60;
-    var hrs = (s - mins) / 60;
+function msToTime(duration) {
+    var milliseconds = parseInt((duration % 1000) / 100),
+        seconds = parseInt((duration / 1000) % 60),
+        minutes = parseInt((duration / (1000 * 60)) % 60),
+        hours = parseInt((duration / (1000 * 60 * 60)) % 24);
 
-    return `${hrs}:${mins}:${secs}`;
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return `${hours}:${minutes}:${seconds}`;
 }
 
 exports.run = (bot, msg, params = []) => {
