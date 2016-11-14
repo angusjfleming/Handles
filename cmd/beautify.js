@@ -3,7 +3,8 @@ var beautify = require('js-beautify').js_beautify
 function reduceIndentation(string) {
     let whitespace = string.match(/^(\s+)/);
 
-    if (!whitespace) return string;
+    if (!whitespace)
+        return string;
 
     whitespace = whitespace[0].replace('\n', '');
 
@@ -43,8 +44,8 @@ exports.run = (bot, msg, params = []) => {
         });
         beautifiedCode = reduceIndentation(beautifiedCode);
 
-        msg.channel.sendMessage(`${'```js'}\n${beautifiedCode}\n${'```'}`);
-  };
+        msg.channel.sendMessage(`${ '```js'}\n${beautifiedCode}\n${ '```'}`);
+};
 
 exports.help = {
     name: `beautify`,
@@ -53,7 +54,7 @@ exports.help = {
 };
 
 exports.conf = {
-  enabled: true,
-  aliases: ['cleanjs'],
-  permLevel: 0
+    enabled: true,
+    aliases: ['cleanjs'],
+    permLevel: 0
 };

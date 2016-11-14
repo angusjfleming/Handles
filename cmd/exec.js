@@ -1,16 +1,16 @@
 var exec = require('child_process').exec;
 exports.run = (bot, msg, params = []) => {
-  var code = params.join(" ")
-  var child = exec(code);
-  child.stdout.on('data', function(data) {
-      msg.channel.sendMessage(`\`OUT:\` ${data}`);
-  });
-  child.stderr.on('data', function(data) {
-      msg.channel.sendMessage(`\`ERR:\` ${data}`);
-  });
-  child.on('close', function(code) {
-      msg.channel.sendMessage(`\`closing code:\` ${code}`);
-  });
+    var code = params.join(" ")
+    var child = exec(code);
+    child.stdout.on('data', function(data) {
+        msg.channel.sendMessage(`\`OUT:\` ${data}`);
+    });
+    child.stderr.on('data', function(data) {
+        msg.channel.sendMessage(`\`ERR:\` ${data}`);
+    });
+    child.on('close', function(code) {
+        msg.channel.sendMessage(`\`closing code:\` ${code}`);
+    });
 
 };
 

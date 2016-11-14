@@ -11,7 +11,7 @@ exports.run = (bot, msg, params = []) => {
     try {
         if (evaled.length > 2000 && error) {
             msg.channel.sendMessage("`FAILED` ```xl\n\'" + code + "\' failed because the output was greater than 2000 characters.```")
-        } else if (!error){
+        } else if (!error) {
             msg.channel.sendMessage("`SUCCESS` ```xl\n" + evaled + "\n```")
         }
     } catch (err) {}

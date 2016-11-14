@@ -27,7 +27,8 @@ bot.on('ready', () => {
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 fs.readdir("./cmd/", (err, files) => {
-    if (err) console.error(err);
+    if (err)
+        console.error(err);
     console.log(`Loading a total of ${files.length} commands.`);
     files.forEach(f => {
         let props = require(`./cmd/${f}`);
@@ -39,36 +40,39 @@ fs.readdir("./cmd/", (err, files) => {
     });
 });
 
-
 bot.on('message', msg => {
-    if (msg.channel.type !== 'text') return;
+    if (msg.channel.type !== 'text')
+        return;
 
     if (logging) {
         log(msg)
     }
 
-    if (msg.author.bot) return;
+    if (msg.author.bot)
+        return;
 
-    if (!msg.content.startsWith(prefix)) return;
+    if (!msg.content.startsWith(prefix))
+        return;
 
     let command = (msg.content.split(" ")[0].slice(prefix.length)).toLowerCase();
     let params = msg.content.split(" ").slice(1);
     let perms = bot.elevation(msg);
     let cmd;
 
-    if (command == "") return;
+    if (command == "")
+        return;
 
     if (bot.commands.has(command)) {
         cmd = bot.commands.get(command);
     } else if (bot.aliases.has(command)) {
         cmd = bot.commands.get(bot.aliases.get(command));
-    } else if (command.includes(prefix)){
-    } else {
+    } else if (command.includes(prefix)) {} else {
         msg.channel.sendMessage(`\`${command}\` is not a valid command or alias.`)
     }
 
     if (cmd) {
-        if (perms < cmd.conf.permLevel) return;
+        if (perms < cmd.conf.permLevel)
+            return;
         cmd.run(bot, msg, params, config, perms);
     }
 });
@@ -91,8 +95,10 @@ process.on("unhandledRejection", err => {
 bot.elevation = function(msg) {
     let permlvl = 0;
     let admin_role = msg.guild.roles.find("name", "Admin");
-    if (admin_role && msg.member.roles.has(admin_role.id)) permlvl = 2;
-    if (msg.author.id === ownerid) permlvl = 3;
+    if (admin_role && msg.member.roles.has(admin_role.id))
+        permlvl = 2;
+    if (msg.author.id === ownerid)
+        permlvl = 3;
     return permlvl;
 };
 
@@ -103,7 +109,8 @@ bot.reload = function(command) {
             let cmd = require(`./cmd/${command}`);
             bot.commands.delete(command);
             bot.aliases.forEach((cmd, alias) => {
-                if (cmd === command) bot.aliases.delete(alias);
+                if (cmd === command)
+                    bot.aliases.delete(alias);
             });
 
             bot.commands.set(command, cmd);

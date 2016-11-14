@@ -13,14 +13,14 @@ exports.run = (bot, msg, params = []) => {
 
     try {
         msg.channel.sendMessage(
-`\`\`\`xl\nAvatar URL: ${checkuser.avatarURL}
+            `\`\`\`xl\nAvatar URL: ${checkuser.avatarURL}
 Username: ${checkuser.username}#${checkuser.discriminator}
 Joined on: ${checkuser.createdAt}
 User ID: ${checkuser.id}
 Currently playing: ${currentgame}
 Status: ${checkuser.presence.status}
 Bot?: ${checkuser.bot}\`\`\``
-);
+        );
     } catch (err) {
         msg.channel.sendMessage(`You didn't give me a user to analyze.`)
     }
