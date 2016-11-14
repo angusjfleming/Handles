@@ -78,12 +78,11 @@ bot.on('message', msg => {
 });
 
 function log(msg) {
-    formatguildname = ((msg.guild.name).replace(/[|&;$%@"<>()+,/\/]/g, ''))
-    mkdirp(`./logs/${formatguildname}`, function(err) {})
+    mkdirp(`./logs/${msg.guild.id}`, function(err) {})
     currentdate = new Date()
     writecontent = (`${currentdate.toUTCString()} : ${msg.author.username} said: "${msg.content}" in (${msg.channel.name})\n`)
     serverwritecontent = (`${currentdate.toUTCString()} : ${msg.author.username} said: "${msg.content}" in (${msg.channel.name}) in (${msg.guild.name})\n'`)
-    fs.appendFile(`./logs/${formatguildname}/${msg.channel.name}.txt`, writecontent, function(error) {});
+    fs.appendFile(`./logs/${msg.guild.id}/${msg.channel.name}.txt`, writecontent, function(error) {});
     fs.appendFile(`./logs/${masterlogloc}`, serverwritecontent, function(error) {});
 }
 
