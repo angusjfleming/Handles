@@ -16,7 +16,7 @@ exports.run = (bot, msg, params = []) => {
 
 exports.help = {
     name: `nick`,
-    description: `Sets a user's nickname`,
+    description: `Sets a user's nickname. If no new nickname is written, the nickname will be reset.`,
     usage: `nick <usermention> <newnickname>`
 };
 
