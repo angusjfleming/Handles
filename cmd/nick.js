@@ -7,6 +7,7 @@ exports.run = (bot, msg, params = []) => {
       return;
   }
   try {
+    params.shift()
     nickuser.setNickname(params.join(` `))
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
