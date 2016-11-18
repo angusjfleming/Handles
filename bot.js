@@ -123,6 +123,27 @@ bot.reload = function(command) {
     });
 };
 
+bot.modlog = function(msg, command, commandparams) {
+  try {
+    var modlogchannel = msg.guild.channels.find('name', 'mod_log');
+  } catch(err)return;
+let embed = {
+    "color": parseInt('551a8b', 16),
+    "description": "ADMIN CASE",
+    "title": `${msg.author.username}#${msg.author.username} (${msg.author.id})`,
+    "fields": [{
+        "name": `${command}`,
+        "value": `${commandparams}`
+    }],
+    "timestamp": msg.createdAt
+}
+modlogchannel.sendMessage("", {
+    embed
+}).catch(err => msg.reply(err));
+  }
+
+};
+
 function changeStatus() {
     let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
     let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
