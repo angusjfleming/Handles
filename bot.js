@@ -126,7 +126,7 @@ bot.reload = function(command) {
 bot.modlog = function(msg, command, commandparams) {
   try {
     var modlogchannel = msg.guild.channels.find('name', 'mod_log');
-  } catch(err)return;
+  } catch(err){return};
 let embed = {
     "color": parseInt('551a8b', 16),
     "description": "ADMIN CASE",
