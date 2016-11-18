@@ -15,13 +15,13 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: `nick`,
+    name: `nickname`,
     description: `Sets a user's nickname. If no new nickname is written, the nickname will be reset.`,
-    usage: `nick <usermention> <newnickname>`
+    usage: `nickname <usermention> <newnickname>`
 };
 
 exports.conf = {
     enabled: true,
-    aliases: ['setnickname'],
+    aliases: ['nick'],
     permLevel: 2
 };
