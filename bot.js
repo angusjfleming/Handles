@@ -140,9 +140,7 @@ let embed = {
 modlogchannel.sendMessage("", {
     embed
 }).catch(err => msg.reply(err));
-  }
-
-};
+  };
 
 function changeStatus() {
     let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
