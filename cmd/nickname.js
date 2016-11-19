@@ -16,7 +16,7 @@ exports.run = (bot, msg, params = []) => {
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
   }
-  if (params = "") {
+  if (!params) {
     info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
   }
 
