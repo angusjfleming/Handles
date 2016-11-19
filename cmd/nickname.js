@@ -1,6 +1,5 @@
 exports.run = (bot, msg, params = []) => {
     var info;
-    var index = 0;
     var commandname = exports.help.name;
     msg.delete()
     try {
@@ -13,7 +12,7 @@ exports.run = (bot, msg, params = []) => {
     try {
       params.shift()
       console.log(params)
-      if (index < params.length) {
+      if (0 = params.length) {
         info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
       } else {
         nickuser.setNickname(params.join(` `))
