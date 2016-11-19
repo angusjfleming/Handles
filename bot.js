@@ -132,7 +132,7 @@ bot.modlog = function(msg, commandname, info) {
         "author":{
           name: `${msg.author.username}#${msg.author.discriminator} (${msg.author.id})`,
        icon_url: msg.author.avatarURL
-        }
+     },
         "description": "ADMIN CASE",
         "title": `${commandname}`,
         "fields": [{
