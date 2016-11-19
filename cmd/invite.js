@@ -10,6 +10,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: [''],
+    aliases: [],
     permLevel: 0
 };

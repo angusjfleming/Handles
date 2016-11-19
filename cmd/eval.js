@@ -1,5 +1,5 @@
 exports.run = (bot, msg, params = []) => {
-    var error = false
+    var error = false;
     var code = params.join(" ");
     try {
         var evaled = eval(code);

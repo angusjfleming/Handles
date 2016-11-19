@@ -1,5 +1,5 @@
 exports.run = (bot, msg, params = []) => {
-  var hax = "00ffff";
+    var hex = "00ffff";
     var deletedno = 0;
     var commandname = exports.help.name;
     messagecount = parseInt(params[0]) ? parseInt(params[0]) : 1;
