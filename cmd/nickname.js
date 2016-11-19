@@ -1,5 +1,6 @@
 exports.run = (bot, msg, params = []) => {
   var commandname = exports.help.name;
+  msg.delete()
   try {
       var nickuser = msg.mentions.users.first()
       nickuser = msg.guild.member(nickuser)
