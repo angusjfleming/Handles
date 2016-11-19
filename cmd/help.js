@@ -47,9 +47,12 @@ exports.run = (bot, msg, params, config, perms = []) => {
 
     } else {
 
-        let command = params[0];
-        if (!bot.commands.has(command))
-            return false;
+        let command;
+        if (bot.commands.has(params[0])) {
+            command = params[0];
+        } else if (bot.aliases.has(params[0])) {
+            command = bot.aliases.get(params[0]);
+        } else return false;
         command = bot.commands.get(command);
         msg.channel.sendMessage([
             '```ini', `[ Command: ${command.help.name} ]`, ``, `Description`, `= ${command.help.description || command.help.summary}`,
