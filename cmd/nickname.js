@@ -1,4 +1,5 @@
 exports.run = (bot, msg, params = []) => {
+  var commandname = exports.help.name;
   try {
       var nickuser = msg.mentions.users.first()
       nickuser = msg.guild.member(nickuser)
@@ -9,6 +10,8 @@ exports.run = (bot, msg, params = []) => {
   try {
     params.shift()
     nickuser.setNickname(params.join(` `))
+    var info = `Set ${nickuser.username}#${nickuser.discriminator}\'s nickname to ${params.join(` `)}`;
+    bot.modlog(msg, commandname, info)
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
   }
