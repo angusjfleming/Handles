@@ -129,11 +129,15 @@ bot.modlog = function(msg, commandname, info) {
     } catch (err) {};
     let embed = {
         "color": parseInt('551a8b', 16),
+        "author":{
+          name: `${msg.author.username}#${msg.author.discriminator} (${msg.author.id})`,
+       icon_url: msg.author.avatarURL
+        }
         "description": "ADMIN CASE",
-        "title": `${msg.author.username}#${msg.author.discriminator} (${msg.author.id})`,
+        "title": `${commandname}`,
         "fields": [{
-            "name": `${commandname}`,
-            "value": `${info}`
+            "name": `${info}`,
+            "value": ``
         }],
         "timestamp": msg.createdAt
     }
