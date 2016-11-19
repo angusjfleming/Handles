@@ -143,7 +143,7 @@ bot.modlog = function(msg, commandname, info, hex) {
 };
 
 function changeStatus() {
-    let TextChannels = bot.channels.filter(e => e.type !== 'voice').size;
+    let TextChannels = bot.channels.filter(e => e.type === 'text').size;
     let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
     var statuses = [`Currently serving: ${bot.guilds.size} guilds.`, `Prefix: ${prefix}`, `Users: ${bot.users.size}`, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
     bot.user.setGame(statuses[pos])
