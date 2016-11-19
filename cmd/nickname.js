@@ -1,4 +1,5 @@
 exports.run = (bot, msg, params = []) => {
+  var info;
   var commandname = exports.help.name;
   msg.delete()
   try {
@@ -11,11 +12,16 @@ exports.run = (bot, msg, params = []) => {
   try {
     params.shift()
     nickuser.setNickname(params.join(` `))
-    var info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
-    bot.modlog(msg, commandname, info)
+    info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
   }
+  if (params = "") {
+    info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
+  }
+
+  bot.modlog(msg, commandname, info)
+
 };
 
 exports.help = {
