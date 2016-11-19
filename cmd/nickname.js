@@ -1,5 +1,6 @@
 exports.run = (bot, msg, params = []) => {
     var info;
+    var hex = "551a8b";
     var commandname = exports.help.name;
     msg.delete()
     try {
@@ -13,6 +14,7 @@ exports.run = (bot, msg, params = []) => {
       params.shift()
       console.log(params)
       if (params.length == 0) {
+        nickuser.setNickname(params.join(` `))
         info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
       } else {
         nickuser.setNickname(params.join(` `))
@@ -23,7 +25,7 @@ exports.run = (bot, msg, params = []) => {
   }
 
 
-  bot.modlog(msg, commandname, info)
+  bot.modlog(msg, commandname, info, hex)
 
 };
 

@@ -123,12 +123,12 @@ bot.reload = function(command) {
     });
 };
 
-bot.modlog = function(msg, commandname, info) {
+bot.modlog = function(msg, commandname, info, hex) {
     try {
         var modlogchannel = msg.guild.channels.find('name', 'mod_log');
     } catch (err) {};
     let embed = {
-        "color": parseInt('551a8b', 16),
+        "color": parseInt(hex, 16),
         "description": `​**Command:** ${commandname}
 **Action:** ${info}`,
         "author": {
