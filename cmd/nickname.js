@@ -1,24 +1,26 @@
 exports.run = (bot, msg, params = []) => {
-  var info;
-  var commandname = exports.help.name;
-  msg.delete()
-  try {
+    var info;
+    var commandname = exports.help.name;
+    msg.delete()
+    try {
       var nickuser = msg.mentions.users.first()
       nickuser = msg.guild.member(nickuser)
-  } catch (err) {
+    } catch (err) {
       msg.channel.sendMessage(`You didn't give me a user to set the nickname of.`)
       return;
-  }
-  try {
-    params.shift()
-    nickuser.setNickname(params.join(` `))
-    info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
+    }
+    try {
+      params.shift()
+      if (!params) {
+        info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
+      } else {
+        nickuser.setNickname(params.join(` `))
+        info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
+    }
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
   }
-  if (!params) {
-    info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
-  }
+
 
   bot.modlog(msg, commandname, info)
 
