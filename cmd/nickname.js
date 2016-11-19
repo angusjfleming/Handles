@@ -12,7 +12,7 @@ exports.run = (bot, msg, params = []) => {
     try {
       params.shift()
       console.log(params)
-      if (params.length = 0) {
+      if (params.length == 0) {
         info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
       } else {
         nickuser.setNickname(params.join(` `))
