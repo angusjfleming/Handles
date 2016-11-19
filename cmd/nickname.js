@@ -10,8 +10,7 @@ exports.run = (bot, msg, params = []) => {
   try {
     params.shift()
     nickuser.setNickname(params.join(` `))
-    var infoliteral = `Set ${nickuser.username}#${nickuser.discriminator}\'s nickname to ${params.join(` `)}`;
-    var info = infoliteral.toString();
+    var info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
     bot.modlog(msg, commandname, info)
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
