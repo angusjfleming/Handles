@@ -1,7 +1,6 @@
+var hex = "551a8b";
 exports.run = (bot, msg, params = []) => {
         var info;
-        var hex = "551a8b";
-        var commandname = exports.help.name;
         msg.delete()
         try {
             var nickuser = msg.mentions.users.first()
@@ -25,7 +24,7 @@ exports.run = (bot, msg, params = []) => {
   }
 
 
-  bot.modlog(msg, commandname, info, hex)
+  bot.modlog(msg, exports.help.name, info, hex)
 
 };
 

@@ -1,7 +1,5 @@
+var hex = "00ffff";
 exports.run = (bot, msg, params = []) => {
-    var hex = "00ffff";
-    var deletedno = 0;
-    var commandname = exports.help.name;
     messagecount = parseInt(params[0]) ? parseInt(params[0]) : 1;
     msg.channel.fetchMessages({
             limit: 100
@@ -17,7 +15,7 @@ exports.run = (bot, msg, params = []) => {
                 msg.channel.bulkDelete(msg_array)
             }
             var info = `Deleted ${deletedno} messages in ${msg.channel.name}`
-            bot.modlog(msg, commandname, info, hex)
+            bot.modlog(msg, exports.help.name, info, hex)
         }).catch(console.error);
 };
 
