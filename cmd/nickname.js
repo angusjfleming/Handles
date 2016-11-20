@@ -11,7 +11,7 @@ exports.run = (bot, msg, params = []) => {
         try {
             params.shift()
             if (params.join(` `).length > 32) {
-                msg.channel.sendMessage(`Nicknames cannot be longer than 32 characters`)
+                msg.reply(`Nicknames cannot be longer than 32 characters`)
                 return;
             }
             if (params.length == 0) {
