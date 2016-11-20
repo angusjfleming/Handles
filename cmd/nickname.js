@@ -1,7 +1,5 @@
 var hex = "551a8b";
 exports.run = (bot, msg, params = []) => {
-        var info;
-        var changed = false;
         try {
             var nickuser = msg.mentions.users.first()
             nickuser = msg.guild.member(nickuser)
@@ -16,20 +14,18 @@ exports.run = (bot, msg, params = []) => {
                 return;
             }
             if (params.length == 0) {
-                changed = true;
                 msg.delete()
                 nickuser.setNickname(params.join(` `))
-                info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
+                var info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
             } else {
-                changed = true;
                 msg.delete()
                 nickuser.setNickname(params.join(` `))
-                info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
+                var info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
     }
   } catch (err) {
     msg.reply(`Failed with error ${err}`)
   }
-if (changed){
+if (info){
   bot.modlog(msg, exports.help.name, info, hex)
 }
 };
