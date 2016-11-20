@@ -1,7 +1,6 @@
 var hex = "551a8b";
 exports.run = (bot, msg, params = []) => {
         var info;
-        msg.delete()
         try {
             var nickuser = msg.mentions.users.first()
             nickuser = msg.guild.member(nickuser)
@@ -11,11 +10,16 @@ exports.run = (bot, msg, params = []) => {
         }
         try {
             params.shift()
-            console.log(params)
+            if (params.join(` `).length > 32) {
+                msg.channel.sendMessage(`Nicknames cannot be longer than 32 characters`)
+                return;
+            }
             if (params.length == 0) {
+                msg.delete()
                 nickuser.setNickname(params.join(` `))
                 info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
             } else {
+                msg.delete()
                 nickuser.setNickname(params.join(` `))
                 info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
     }

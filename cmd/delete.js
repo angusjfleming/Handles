@@ -10,7 +10,7 @@ exports.run = (bot, msg, params = []) => {
                 deletedno = msg_array.length;
                 msg.channel.bulkDelete(msg_array)
             } else {
-                deletedno = messagecount + 1;
+                deletedno = messagecount;
                 msg_array.length = messagecount + 1;
                 msg.channel.bulkDelete(msg_array)
             }
