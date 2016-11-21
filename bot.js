@@ -59,7 +59,7 @@ bot.on('message', msg => {
     let perms = bot.elevation(msg);
     let cmd;
 
-    if (command == "")
+    if (!command)
         return;
 
     if (bot.commands.has(command)) {
