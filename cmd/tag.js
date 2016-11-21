@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./selfbot.sqlite');
+const db = new sqlite3.Database('../tags.sqlite');
 
 exports.run = (bot, msg, params = []) => {
     db.serialize(function() {
