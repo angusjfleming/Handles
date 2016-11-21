@@ -6,7 +6,7 @@ exports.run = (bot, msg, params = []) => {
   contents = params.slice(1).join(" ");
   db.serialize(function() {
     db.get(`SELECT * FROM tags WHERE name = '${params[0]}'`, (err, row) => {
-      if(err){log(err)}
+      if(err){msg.reply(err)}
       if(!row) {
         var stmt = db.prepare(`INSERT INTO "tags" (name, contents) VALUES (?, ?)`);
         stmt.run(name, contents);

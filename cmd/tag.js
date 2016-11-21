@@ -5,7 +5,7 @@ exports.run = (bot, msg, params = []) => {
     db.serialize(function() {
         db.get(`SELECT * FROM tags WHERE name = '${params[0]}'`, (err, row) => {
             if (err) {
-                log(err)
+                msg.reply(err)
             }
             if (row) {
                 message_content = msg.mentions.users.array().length === 1 ? `${msg.mentions.users.array()[0]} ${row.contents}` : row.contents;

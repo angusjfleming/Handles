@@ -4,7 +4,7 @@ const db = new sqlite3.Database('../tags.sqlite');
 exports.run = (bot, msg, params = []) => {
   db.serialize(function() {
     db.all("SELECT * FROM tags", (err, rows) => {
-      if(err){log(err)}
+      if(err){msg.reply(err)}
       msg.reply(`List of tags: ${rows.map(r => `${r.name} (${r.used})`).join(" ; ")}`);
     });
   });
