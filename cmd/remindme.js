@@ -27,5 +27,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['remind'],
-    permLevel: 0
+    permLevel: 1
 };

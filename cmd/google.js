@@ -1,6 +1,7 @@
 var request = require('request');
 
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
     searchTerm = params.join(' ');
     msg.channel.sendMessage("Searching...").then(msg => {
         request('https://www.google.com/search?q=' + encodeURI(searchTerm), function(err, res, body) {
@@ -28,5 +29,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['search'],
-    permLevel: 0
+    permLevel: 1
 };

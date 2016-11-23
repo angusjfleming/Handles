@@ -15,6 +15,6 @@ exports.help = {
 
 exports.conf = {
   enabled: true,
-  aliases: ['fastrestart', 'rebootfast', 'fast'],
-  permLevel: 3
+  aliases: ['restart', 'reboot'],
+  permLevel: 4
 };

@@ -1,5 +1,6 @@
 var hex = "551a8b";
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
         try {
             var nickuser = msg.mentions.users.first()
             nickuser = msg.guild.member(nickuser)
@@ -10,20 +11,18 @@ exports.run = (bot, msg, params = []) => {
         try {
             params.shift()
             if (params.join(` `).length > 32) {
-                msg.reply(`Nicknames cannot be longer than 32 characters`)
+                msg.reply(`Nicknames cannot be longer than 32 characters`).then(m => {setTimeout(m.delete.bind(m), 5000)});
                 return;
             }
             if (params.length == 0) {
-                msg.delete()
                 nickuser.setNickname(params.join(` `))
                 var info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
             } else {
-                msg.delete()
                 nickuser.setNickname(params.join(` `))
                 var info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
     }
   } catch (err) {
-    msg.reply(`Failed with error ${err}`)
+    msg.reply(`Failed with error ${err}`).then(m => {setTimeout(m.delete.bind(m), 5000)});
   }
 if (info){
   bot.modlog(msg, exports.help.name, info, hex)

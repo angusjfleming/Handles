@@ -24,5 +24,5 @@ line`,
 exports.conf = {
     enabled: true,
     aliases: ['ex'],
-    permLevel: 3
+    permLevel: 4
 };

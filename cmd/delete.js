@@ -28,5 +28,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['del', 'purge'],
-    permLevel: 2
+    permLevel: 3
 };

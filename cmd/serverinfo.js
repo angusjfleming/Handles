@@ -1,4 +1,5 @@
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
     msg.channel.sendMessage(`\`\`\`xl\nName: ${msg.guild.name}
 Icon Url: ${msg.guild.iconURL}
 Region: ${msg.guild.region}
@@ -15,5 +16,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['svinfo'],
-    permLevel: 0
+    permLevel: 1
 };

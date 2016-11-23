@@ -80,11 +80,11 @@ exports.run = (bot, msg, params, config, perms = []) => {
 }
 
 function permLevelToWord(permLvl) {
-    if (!permLvl || permLvl === 0)
+    if (!permLvl || permLvl === 1)
         return 'Everyone'
-    if (permLvl === 2)
-        return 'Admin';
     if (permLvl === 3)
+        return 'Admin';
+    if (permLvl === 4)
         return 'Owner';
 }
 
@@ -97,5 +97,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['userinfo'],
-    permLevel: 0
+    permLevel: 1
 };

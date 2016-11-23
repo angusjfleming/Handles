@@ -26,13 +26,13 @@ exports.run = (bot, msg) => {
 };
 
 exports.help = {
-    name: `reboot`,
+    name: `boot`,
     description: `Reboots the bot.`,
-    usage: `reboot`
+    usage: `boot`
 };
 
 exports.conf = {
     enabled: true,
-    aliases: ['restart'],
-    permLevel: 3
+    aliases: [],
+    permLevel: 4
 };

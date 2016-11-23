@@ -26,5 +26,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['ev'],
-    permLevel: 3
+    permLevel: 4
 };

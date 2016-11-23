@@ -1,4 +1,5 @@
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
     try {
         var checkuser = msg.mentions.users.first()
     } catch (err) {
@@ -35,5 +36,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['userinfo'],
-    permLevel: 0
+    permLevel: 1
 };
