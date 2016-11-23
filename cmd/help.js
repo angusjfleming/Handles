@@ -73,7 +73,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             `= ${permLevelToWord(command.conf.permLevel)}` :
             '= Everyone',
             '```'
-        ]).then(msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)});
+        ]).then(msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)}));
     }
 }
 
