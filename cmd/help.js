@@ -1,4 +1,6 @@
 exports.run = (bot, msg, params, config, perms = []) => {
+    msg.reply(`sent you a message! :white_check_mark:`)
+    msg.delete();
     if (!params[0]) {
         let commands = bot.commands;
         let commandsForEveryone = commands.filter(e => {
@@ -40,7 +42,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             ]);
         }
 
-        msg.channel.sendMessage([
+        msg.author.sendMessage([
             '```ini', ...message,
             '```'
         ]);
@@ -54,7 +56,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             command = bot.aliases.get(params[0]);
         } else return false;
         command = bot.commands.get(command);
-        msg.channel.sendMessage([
+        msg.author.sendMessage([
             '```ini', `[ Command: ${command.help.name} ]`, ``, `Description`, `= ${command.help.description || command.help.summary}`,
             ``,
             `Usage`,

@@ -7,14 +7,14 @@ exports.run = (bot, msg, params = []) => {
     }
     params.shift();
     var reminder = params.join(" ")
-    msg.channel.sendMessage(`Reminder for \`${reminder}\` set for ${minno} minute(s).`)
+    msg.channel.sendMessage(`Reminder for \`${reminder}\` set for ${minno} minute(s).`).then(m => {setTimeout(m.delete.bind(m), 4000)})
     setTimeout(function() {
         reply(msg, reminder);
     }, mins);
 };
 
 function reply(msg, reminder) {
-    return msg.reply(` ${reminder}`)
+    return msg.author.sendMessage(` ${reminder}`)
 };
 
 exports.help = {
