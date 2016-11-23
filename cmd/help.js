@@ -15,8 +15,6 @@ exports.run = (bot, msg, params, config, perms = []) => {
         let message = [
             `[ Commands List ]`,
             ``,
-            `[This message will disappear in 60 seconds]`,
-            ``,
             `Use ${config.prefix}help <command> for details`,
             ``,
             `EVERYONE`,
@@ -46,7 +44,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
         msg.channel.sendMessage([
             '```ini', ...message,
             '```'
-        ]).then(m => {setTimeout(m.delete.bind(m), 60000)});
+        ])
 
     } else {
 
