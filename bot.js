@@ -81,6 +81,8 @@ bot.elevation = function(msg) {
         permlvl = 2;
     if (msg.author.id === ownerid)
         permlvl = 3;
+    if (msg.channel.type !== 'dm')
+        permLvl = 2;
     return permlvl;
 };
 
