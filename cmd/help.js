@@ -15,6 +15,8 @@ exports.run = (bot, msg, params, config, perms = []) => {
         let message = [
             `[ Commands List ]`,
             ``,
+            `[This message will disappear in 60 seconds]`,
+            ``,
             `Use ${config.prefix}help <command> for details`,
             ``,
             `EVERYONE`,
