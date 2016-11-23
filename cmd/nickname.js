@@ -38,5 +38,5 @@ exports.help = {
 exports.conf = {
     enabled: true,
     aliases: ['nick'],
-    permLevel: 2
+    permLevel: 3
 };

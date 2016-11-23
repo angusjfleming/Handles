@@ -3,13 +3,13 @@ exports.run = (bot, msg, params, config, perms = []) => {
     if (!params[0]) {
         let commands = bot.commands;
         let commandsForEveryone = commands.filter(e => {
-            return !e.conf.permLevel || e.conf.permLevel === 0;
+            return !e.conf.permLevel || e.conf.permLevel === 1;
         });
         let commandsForAdmin = commands.filter(e => {
-            return e.conf.permLevel === 2;
+            return e.conf.permLevel === 3;
         });
         let commandsForOwner = commands.filter(e => {
-            return e.conf.permLevel === 3;
+            return e.conf.permLevel === 4;
         });
 
         let message = [
@@ -26,7 +26,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             })
         ];
 
-        if (perms > 0) {
+        if (perms > 1) {
             message = message.concat([
                 ``, `ADMIN`, ...commandsForAdmin.map(command => {
                     let help = command.help;
@@ -34,7 +34,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
                 })
             ]);
         }
-        if (perms > 2) {
+        if (perms > 3) {
             message = message.concat([
                 ``, `OWNER`, ...commandsForOwner.map(command => {
                     let help = command.help;
