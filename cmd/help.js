@@ -1,5 +1,5 @@
 exports.run = (bot, msg, params, config, perms = []) => {
-    msg.reply(`sent you a message! :white_check_mark:`)
+    msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)})
     msg.delete();
     if (!params[0]) {
         let commands = bot.commands;
