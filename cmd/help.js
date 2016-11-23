@@ -41,10 +41,10 @@ exports.run = (bot, msg, params, config, perms = []) => {
             ]);
         }
 
-        msg.author.sendMessage([
+        msg.channel.sendMessage([
             '```ini', ...message,
             '```'
-        ]).then(msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)}));
+        ]).then(m => {setTimeout(m.delete.bind(m), 60000)}));
 
     } else {
 
@@ -55,7 +55,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             command = bot.aliases.get(params[0]);
         } else return false;
         command = bot.commands.get(command);
-        msg.author.sendMessage([
+        msg.channel.sendMessage([
             '```ini', `[ Command: ${command.help.name} ]`, ``, `Description`, `= ${command.help.description || command.help.summary}`,
             ``,
             `Usage`,
@@ -73,7 +73,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             `= ${permLevelToWord(command.conf.permLevel)}` :
             '= Everyone',
             '```'
-        ]).then(msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)}));
+        ]).then(m => {setTimeout(m.delete.bind(m), 60000)}));
     }
 }
 

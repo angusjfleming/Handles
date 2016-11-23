@@ -3,7 +3,7 @@ exports.run = (bot, msg, params = []) => {
     var minno = params[0]
     var mins = parseInt(minno) * 60 * 1000;
     if (isNaN(mins)) {
-        msg.channel.sendMessage(`${params[0]} is not a valid quantity of time.`)
+        msg.channel.sendMessage(`${params[0]} is not a valid quantity of time.`).then(m => {setTimeout(m.delete.bind(m), 4000)})
         return;
     }
     params.shift();
@@ -15,7 +15,7 @@ exports.run = (bot, msg, params = []) => {
 };
 
 function reply(msg, reminder) {
-    return msg.author.sendMessage(`Reminding you of \`${reminder}\` from ${msg.createdAt}`)
+    return msg.reply(`reminding you of \`${reminder}\` from ${msg.createdAt}`)
 };
 
 exports.help = {
