@@ -23,7 +23,7 @@ if (info){
 
 exports.help = {
     name: `topic`,
-    description: `Sets a channels topic. If no new nickname is written, the nickname will be reset.`,
+    description: `Sets a channel topic.`,
     usage: `topic <newtopic>`
 };
 
