@@ -19,6 +19,7 @@ bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
     changeStatus()
+    clearDMS()
     var statchange = setInterval(changeStatus, 30000);
 });
 
@@ -128,6 +129,24 @@ bot.modlog = function(msg, commandname, info, hex) {
         embed
     }).catch(err => msg.reply(err));
 };
+
+function clearDMS() {
+    var i = 0;
+    var messagecount = 100;
+    var DmChannels = bot.channels.filter(e => e.type === 'dm').array()
+    while (i < DmChannels.length + 1){
+    DmChannels[i].fetchMessages({
+            limit: 100
+        })
+        .then(messages => {
+            msg_array = messages.array();
+            msg_array = msg_array.filter(m => m.author.id === bot.user.id);
+            msg_array.length = messagecount;
+            msg_array.map(m => m.delete().catch(console.error));
+        });
+        i++
+      }
+}
 
 function changeStatus() {
     let TextChannels = bot.channels.filter(e => e.type === 'text').size;
