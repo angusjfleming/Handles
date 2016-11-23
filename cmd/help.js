@@ -44,7 +44,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
         msg.channel.sendMessage([
             '```ini', ...message,
             '```'
-        ]).then(m => {setTimeout(m.delete.bind(m), 60000)}));
+        ]).then(m => {setTimeout(m.delete.bind(m), 60000)});
 
     } else {
 
@@ -73,7 +73,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             `= ${permLevelToWord(command.conf.permLevel)}` :
             '= Everyone',
             '```'
-        ]).then(m => {setTimeout(m.delete.bind(m), 60000)}));
+        ]).then(m => {setTimeout(m.delete.bind(m), 60000)});
     }
 }
 
