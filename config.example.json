@@ -2,9 +2,7 @@
 	"bottoken" : "YOURBOTTOKEN",
 	"prefix" : "!!",
 	"version" : "1.0pre",
-	"masterlogloc" : "masterlog.txt",
 	"ownerid" : "YOURID",
 	"commandrole" : "Admin",
-	"logging" : true,
 	"botname" : "YOURBOTNAME"
 }
