@@ -39,8 +39,6 @@ fs.readdir("./cmd/", (err, files) => {
 });
 
 bot.on('message', msg => {
-    if (msg.channel.type !== 'text')
-        return;
 
     if (msg.author.bot)
         return;
