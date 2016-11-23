@@ -5,10 +5,8 @@ const bot = new Discord.Client();
 var config = require("./config.json");
 var prefix = config.prefix;
 var token = config.bottoken;
-var logging = config.logging;
 var fs = require("fs");
 var mkdirp = require('mkdirp');
-var masterlogloc = config.masterlogloc;
 var msgno = 0;
 var commandrole = config.commandrole
 var ownerid = config.ownerid
@@ -44,10 +42,6 @@ bot.on('message', msg => {
     if (msg.channel.type !== 'text')
         return;
 
-    if (logging) {
-        log(msg)
-    }
-
     if (msg.author.bot)
         return;
 
@@ -76,15 +70,6 @@ bot.on('message', msg => {
         cmd.run(bot, msg, params, config, perms);
     }
 });
-
-function log(msg) {
-    mkdirp(`./logs/${msg.guild.id}`, function(err) {})
-    currentdate = new Date()
-    writecontent = (`${currentdate.toUTCString()} : ${msg.author.username} said: "${msg.content}" in (${msg.channel.name})\n`)
-    serverwritecontent = (`${currentdate.toUTCString()} : ${msg.author.username} said: "${msg.content}" in (${msg.channel.name}) in (${msg.guild.name})\n'`)
-    fs.appendFile(`./logs/${msg.guild.id}/${msg.channel.name}.txt`, writecontent, function(error) {});
-    fs.appendFile(`./logs/${masterlogloc}`, serverwritecontent, function(error) {});
-}
 
 process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
