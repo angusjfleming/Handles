@@ -1,5 +1,18 @@
 var hex = "00ffff";
 exports.run = (bot, msg, params = []) => {
+    if (msg.channel.type == 'dm') {
+        messagecount = parseInt(params[0]) ? parseInt(params[0]) : 1;
+        msg.channel.fetchMessages({
+                limit: 100
+            })
+            .then(messages => {
+                msg_array = messages.array();
+                msg_array = msg_array.filter(m => m.author.id === bot.user.id);
+                msg_array.length = messagecount + 1;
+                msg_array.map(m => m.delete().catch(console.error));
+            });
+        return;
+    }
     messagecount = parseInt(params[0]) ? parseInt(params[0]) : 1;
     msg.channel.fetchMessages({
             limit: 100
