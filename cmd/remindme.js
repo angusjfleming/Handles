@@ -1,4 +1,5 @@
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
     var minno = params[0]
     var mins = parseInt(minno) * 60 * 1000;
     if (isNaN(mins)) {

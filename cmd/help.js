@@ -1,5 +1,4 @@
 exports.run = (bot, msg, params, config, perms = []) => {
-    msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)})
     msg.delete();
     if (!params[0]) {
         let commands = bot.commands;
@@ -45,7 +44,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
         msg.author.sendMessage([
             '```ini', ...message,
             '```'
-        ]);
+        ]).then(msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)}));
 
     } else {
 
@@ -74,7 +73,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             `= ${permLevelToWord(command.conf.permLevel)}` :
             '= Everyone',
             '```'
-        ]);
+        ]).then(msg.reply(`sent you a message! :white_check_mark:`).then(m => {setTimeout(m.delete.bind(m), 4000)});
     }
 }
 
