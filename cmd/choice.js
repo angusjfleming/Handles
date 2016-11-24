@@ -1,5 +1,4 @@
 exports.run = (bot, msg, params = []) => {
-  msg.delete()
     var choices = params.join(` `)
     var tokens = [].concat.apply([], choices.split('"').map(function(v, i) {
         return i % 2 ? v : v.split(' ')
