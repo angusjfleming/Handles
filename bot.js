@@ -17,6 +17,7 @@ var statchange = false;
 bot.login(token);
 
 bot.on('ready', () => {
+    bot.user.setGame()
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
 
