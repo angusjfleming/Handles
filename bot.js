@@ -12,14 +12,18 @@ var commandrole = config.commandrole
 var ownerid = config.ownerid
 var botname = config.botname
 var pos = 0;
+var statchange = true;
 
 bot.login(token);
 
 bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
+
+    if (statchange) {
     changeStatus()
-    var statchange = setInterval(changeStatus, 30000);
+    setInterval(changeStatus, 30000);
+  }
 });
 
 bot.commands = new Discord.Collection();
