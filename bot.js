@@ -12,7 +12,7 @@ var commandrole = config.commandrole
 var ownerid = config.ownerid
 var botname = config.botname
 var pos = 0;
-var statchange = true;
+var statchange = false;
 
 bot.login(token);
 
