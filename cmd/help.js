@@ -94,6 +94,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: ['userinfo'],
+    aliases: ['command', 'commands'],
     permLevel: 1
 };
