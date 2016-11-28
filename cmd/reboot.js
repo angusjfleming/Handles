@@ -16,7 +16,6 @@ exports.run = (bot, msg) => {
             return msg.channel.sendMessage(`The reboot has been aborted`);
         if (reason === `success`) {
             msg.channel.sendMessage(`Rebooting...`).then(() => {
-                bot.user.setGame(`Rebooting...`)
                 process.exit();
             }).catch(e => {
                 console.error(e);

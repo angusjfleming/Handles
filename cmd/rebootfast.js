@@ -1,6 +1,5 @@
 exports.run = (bot, msg) => {
   msg.channel.sendMessage(`Rebooting...`).then(() => {
-    bot.user.setGame(`Rebooting quickly`)
     process.exit();
   }).catch(e => {
     console.error(e);
