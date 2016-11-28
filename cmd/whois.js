@@ -18,21 +18,28 @@ exports.run = (bot, msg, params = []) => {
 
       let embed = {
 				color: parseInt('89a1c4', 16),
-				description: '❯ userinfo',
+				description: '❯ Userinfo',
 				fields: [{
 					name: '❯ Member Information',
 					value: `Joined server on: ${guilduser.joinedAt}
-Roles: ${guilduser.roles.array()}
+
+
 Nickname: ${currentnick}`,
 					inline: true
 				}, {
 					name: '❯ User Information',
 					value: `Username: ${checkuser.username}#${checkuser.discriminator}
+
 Avatar URL: [Here](${checkuser.avatarURL})
+
 Joined Discord on: ${checkuser.createdAt}
+
 User ID: ${checkuser.id}
+
 Currently playing: ${currentgame}
+
 Status: ${checkuser.presence.status}
+
 Bot?: ${checkuser.bot}`,
 					inline: true
 				}],
