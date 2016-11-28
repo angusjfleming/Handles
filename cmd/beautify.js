@@ -19,7 +19,6 @@ function reduceIndentation(string) {
 }
 
 exports.run = (bot, msg, params = []) => {
-        msg.delete()
         let messages = msg.channel.messages.array().reverse().filter(msg => msg.author.id !== msg.client.user.id);
         let code;
 

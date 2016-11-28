@@ -73,7 +73,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             `= ${permLevelToWord(command.conf.permLevel)}` :
             '= Everyone',
             '```'
-        ]).then(m => {setTimeout(m.delete.bind(m), 60000)});
+        ])
     }
 }
 
