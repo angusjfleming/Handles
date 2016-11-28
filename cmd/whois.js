@@ -1,6 +1,7 @@
 exports.run = (bot, msg, params = []) => {
     try {
         var checkuser = msg.mentions.users.first()
+        var guilduser = msg.guild.members.get(checkuser.id)
     } catch (err) {
         msg.channel.sendMessage(`You didn't give me a user to analyze.`)
         return;
@@ -8,22 +9,38 @@ exports.run = (bot, msg, params = []) => {
     try {
         currentgame = (checkuser.presence.game.name.toString())
     } catch (err) {
-        currentgame = "null"
+        currentgame = "nothing"
+    }
+    var currentnick = (guilduser.nickname)
+    if (!currentnick) {
+      currentnick = "None"
     }
 
-    try {
-        msg.channel.sendMessage(
-            `\`\`\`xl\nAvatar URL: ${checkuser.avatarURL}
-Username: ${checkuser.username}#${checkuser.discriminator}
-Joined on: ${checkuser.createdAt}
+      let embed = {
+				color: 0xdd2825,
+				description: '❯ userinfo',
+				fields: [{
+					name: '❯ Member Information',
+					value: `Joined server on: ${guilduser.joinedAt}
+Roles: ${guilduser.roles.array()}
+Nickname: ${currentnick}`,
+					inline: true
+				}, {
+					name: '❯ User Information',
+					value: `Username: ${checkuser.username}#${checkuser.discriminator}
+Avatar URL: [Here](${checkuser.avatarURL})
+Joined Discord on: ${checkuser.createdAt}
 User ID: ${checkuser.id}
 Currently playing: ${currentgame}
 Status: ${checkuser.presence.status}
-Bot?: ${checkuser.bot}\`\`\``
-        );
-    } catch (err) {
-        msg.channel.sendMessage(`You didn't give me a user to analyze.`)
-    }
+Bot?: ${checkuser.bot}`,
+					inline: true
+				}],
+				thumbnail: {url: `${checkuser.avatarURL}`},
+			};
+msg.channel.sendMessage("", {
+        embed
+    }).catch(err => console.log(err));
 };
 
 exports.help = {
