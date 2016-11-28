@@ -1,5 +1,4 @@
 exports.run = (bot, msg, params, config, perms = []) => {
-    msg.delete();
     if (!params[0]) {
         let commands = bot.commands;
         let commandsForEveryone = commands.filter(e => {
