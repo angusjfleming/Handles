@@ -23,6 +23,7 @@ exports.run = (bot, msg, params = []) => {
 					name: '❯ Member Information',
 					value: `Joined server on: ${guilduser.joinedAt}
 
+Roles: \`${guilduser.roles.map(r => r.name).join('`\n`')}\`
 
 Nickname: ${currentnick}`,
 					inline: true
