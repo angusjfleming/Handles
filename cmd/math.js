@@ -20,6 +20,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: ['calc'],
+    aliases: ['calc', 'maths'],
     permLevel: 1
 };
