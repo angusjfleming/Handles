@@ -1,6 +1,5 @@
 var math = require('mathjs');
 exports.run = (bot, msg, params = []) => {
-    var error = false;
     var code = params.join(" ");
     try {
         var evaled = math.eval(code);
@@ -9,7 +8,7 @@ exports.run = (bot, msg, params = []) => {
 ${err}`)
     }
     if (evaled) {
-      msg.channel.sendMessage(msg.channel.sendMessage("`SUCCESS` ```xl\n" + evaled + "\n```"))
+      msg.channel.sendMessage(`\`\`\` ${evaled} \`\`\``)
     }
 };
 
