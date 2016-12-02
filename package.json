@@ -8,6 +8,7 @@
     "exec": "^0.2.1",
     "google-search": "0.0.4",
     "js-beautify": "^1.6.4",
+    "mathjs": "^3.8.0",
     "mkdirp": "^0.5.1",
     "performance-now": "^0.2.0",
     "request": "^2.78.0",
