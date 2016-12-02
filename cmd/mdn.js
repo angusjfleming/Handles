@@ -9,12 +9,12 @@ console.log(url);
 
 exports.help = {
     name: "mdn",
-    description: "Seaches Mozzila developer network for whatever you want.",
+    description: "Seaches Mozzila developer network for whatever you want. (currently broken)",
     usage: "mdn <searchterm>"
 };
 
 exports.conf = {
     enabled: true,
     aliases: [],
-    permLevel: 2
+    permLevel: 4
 };

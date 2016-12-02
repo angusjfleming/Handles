@@ -65,8 +65,6 @@ bot.on('message', msg => {
         cmd = bot.commands.get(command);
     } else if (bot.aliases.has(command)) {
         cmd = bot.commands.get(bot.aliases.get(command));
-    } else if (command.includes(prefix)) {} else {
-        msg.channel.sendMessage(`\`${command}\` is not a valid command or alias.`)
     }
 
     if (cmd) {
