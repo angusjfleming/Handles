@@ -8,7 +8,7 @@ exports.run = (bot, msg, params = []) => {
 ${err}`)
     }
     if (evaled) {
-      msg.channel.sendMessage(`\`\`\` ${evaled} \`\`\``)
+      msg.channel.sendMessage(`\`\`\`${evaled}\`\`\``)
     }
 };
 
