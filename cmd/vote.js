@@ -1,4 +1,4 @@
-exports.run = (bot, msg) => {
+exports.run = (bot, msg, params = []) => {
   msg.channel.sendMessage(`${msg.author.username} created a vote on \`${params.join(" ")}\`. Type yes or no in the chat to vote!`)
   var yes = 0;
   var no = 0;
