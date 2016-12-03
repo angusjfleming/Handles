@@ -23,7 +23,7 @@ exports.run = (bot, msg) => {
           msg.channel.sendMessage(`Voting on \`${params.join(" ")}\` has ended. No won with ${no} votes. In comparison, yes only had ${yes} votes. Pitiful. :joy: `)
         }
 });
-
+};
 exports.help = {
     name: `vote`,
     description: `Intiates a vote.`,
