@@ -15,13 +15,13 @@ exports.run = (bot, msg, params = []) => {
     });
     votecollector.on(`end`, (collected, reason) => {
         if (yes > no){
-          msg.channel.sendMessage(`Voting on \`${params.join(" ")}\` has ended. Yes won with ${yes} votes. No only had ${no} votes. :cry: `)
+          msg.channel.sendMessage(`${msg.author.username}'s vote on \`${params.join(" ")}\` has ended. Yes won with ${yes} votes. No only had ${no} votes. :cry: `)
         }
         if (yes < no){
-          msg.channel.sendMessage(`Voting on \`${params.join(" ")}\` has ended. No won with ${no} votes. In comparison, yes only had ${yes} votes. Pitiful. :joy: `)
+          msg.channel.sendMessage(`${msg.author.username}'s vote on \`${params.join(" ")}\` has ended. No won with ${no} votes. In comparison, yes only had ${yes} votes. Pitiful. :joy: `)
         }
         if (yes == no){
-          msg.channel.sendMessage(`Voting on \`${params.join(" ")}\` has ended. Yes had ${yes} votes. No had ${no} votes. We have ourselves a tie. :crossed_swords:`)
+          msg.channel.sendMessage(`${msg.author.username}'s vote on \`${params.join(" ")}\` has ended. Yes had ${yes} votes. No had ${no} votes. We have ourselves a tie. :crossed_swords:`)
         }
 });
 };
