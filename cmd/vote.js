@@ -4,13 +4,13 @@ exports.run = (bot, msg, params = []) => {
   var no = 0;
     const votecollector = msg.channel.createCollector(m => m.channel === msg.channel, {time: 30000});
     votecollector.on(`message`, m => {
-        if (m.content === `no` && !msg.author.voted){
+        if (m.content.toLowerCase() === `no` && !msg.author.voted){
             no++;
-            msg.author.voted = true;
+            m.author.voted = true;
           }
-        if (m.content === `yes` && !msg.author.voted){
+        if (m.content.toLowerCase() === `yes` && !msg.author.voted){
             yes++;
-            msg.author.voted = true;
+            m.author.voted = true;
           }
     });
     votecollector.on(`end`, (collected, reason) => {
@@ -19,6 +19,9 @@ exports.run = (bot, msg, params = []) => {
         }
         if (yes < no){
           msg.channel.sendMessage(`Voting on \`${params.join(" ")}\` has ended. No won with ${no} votes. In comparison, yes only had ${yes} votes. Pitiful. :joy: `)
+        }
+        if (yes == no){
+          msg.channel.sendMessage(`Voting on \`${params.join(" ")}\` has ended. Yes had ${yes} votes. No had ${no} votes. We have ourselves a tie. :crossed_swords:`)
         }
 });
 };
