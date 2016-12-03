@@ -3,6 +3,5 @@
 	"prefix" : "!!",
 	"version" : "1.0pre",
 	"ownerid" : "YOURID",
-	"commandrole" : "Admin",
-	"botname" : "YOURBOTNAME"
+	"commandrole" : "Admin"
 }

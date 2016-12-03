@@ -1,18 +1,18 @@
-const Discord = require('discord.js');
-
-const bot = new Discord.Client();
-
+try {
+var Discord = require("discord.js");
 var config = require("./config.json");
-var prefix = config.prefix;
-var token = config.bottoken;
 var fs = require("fs");
 var mkdirp = require('mkdirp');
-var msgno = 0;
-var commandrole = config.commandrole
-var ownerid = config.ownerid
-var botname = config.botname
-var pos = 0;
-var statchange = false;
+} catch(err){
+  console.log(`Failed to load dependency, ${err}`)
+  return;
+}
+
+var bot = new Discord.Client();
+var prefix = config.prefix;
+var token = config.bottoken;
+var commandrole = config.commandrole;
+var ownerid = config.ownerid;
 
 bot.login(token);
 
@@ -20,11 +20,6 @@ bot.on('ready', () => {
     bot.user.setGame()
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
-
-    if (statchange) {
-    changeStatus()
-    setInterval(changeStatus, 30000);
-  }
 });
 
 bot.commands = new Discord.Collection();
@@ -129,14 +124,3 @@ bot.modlog = function(msg, commandname, info, hex) {
         embed
     }).catch(err => msg.reply(err));
 };
-
-function changeStatus() {
-    let TextChannels = bot.channels.filter(e => e.type === 'text').size;
-    let VoiceChannels = bot.channels.filter(e => e.type === 'voice').size;
-    var statuses = [`Currently serving: ${bot.guilds.size} guilds.`, `Prefix: ${prefix}`, `Users: ${bot.users.size}`, `${TextChannels} text channels.`, `${VoiceChannels} voice channels.`];
-    bot.user.setGame(statuses[pos])
-    pos++
-    if (pos > statuses.length - 1) {
-        pos = 0
-    };
-}
