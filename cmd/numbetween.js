@@ -14,6 +14,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: [],
+    aliases: ['nb'],
     permLevel: 1
 };
