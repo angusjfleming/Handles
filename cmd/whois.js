@@ -16,6 +16,12 @@ exports.run = (bot, msg, params = []) => {
       currentnick = "None"
     }
 
+    if (checkuser.avatarURL){
+      var ava = `[Here](${checkuser.avatarURL})`
+    } else {
+      var ava = "None"
+    }
+
       let embed = {
 				color: parseInt('89a1c4', 16),
 				description: '❯ Userinfo',
@@ -31,7 +37,7 @@ Nickname: ${currentnick}`,
 					name: '❯ User Information',
 					value: `Username: ${checkuser.username}#${checkuser.discriminator}
 
-Avatar URL: [Here](${checkuser.avatarURL})
+Avatar URL: ${ava}
 
 Joined Discord on: ${checkuser.createdAt}
 
@@ -44,7 +50,7 @@ Status: ${checkuser.presence.status}
 Bot?: ${checkuser.bot}`,
 					inline: true
 				}],
-				thumbnail: {url: `${checkuser.avatarURL}`},
+				thumbnail: {url: `${bot.user.avatarURL}`},
 			};
 msg.channel.sendMessage("", {
         embed
