@@ -21,7 +21,7 @@ exports.run = (bot, msg, params = []) => {
       var ava = `[Here](${checkuser.avatarURL})`
     } else {
       var ava = "None"
-      var thumbneil = null;
+      var thumbneil = ``;
     }
 
       let embed = {
