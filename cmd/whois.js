@@ -17,6 +17,7 @@ exports.run = (bot, msg, params = []) => {
     }
 
     if (checkuser.avatarURL){
+      var thumbneil = checkuser.avatarURL
       var ava = `[Here](${checkuser.avatarURL})`
     } else {
       var ava = "None"
@@ -50,7 +51,7 @@ Status: ${checkuser.presence.status}
 Bot?: ${checkuser.bot}`,
 					inline: true
 				}],
-				thumbnail: {url: `${bot.user.avatarURL}`},
+				thumbnail: {url: `${thumbneil}`},
 			};
 msg.channel.sendMessage("", {
         embed
