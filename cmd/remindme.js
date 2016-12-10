@@ -8,7 +8,11 @@ exports.run = (bot, msg, params = []) => {
     }
     params.shift();
     var reminder = params.join(" ")
-    msg.reply(`Reminder for \`${reminder}\` set for ${minno} minute(s).`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+    if (!reminder){
+      msg.reply(`I'll remind you in ${minno} minute(s).`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+    } else {
+      msg.reply(`I'll remind you of \`${reminder}\` in ${minno} minute(s).`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+    }
     setTimeout(function() {
         reply(msg, reminder);
     }, mins);
