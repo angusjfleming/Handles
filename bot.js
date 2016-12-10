@@ -38,7 +38,9 @@ fs.readdir("./cmd/", (err, files) => {
 });
 
 bot.on('message', msg => {
-      console.log(msg.content)
+
+      if (msg.content.startsWith(`<@!${bot.user.id}> `))
+      {msg.content = msg.content.replace('!','');}
 
     if (msg.channel.type !== 'text')
         return;
