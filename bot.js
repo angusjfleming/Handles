@@ -47,8 +47,8 @@ bot.on('message', msg => {
     if (!msg.content.startsWith(`<@${bot.user.id}> `))
         return;
 
-    let command = (msg.content.split(" ")[0].slice(prefix.length)).toLowerCase();
-    let params = msg.content.split(" ").slice(1);
+    let command = (msg.content.split(" ")[1].slice(prefix.length)).toLowerCase();
+    let params = msg.content.split(" ").slice(2);
     let perms = bot.elevation(msg);
     let cmd;
 
