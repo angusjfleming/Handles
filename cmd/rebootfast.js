@@ -7,9 +7,9 @@ exports.run = (bot, msg) => {
 }
 
 exports.help = {
-  name: `rebootfast`,
+  name: `reboot`,
   description: `Reboots the bot. **fast**`,
-  usage: `rebootfast`
+  usage: `reboot`
 };
 
 exports.conf = {

@@ -1,5 +1,6 @@
 var hex = "ffa500";
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
         try {
             if (params.join(` `).length > 1024) {
                 msg.reply(`Topics cannot be greater than 1024 characters`)

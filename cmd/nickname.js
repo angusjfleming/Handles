@@ -1,5 +1,6 @@
 var hex = "551a8b";
 exports.run = (bot, msg, params = []) => {
+  msg.delete()
         try {
             var nickuser = msg.mentions.users.first()
             nickuser = msg.guild.member(nickuser)
