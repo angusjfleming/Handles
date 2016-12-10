@@ -15,7 +15,7 @@ let embed = {
   color: parseInt('079f41', 16),
   description: '❯ Server Info',
   fields: [{
-    name: '❯ Member Information',
+    name: '❯ Server Information',
     value: `Server Name: ${guild.name}
 
 Server ID: ${guild.id}
