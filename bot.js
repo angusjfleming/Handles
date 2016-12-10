@@ -52,6 +52,9 @@ bot.on('message', msg => {
     let perms = bot.elevation(msg);
     let cmd;
 
+    console.log(command)
+    console.log(params)
+
     if (!command)
         return;
 
