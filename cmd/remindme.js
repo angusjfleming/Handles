@@ -24,7 +24,7 @@ function reply(msg, reminder) {
 
 exports.help = {
     name: `remindme`,
-    description: `Reminds you of x in y minutes`,
+    description: `Reminds you in x minutes of y`,
     usage: `remindme`
 };
 
