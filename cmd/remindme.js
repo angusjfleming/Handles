@@ -3,7 +3,7 @@ exports.run = (bot, msg, params = []) => {
     var minno = params[0]
     var mins = parseInt(minno) * 60 * 1000;
     if (isNaN(mins)) {
-        msg.channel.sendMessage(`${params[0]} is not a valid quantity of time.`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+        msg.channel.sendMessage(`Sorry, you didn't enter a valid quantity of time.`).then(m => {setTimeout(m.delete.bind(m), 10000)})
         return;
     }
     params.shift();
