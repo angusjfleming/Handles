@@ -1,4 +1,4 @@
 # Packages
 node_modules/
 .git
-.eslintrc
+.eslintrc.json
