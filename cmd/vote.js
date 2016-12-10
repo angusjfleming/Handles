@@ -4,13 +4,13 @@ exports.run = (bot, msg, params = []) => {
   var no = 0;
     const votecollector = msg.channel.createCollector(m => m.channel === msg.channel, {time: 30000});
     votecollector.on(`message`, m => {
-        if (m.content.toLowerCase() === `no` && !msg.author.voted){
+        if (m.content.toLowerCase() === `no` && !msg.author.id.voted){
             no++;
-            m.author.voted = true;
+            m.author.id.voted = true;
           }
-        if (m.content.toLowerCase() === `yes` && !msg.author.voted){
+        if (m.content.toLowerCase() === `yes` && !msg.author.id.voted){
             yes++;
-            m.author.voted = true;
+            m.author.id.voted = true;
           }
     });
     votecollector.on(`end`, (collected, reason) => {
