@@ -15,7 +15,12 @@ exports.run = (bot, msg, params = []) => {
 };
 
 function reply(msg, reminder) {
-    return msg.reply(`reminding you of \`${reminder}\` from ${msg.createdAt}`)
+    if (!reminder){
+      return msg.reply(`reminding you from ${msg.createdAt}`)
+    } else {
+      return msg.reply(`reminding you of \`${reminder}\` from ${msg.createdAt}`)
+    }
+
 };
 
 exports.help = {
