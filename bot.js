@@ -38,6 +38,10 @@ fs.readdir("./cmd/", (err, files) => {
 });
 
 bot.on('message', msg => {
+
+    console.log(command)
+    console.log(params)
+
     if (msg.channel.type !== 'text')
         return;
 
@@ -51,9 +55,6 @@ bot.on('message', msg => {
     let params = msg.content.split(" ").slice(2);
     let perms = bot.elevation(msg);
     let cmd;
-
-    console.log(command)
-    console.log(params)
 
     if (!command)
         return;
