@@ -1,22 +1,22 @@
 exports.run = (bot, msg, params = []) => {
 
-var guild = msg.guild;
-var channels = guild.channels;
+    var guild = msg.guild;
+    var channels = guild.channels;
 
-if (guild.iconURL){
-  var thumbneil = guild.iconURL
-  var servericon = `[Here](${guild.iconURL})`
-} else {
-  var servericon = "None"
-  var thumbneil = ``;
-}
+    if (guild.iconURL) {
+        var thumbneil = guild.iconURL
+        var servericon = `[Here](${guild.iconURL})`
+    } else {
+        var servericon = "None"
+        var thumbneil = ``;
+    }
 
-let embed = {
-  color: parseInt('079f41', 16),
-  description: '❯ Server Info',
-  fields: [{
-    name: '❯ Server Information',
-    value: `Server Name: ${guild.name}
+    let embed = {
+        color: parseInt('079f41', 16),
+        description: '❯ Server Info',
+        fields: [{
+            name: '❯ Server Information',
+            value: `Server Name: ${guild.name}
 
 Server ID: ${guild.id}
 
@@ -29,23 +29,25 @@ Server Icon: ${servericon}
 Creation Date: ${guild.createdAt}
 
 Region: ${guild.region}`,
-inline: true
-}, {
-  name: '❯ Channel Information',
-  value: `Text Channels:
+            inline: true
+        }, {
+            name: '❯ Channel Information',
+            value: `Text Channels:
 #${channels.filter(e => e.type === 'text').map(r => r.name).join('\n#')}
 (${channels.filter(e => e.type === 'text').size} total)
 
 Voice Channels:
 ${channels.filter(e => e.type === 'voice').map(r => r.name).join('\n')}
 (${channels.filter(e => e.type === 'voice').size} total)`,
-  inline: true
-}],
-  thumbnail: {url: `${thumbneil}`},
-};
-msg.channel.sendMessage("", {
-  embed
-}).catch(err => console.log(err));
+            inline: true
+        }],
+        thumbnail: {
+            url: `${thumbneil}`
+        },
+    };
+    msg.channel.sendMessage("", {
+        embed
+    }).catch(err => console.log(err));
 };
 
 exports.help = {
@@ -59,7 +61,3 @@ exports.conf = {
     aliases: ['svinfo'],
     permLevel: 1
 };
-
-/*
-
-Roles: \`${guild.roles.map(r => r.name).join('n')} (${guild.roles.size})\`*/

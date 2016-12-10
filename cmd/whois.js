@@ -25,7 +25,7 @@ exports.run = (bot, msg, params = []) => {
     }
 
       let embed = {
-				color: parseInt('89a1c4', 16),
+				color: parseInt('FD5F00', 16),
 				description: '❯ Userinfo',
 				fields: [{
 					name: '❯ Member Information',

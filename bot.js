@@ -1,11 +1,11 @@
 try {
-var Discord = require("discord.js");
-var config = require("./config.json");
-var fs = require("fs");
-var mkdirp = require('mkdirp');
-} catch(err){
-  console.log(`Failed to load dependency, ${err}`)
-  return;
+    var Discord = require("discord.js");
+    var config = require("./config.json");
+    var fs = require("fs");
+    var mkdirp = require('mkdirp');
+} catch (err) {
+    console.log(`Failed to load dependency, ${err}`)
+    return;
 }
 
 var bot = new Discord.Client();
@@ -39,13 +39,14 @@ fs.readdir("./cmd/", (err, files) => {
 });
 
 bot.on('message', msg => {
-  var prefixtrue = false;
+    var prefixtrue = false;
 
-      if (msg.content.startsWith(`<@!${bot.user.id}> `))
-      {msg.content = msg.content.replace('!','');}
+    if (msg.content.startsWith(`<@!${bot.user.id}> `)) {
+        msg.content = msg.content.replace('!', '');
+    }
 
-      if (msg.content.startsWith(prefix))
-      prefixtrue = true;
+    if (msg.content.startsWith(prefix))
+        prefixtrue = true;
 
     if (msg.channel.type !== 'text')
         return;
@@ -56,13 +57,13 @@ bot.on('message', msg => {
     if (!msg.content.startsWith(`<@${bot.user.id}> `) && !prefixtrue)
         return;
 
-if (prefixtrue){
-  var command = (msg.content.split(" ")[0].slice(prefix.length)).toLowerCase();
-  var params = msg.content.split(" ").slice(1);
-} else {
-  var command = (msg.content.split(" ")[1].slice(`<@${bot.user.id}>`)).toLowerCase();
-  var params = msg.content.split(" ").slice(2);
-}
+    if (prefixtrue) {
+        var command = (msg.content.split(" ")[0].slice(prefix.length)).toLowerCase();
+        var params = msg.content.split(" ").slice(1);
+    } else {
+        var command = (msg.content.split(" ")[1].slice(`<@${bot.user.id}>`)).toLowerCase();
+        var params = msg.content.split(" ").slice(2);
+    }
 
     let perms = bot.elevation(msg);
     let cmd;
