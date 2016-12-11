@@ -3,6 +3,7 @@ try {
     var config = require("./config.json");
     var fs = require("fs");
     var mkdirp = require("mkdirp");
+    var requireDir = require('require-dir');
 } catch (err) {
     console.log(`Failed to load dependency, ${err}`)
     return;
@@ -13,8 +14,9 @@ var token = config.bottoken;
 var commandrole = config.commandrole;
 var ownerid = config.ownerid;
 var prefix = config.prefix;
-bot.funcs = require("./funcs.js");
+bot.funcs = requireDir("./funcs/");
 bot.elevation = require("./elevation.js")
+
 bot.funcs.loadcmds(bot, Discord, fs);
 
 bot.login(token);
