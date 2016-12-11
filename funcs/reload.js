@@ -1,6 +1,8 @@
 module.exports = (command, bot) => {
     return new Promise((resolve, reject) => {
         try {
+            delete require.cache[require.resolve(`../cmd/${command}`)];
+            let cmd = require(`../cmd/${command}`);
             bot.commands.delete(command);
             bot.aliases.forEach((cmd, alias) => {
                 if (cmd === command)
