@@ -15,7 +15,7 @@ exports.run = (bot, msg, params = []) => {
                 msg.channel.bulkDelete(msg_array)
             }
             var info = `Deleted ${deletedno} messages in ${msg.channel.name}`
-            bot.modlog(msg, exports.help.name, info, hex)
+            bot.funcs.modlog(msg, exports.help.name, info, hex)
         }).catch(console.error);
 };
 

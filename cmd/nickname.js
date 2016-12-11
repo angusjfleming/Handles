@@ -25,7 +25,7 @@ exports.run = (bot, msg, params = []) => {
     msg.reply(`Failed with error ${err}`).then(m => {setTimeout(m.delete.bind(m), 5000)});
   }
 if (info){
-  bot.modlog(msg, exports.help.name, info, hex)
+  bot.funcs.modlog(msg, exports.help.name, info, hex)
 }
 };
 

@@ -12,7 +12,7 @@ exports.run = (bot, msg, params = []) => {
     } else {
         msg.channel.sendMessage(`Reloading: ${command}`).then(m => {
             var startTime = now();
-            bot.reload(command).then(() => {
+            bot.funcs.reload(command, bot).then(() => {
                 var endTime = now();
                 m.edit(`Successfully reloaded: ${command} in ${ (endTime - startTime).toFixed(3)}ms.`);
             }).catch(e => {
