@@ -25,7 +25,8 @@ exports.run = (bot, msg, params, config, perms = []) => {
 
         if (perms > 1) {
             message = message.concat([
-                ``, `ADMIN`, ...commandsForAdmin.map(command => {
+                ``, `[ ADMIN | Use help admin for further information. ]`,
+                ...commandsForAdmin.map(command => {
                     let help = command.help;
                     return `${command.help.name} = ${help.description}`;
                 })
@@ -33,7 +34,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
         }
         if (perms > 3) {
             message = message.concat([
-                ``, `OWNER`, ...commandsForOwner.map(command => {
+                ``, `[ OWNER ]`, ...commandsForOwner.map(command => {
                     let help = command.help;
                     return `${command.help.name} = ${help.description}`;
                 })
@@ -48,6 +49,13 @@ exports.run = (bot, msg, params, config, perms = []) => {
     } else {
 
         let command;
+        if (params[0].toLowerCase() == `admin`) {
+            msg.channel.sendMessage(['```ini', `[Admin Command Information]`,
+                '',
+                'Certain commands will send a log of the admin command that\'s been run. This requires a channel in your sever called #mod_log',
+                '```'
+            ])
+        }
         if (bot.commands.has(params[0])) {
             command = params[0];
         } else if (bot.aliases.has(params[0])) {

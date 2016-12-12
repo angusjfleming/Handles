@@ -14,6 +14,7 @@ var token = config.bottoken;
 var commandrole = config.commandrole;
 var ownerid = config.ownerid;
 var prefix = config.prefix;
+bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
 
 bot.funcs.loadcmds(bot, Discord, fs);
@@ -21,10 +22,15 @@ bot.funcs.loadcmds(bot, Discord, fs);
 bot.login(token);
 
 bot.on('ready', () => {
-    bot.user.setGame()
+    bot.user.setGame(`@${bot.user.username} help`)
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
 });
+
+bot.on('guildCreate', guild => {
+    feedback.sendMessage(`ADDED TO ${guild.name} (${guild.id})`)
+    bot.funcs.greet(guild, bot)
+})
 
 bot.on('message', msg => {
 
