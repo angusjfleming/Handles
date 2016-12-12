@@ -27,8 +27,8 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-    var prefixtrue = false;
 
+    var prefixtrue = false;
     if (msg.content.startsWith(`<@!${bot.user.id}> `)) {
         msg.content = msg.content.replace('!', '');
     }
