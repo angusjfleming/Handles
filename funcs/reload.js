@@ -8,7 +8,6 @@ module.exports = (command, bot) => {
                 if (cmd === command)
                     bot.aliases.delete(alias);
             });
-
             bot.commands.set(command, cmd);
             cmd.conf.aliases.forEach(alias => {
                 bot.aliases.set(alias, cmd.help.name);

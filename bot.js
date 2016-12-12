@@ -26,8 +26,6 @@ bot.on('ready', () => {
     console.log("Bot online (" + startdate + ")")
 });
 
-
-
 bot.on('message', msg => {
     var prefixtrue = false;
 

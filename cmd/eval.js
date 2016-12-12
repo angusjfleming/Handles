@@ -1,18 +1,17 @@
 exports.run = (bot, msg, params = []) => {
-    var error = false;
     var code = params.join(" ");
     try {
         var evaled = eval(code);
     } catch (err) {
-        error = true
-        msg.channel.sendMessage("`FAILED` ```xl\n\'" + code + "\' failed with error: " + err + "\n```")
+        msg.channel.sendMessage(`:thumbsdown:\`\`\`xl\n'${code}' failed with error: ${err} \n\`\`\``)
+        return;
     }
     evaled = require('util').inspect(evaled);
     try {
-        if (evaled.length > 2000 && error) {
-            msg.channel.sendMessage("`FAILED` ```xl\n\'" + code + "\' failed because the output was greater than 2000 characters.```")
-        } else if (!error) {
-            msg.channel.sendMessage("`SUCCESS` ```xl\n" + evaled + "\n```")
+        if (evaled.length > 2000) {
+            msg.channel.sendMessage(`:thumbsdown:\`\`\`xl\n'${code}' failed because the output was greater than 2000 characters.\`\`\``)
+        } else {
+            msg.channel.sendMessage(`:thumbsup:\`\`\`xl\n${evaled} \n\`\`\``)
         }
     } catch (err) {}
 };
