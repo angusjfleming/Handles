@@ -36,10 +36,7 @@ bot.on('message', msg => {
     if (msg.content.startsWith(prefix))
         prefixtrue = true;
 
-    if (msg.channel.type !== 'text')
-        return;
-
-    if (msg.author.bot)
+    if (msg.channel.type !== 'text' || msg.author.bot)
         return;
 
     if (!msg.content.startsWith(`<@${bot.user.id}> `) && !prefixtrue)
