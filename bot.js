@@ -15,7 +15,6 @@ var commandrole = config.commandrole;
 var ownerid = config.ownerid;
 var prefix = config.prefix;
 bot.funcs = requireDir("./funcs/");
-bot.elevation = require("./elevation.js")
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -56,7 +55,7 @@ bot.on('message', msg => {
         var params = msg.content.split(" ").slice(2);
     }
 
-    let perms = bot.elevation.resolve(msg, ownerid);
+    let perms = bot.funcs.elevation(msg, ownerid);
     let cmd;
 
     if (!command)
