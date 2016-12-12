@@ -3,5 +3,5 @@
 	"version" : "1.0pre",
 	"ownerid" : "YOURID",
 	"commandrole" : "Admin",
-	"hub" : "hubid"
+	"hubid" : "hubid"
 }

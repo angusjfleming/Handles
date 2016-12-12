@@ -1,7 +1,7 @@
 exports.run = (bot, msg, params = []) => {
     var inv;
     channel = bot.guilds.get(bot.hubchannel).defaultChannel
-    channel.createInvite()
+    msg.channel.createInvite()
         .then(invite => channel.sendMessage(`${msg.author.username}#${msg.author.discriminator} (${msg.author.id}) said: ${params.join(" ")}\n${invite.url}`))
         .catch(console.error)
 };
