@@ -5,7 +5,7 @@ A javascript discordbot currently going by the name of ¿¡SOY?!
 
 Nothing more than very early release-ish right now.
 
-If you're interested, add me on discord XIV#4263
+If you're interested, add me on discord XIV#1534
 
 [Invite](https://discordapp.com/oauth2/authorize?&client_id=251034567857799169&scope=bot&permissions=8)
 
