@@ -3,6 +3,8 @@ A javascript discordbot currently going by the name of ¿¡SOY?!
 [![codebeat badge](https://codebeat.co/badges/17282f48-e551-40e0-a254-ee41d6041238)](https://codebeat.co/projects/github-com-realxiv-jspublic)
 
 
+
+
 Nothing more than very early release-ish right now.
 
 If you're interested, add me on discord XIV#4263
