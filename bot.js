@@ -28,9 +28,9 @@ bot.on('ready', () => {
 });
 
 bot.on('guildCreate', guild => {
-    feedback.sendMessage(`ADDED TO ${guild.name} (${guild.id})`)
+    console.log(`ADDED TO ${guild.name} (${guild.id})`)
     bot.funcs.greet(guild, bot)
-})
+});
 
 bot.on('message', msg => {
 
