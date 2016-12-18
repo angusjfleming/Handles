@@ -16,6 +16,7 @@ var ownerid = config.ownerid;
 var prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
+bot.todo = JSON.parse(fs.readFileSync('./localstorage/todo.json', 'utf8'));
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
