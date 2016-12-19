@@ -18,6 +18,7 @@ bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
 
 bot.funcs.loadcmds(bot, Discord, fs);
+bot.funcs.loadstorage(bot, fs)
 
 bot.login(token);
 
@@ -79,9 +80,3 @@ process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
 });
-
-bot.loadnotes = function(bot){
-  bot.notes = JSON.parse(fs.readFileSync('./localstorage/notes.json', 'utf8'));
-}
-
-bot.loadnotes(bot);
