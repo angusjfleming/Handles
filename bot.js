@@ -16,7 +16,6 @@ var ownerid = config.ownerid;
 var prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
-bot.todo = JSON.parse(fs.readFileSync('./localstorage/todo.json', 'utf8'));
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -80,3 +79,9 @@ process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
 });
+
+bot.loadnotes = function(bot){
+  bot.notes = JSON.parse(fs.readFileSync('./localstorage/notes.json', 'utf8'));
+}
+
+bot.loadnotes(bot);
