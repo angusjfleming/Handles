@@ -32,7 +32,7 @@ exports.run = (bot, msg, params = []) => {
     --removepos;
     try {
       bot.notes[msg.author.id].splice(removepos, 1)
-      msg.reply(`deleted note: #${removepos}`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+      msg.reply(`deleted note: #${removepos++}`).then(m => {setTimeout(m.delete.bind(m), 10000)})
     } catch (e) {
       msg.reply(`Error removing note: \`${e}\``)
     }
@@ -41,6 +41,7 @@ exports.run = (bot, msg, params = []) => {
   };
 
   if (!params[0]) {
+    msg.delete(600000)
     if (bot.notes[msg.author.id] == "") {
       msg.channel.sendMessage(`${msg.author.username}, you have no notes. :scream:`)
       return;
@@ -52,7 +53,7 @@ exports.run = (bot, msg, params = []) => {
     msg.channel.sendMessage(`\`\`\`ini
 [${msg.author.username}'s notes]
 
-${message}\`\`\``)
+${message}\`\`\``).then(m => {setTimeout(m.delete.bind(m), 600000)})
   }
 };
 
