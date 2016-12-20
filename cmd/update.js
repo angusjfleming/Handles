@@ -1,6 +1,6 @@
 var exec = require('child_process').exec;
 exports.run = (bot, msg, params = []) => {
-    var child = exec(`sudo git pull`);
+    var child = exec(`git pull`);
     child.stdout.on('data', function(data) {
         msg.channel.sendMessage(`\`OUT:\` ${data}`);
     });
