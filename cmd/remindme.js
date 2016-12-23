@@ -4,6 +4,10 @@ exports.run = (bot, msg, params = []) => {
   msg.delete()
     var time = params[0];
     var time = parse(time);
+    if (!isNaN(time) && parse(params[1]) > 500){
+      time = time + parse(params[1]);
+      params.shift()
+    }
     if (isNaN(time)) {
         msg.channel.sendMessage(`Sorry, you didn't enter a valid quantity of time.`).then(m => {setTimeout(m.delete.bind(m), 10000)})
         return;
