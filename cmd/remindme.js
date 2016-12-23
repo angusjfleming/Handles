@@ -4,7 +4,7 @@ exports.run = (bot, msg, params = []) => {
   msg.delete()
     var time = params[0];
     var time = parse(time);
-    if (!isNaN(time) && parse(params[1]) > 500){
+    if (!isNaN(time) && params[1] && parse(params[1]) > 500){
       time = time + parse(params[1]);
       params.shift()
     }
