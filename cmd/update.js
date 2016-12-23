@@ -1,15 +1,33 @@
 var exec = require('child_process').exec;
 exports.run = (bot, msg, params = []) => {
-    var child = exec(`git pull`);
-    child.stdout.on('data', function(data) {
-        msg.channel.sendMessage(`\`OUT:\` ${data}`);
-    });
-    child.stderr.on('data', function(data) {
-        msg.channel.sendMessage(`\`ERR:\` ${data}`);
-    });
-    child.on('close', function(code) {
-        msg.channel.sendMessage(`\`closing code:\` ${code}`);
-    });
+  exec(`git pull`, (e, stdout, stderr) => {
+  if (e) {
+    console.log(`=====GIT PULL FAILED=====
+${e}`);
+msg.channel.sendMessage(`=====GIT PULL FAILED=====
+${e}`);
+  } else {
+    console.log("=====GIT PULL SUCCESSFUL=====");
+    console.log(stdout);
+    msg.channel.sendMessage(`=====GIT PULL SUCCESSFUL=====
+${stdout}`)
+    console.error(stderr);
+  }
+});
+  exec(`npm install`, (e, stdout, stderr) => {
+  if (e) {
+    console.log(`=====DEPENDENCY INSTALL FAILED=====
+${e}`);
+msg.channel.sendMessage(`=====DEPENDENCY INSTALL FAILED=====
+${e}`);
+  } else {
+    console.log("=====DEPENDENCY INSTALL COMPLETE=====");
+    console.log(stdout);
+    msg.channel.sendMessage(`=====DEPENDENCY INSTALL COMPLETE=====
+${stdout}`)
+    console.error(stderr);
+  }
+});
 
 };
 

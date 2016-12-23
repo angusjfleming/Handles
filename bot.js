@@ -28,6 +28,10 @@ bot.on('ready', () => {
     console.log("Bot online (" + startdate + ")")
 });
 
+bot.on('disconnect', () => {
+  console.log("Bot disconnected, trying to restart.")
+});
+
 bot.on('guildCreate', guild => {
     console.log(`ADDED TO ${guild.name} (${guild.id})`)
     bot.funcs.greet(guild, bot)
