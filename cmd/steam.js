@@ -24,7 +24,7 @@ Players Searching: ${info.ISteamGameCoordinator[570].stats.players_searching}
 [CS:GO Status]
 API: ${info.IEconItems[730].online} (${info.IEconItems[730].time}ms)
 Game Coordinator: ${info.ISteamGameCoordinator[730].online} ${empty}
-Players Searching: ${info.ISteamGameCoordinator[730].stats.players_searching}
+Players Searching: ${info.ISteamGameCoordinator[730].stats.players_searching}, with an average wait time of ${humanizeDuration(info.ISteamGameCoordinator[730].stats.average_wait)}.
 
 [TF2 Status]
 API: ${info.IEconItems[440].online} (${info.IEconItems[440].time}ms)
