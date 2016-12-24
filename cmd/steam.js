@@ -45,5 +45,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
+    aliases: ['steamapi', 'steamstatus', 'steamstats'],
     permLevel: 1
 };
