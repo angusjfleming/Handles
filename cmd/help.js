@@ -1,4 +1,4 @@
-exports.run = (bot, msg, params, config, perms = []) => {
+exports.run = (bot, msg, params, perms = []) => {
     if (!params[0]) {
         let commands = bot.commands;
         let commandsForEveryone = commands.filter(e => {
@@ -66,7 +66,7 @@ exports.run = (bot, msg, params, config, perms = []) => {
             '```ini', `[ Command: ${command.help.name} ]`, ``, `Description`, `= ${command.help.description || command.help.summary}`,
             ``,
             `Usage`,
-            `= ${config.prefix}${command.help.usage}`,
+            `= ${bot.prefix}${command.help.usage}`,
             ``,
             `Aliases`,
             command.conf.aliases && command.conf.aliases.length ?
