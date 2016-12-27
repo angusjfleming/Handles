@@ -34,11 +34,9 @@ bot.on('disconnect', () => {
 
 bot.on('guildCreate', guild => {
     console.log(`ADDED TO ${guild.name} (${guild.id})`)
-    bot.funcs.greet(guild, bot)
 });
 
 bot.on('message', msg => {
-
     var prefixtrue = false;
     if (msg.content.startsWith(`<@!${bot.user.id}> `)) {
         msg.content = msg.content.replace('!', '');
