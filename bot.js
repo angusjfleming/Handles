@@ -28,7 +28,7 @@ bot.on('ready', () => {
 });
 
 bot.on('disconnect', () => {
-  console.log("Bot disconnected, trying to restart.")
+    console.log("Bot disconnected, trying to restart.")
 });
 
 bot.on('guildCreate', guild => {
@@ -36,7 +36,7 @@ bot.on('guildCreate', guild => {
 });
 
 bot.on('message', msg => {
-  bot.funcs.onMessage(bot, msg)
+    bot.funcs.onMessage(bot, msg)
 });
 
 process.on("unhandledRejection", err => {

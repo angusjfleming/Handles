@@ -1,19 +1,6 @@
-function msToTime(duration) {
-    var milliseconds = parseInt((duration % 1000) / 100),
-        seconds = parseInt((duration / 1000) % 60),
-        minutes = parseInt((duration / (1000 * 60)) % 60),
-        hours = parseInt((duration / (1000 * 60 * 60)) % 24);
-
-    hours = (hours < 10) ? "0" + hours : hours;
-    minutes = (minutes < 10) ? "0" + minutes : minutes;
-    seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-    return `${hours}:${minutes}:${seconds}`;
-}
-
+var humanizeDuration = require('humanize-duration')
 exports.run = (bot, msg, params = []) => {
-    uptimehms = msToTime(bot.uptime)
-    msg.channel.sendMessage(uptimehms)
+    msg.channel.sendMessage(humanizeDuration(bot.uptime))
 };
 
 exports.help = {
