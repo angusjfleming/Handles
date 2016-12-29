@@ -26,6 +26,11 @@ ${e}`);
             msg.channel.sendMessage(`=====DEPENDENCY INSTALL COMPLETE=====
 ${stdout}`)
             console.error(stderr);
+            message.channel.sendMessage(`Updated complete, rebooting.`).then(() => {
+                process.exit();
+            }).catch(e => {
+                console.error(e);
+            });
         }
     });
 
