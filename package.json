@@ -4,7 +4,7 @@
   "description": "Javascript discord bot",
   "main": "bot.js",
   "dependencies": {
-    "discord.js": "github:hydrabolt/discord.js#indev",
+    "discord.js": "^11.0.0",
     "exec": "^0.2.1",
     "google-search": "0.0.4",
     "humanize-duration": "^3.10.0",
@@ -14,7 +14,8 @@
     "parse-duration": "^0.1.1",
     "performance-now": "^0.2.0",
     "request": "^2.78.0",
-    "require-dir": "^0.3.1"
+    "require-dir": "^0.3.1",
+    "uws": "^0.12.0"
   },
   "devDependencies": {},
   "scripts": {
