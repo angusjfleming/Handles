@@ -30,6 +30,8 @@ ${stdout}\`\`\``)
             console.error(stderr);
             msg.channel.sendMessage(`\`Update complete, reloading commands.\``).then(() => {
               console.log(`Update complete, reloading commands.`)
+                bot.commands.deleteAll()
+                bot.aliases.deleteAll()
                 bot.funcs.loadcmds(bot, Discord, fs)
             }).catch(e => {
                 console.error(e);
