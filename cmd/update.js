@@ -1,4 +1,6 @@
 var exec = require('child_process').exec;
+var Discord = require("discord.js");
+var fs = require("fs");
 exports.run = (bot, msg, params = []) => {
     exec(`git pull`, (e, stdout, stderr) => {
         if (e) {
@@ -26,8 +28,8 @@ ${e}\`\`\``);
             msg.channel.sendMessage(`\`\`\`=====DEPENDENCY INSTALL COMPLETE=====
 ${stdout}\`\`\``)
             console.error(stderr);
-            msg.channel.sendMessage(`\`Updated complete, rebooting.\``).then(() => {
-                process.exit();
+            msg.channel.sendMessage(`\`Update complete, reloading commands.\``).then(() => {
+                bot.funcs.loadcmds(bot, Discord, fs)
             }).catch(e => {
                 console.error(e);
             });
