@@ -29,6 +29,7 @@ ${e}\`\`\``);
 ${stdout}\`\`\``)
             console.error(stderr);
             msg.channel.sendMessage(`\`Update complete, reloading commands.\``).then(() => {
+              console.log(`Update complete, reloading commands.`)
                 bot.funcs.loadcmds(bot, Discord, fs)
             }).catch(e => {
                 console.error(e);
