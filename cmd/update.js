@@ -4,13 +4,13 @@ exports.run = (bot, msg, params = []) => {
         if (e) {
             console.log(`=====GIT PULL FAILED=====
 ${e}`);
-            msg.channel.sendMessage(`=====GIT PULL FAILED=====
-${e}`);
+            msg.channel.sendMessage(`\`\`\`=====GIT PULL FAILED=====
+${e}\`\`\``);
         } else {
-            console.log("=====GIT PULL SUCCESSFUL=====");
+            console.log(`=====GIT PULL SUCCESSFUL=====`);
             console.log(stdout);
-            msg.channel.sendMessage(`=====GIT PULL SUCCESSFUL=====
-${stdout}`)
+            msg.channel.sendMessage(`\`\`\`=====GIT PULL SUCCESSFUL=====
+${stdout}\`\`\``)
             console.error(stderr);
         }
     });
@@ -18,15 +18,15 @@ ${stdout}`)
         if (e) {
             console.log(`=====DEPENDENCY INSTALL FAILED=====
 ${e}`);
-            msg.channel.sendMessage(`=====DEPENDENCY INSTALL FAILED=====
-${e}`);
+            msg.channel.sendMessage(`\`\`\`=====DEPENDENCY INSTALL FAILED=====
+${e}\`\`\``);
         } else {
             console.log("=====DEPENDENCY INSTALL COMPLETE=====");
             console.log(stdout);
-            msg.channel.sendMessage(`=====DEPENDENCY INSTALL COMPLETE=====
-${stdout}`)
+            msg.channel.sendMessage(`\`\`\`=====DEPENDENCY INSTALL COMPLETE=====
+${stdout}\`\`\``)
             console.error(stderr);
-            msg.channel.sendMessage(`Updated complete, rebooting.`).then(() => {
+            msg.channel.sendMessage(`\`Updated complete, rebooting.\``).then(() => {
                 process.exit();
             }).catch(e => {
                 console.error(e);
