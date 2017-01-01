@@ -1,6 +1,4 @@
 var exec = require('child_process').exec;
-var Discord = require("discord.js");
-var fs = require("fs");
 exports.run = (bot, msg, params = []) => {
     exec(`git pull`, (e, stdout, stderr) => {
         if (e) {
@@ -29,10 +27,8 @@ ${e}\`\`\``);
 ${stdout}\`\`\``)
             console.error(stderr);
             msg.channel.sendMessage(`\`Update complete, reloading commands.\``).then(() => {
-              console.log(`Update complete, reloading commands.`)
-                bot.commands.deleteAll()
-                bot.aliases.deleteAll()
-                bot.funcs.loadcmds(bot, Discord, fs)
+              console.log(`Update complete, rebooting.`)
+              process.exit()
             }).catch(e => {
                 console.error(e);
             });
