@@ -9,7 +9,7 @@ exports.run = (bot, msg = []) => {
 
 exports.help = {
     name: `ping`,
-    description: `Ping/Pong. What do you *think* this does?`,
+    description: `*original description lmao*`,
     usage: `ping`
 };
 
