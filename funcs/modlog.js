@@ -1,7 +1,8 @@
 module.exports = (msg, commandname, info, hex) => {
     try {
         var modlogchannel = msg.guild.channels.find('name', 'mod_log');
-    } catch (err) {};
+    } catch (err) {}
+    return console.log(`LOGGING || Tried to modlog action but no mod_log channel was found.`);
     let embed = {
         "color": parseInt(hex, 16),
         "description": `​**Command:** ${commandname}
