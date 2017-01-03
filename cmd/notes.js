@@ -32,7 +32,8 @@ exports.run = (bot, msg, params = []) => {
     --removepos;
     try {
       bot.notes[msg.author.id].splice(removepos, 1)
-      msg.reply(`deleted note: #${removepos++}`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+      removepos = removepos + 1;
+      msg.reply(`deleted note: #${removepos}`).then(m => {setTimeout(m.delete.bind(m), 10000)})
     } catch (e) {
       msg.reply(`Error removing note: \`${e}\``)
     }

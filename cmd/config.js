@@ -13,5 +13,5 @@ config del <key>`
 exports.conf = {
     enabled: true,
     aliases: ['guildconfig', 'guidconf'],
-    permLevel: 1
+    permLevel: 3
 };
