@@ -2,15 +2,14 @@ var parse = require('parse-duration')
 var humanizeDuration = require('humanize-duration')
 exports.run = (bot, msg, params = []) => {
   msg.delete()
-    var time = params[0];
-    var time = parse(time);
+  if(!isNumeric(params[0])){
+      msg.channel.sendMessage(`Sorry, you didn't enter a valid quantity of time.`).then(m => {setTimeout(m.delete.bind(m), 10000)})
+      return;
+  }
+    var time = parse(params[0]);
     if (!isNaN(time) && params[1] && parse(params[1]) > 500){
       time = time + parse(params[1]);
       params.shift()
-    }
-    if (isNaN(time)) {
-        msg.channel.sendMessage(`Sorry, you didn't enter a valid quantity of time.`).then(m => {setTimeout(m.delete.bind(m), 10000)})
-        return;
     }
     params.shift();
     var reminder = params.join(" ")
@@ -22,6 +21,9 @@ exports.run = (bot, msg, params = []) => {
     setTimeout(function() {
         reply(msg, reminder);
     }, time);
+    function isNumeric(n) {
+  return !isNaN(parseFloat(n));
+}
 };
 
 function reply(msg, reminder) {
