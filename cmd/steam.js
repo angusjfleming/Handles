@@ -30,8 +30,8 @@ Players Searching: ${info.ISteamGameCoordinator[730].stats.players_searching}, w
 API: ${info.IEconItems[440].online} (${info.IEconItems[440].time}ms)
 Game Coordinator: ${info.ISteamGameCoordinator[440].online} ${empty}
 \`\`\``)
-message = message.replace(/: 1 /g, ": Online ");
-message = message.replace(/: 2 /g, ": Offline ");
+message = message.replace(/: 1 /g, ": [Online] ");
+message = message.replace(/: 2 /g, ": \"Offline\" ");
       msg.channel.sendMessage(message)
   })
 };
