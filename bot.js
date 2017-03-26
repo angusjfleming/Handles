@@ -25,6 +25,9 @@ bot.on('ready', () => {
     bot.user.setGame(`@${bot.user.username} help`)
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
+    setTimeout(function() {
+    process.exit()
+}, 10800000)
 });
 
 bot.on('disconnect', () => {
