@@ -4,10 +4,21 @@ try {
     var fs = require("fs");
     var mkdirp = require("mkdirp");
     var requireDir = require('require-dir');
+    var AutoUpdater = require('auto-updater');
 } catch (err) {
     console.log(`Failed to load dependency, ${err}`)
     return;
 }
+
+var autoupdater = new AutoUpdater({
+ pathToJson: `package.json`,
+ autoupdate: true,
+ checkgit: true,
+ jsonhost: 'raw.githubusercontent.com/realXIV/JSPublic/master/package.json',
+ contenthost: 'github.com/realXIV/JSPublic/archive/master.zip',
+ progressDebounce: 0,
+ devmode: false
+});
 
 var bot = new Discord.Client();
 var token = config.bottoken;
@@ -21,9 +32,9 @@ bot.funcs.loadstorage(bot, fs)
 
 bot.login(token);
 
-bot.funcs.autoupdate()
+bot.funcs.autoupdate(autoupdater)
 setInterval(function() {
-bot.funcs.autoupdate()
+bot.funcs.autoupdate(autoupdater)
 }, 3600000)
 
 bot.on('ready', () => {
