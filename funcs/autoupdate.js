@@ -1,13 +1,13 @@
-module.exports = () => {
+module.exports = {
 
   const AutoUpdater = require('auto-updater');
 
     var autoupdater = new AutoUpdater({
-     pathToJson: './package.json',
-     autoupdate: false,
+     pathToJson: `./package.json`,
+     autoupdate: true,
      checkgit: true,
-     jsonhost: 'raw.githubusercontent.com',
-     contenthost: 'codeload.github.com',
+     jsonhost: 'raw.githubusercontent.com/realXIV/JSPublic/master/package.json',
+     contenthost: 'github.com/realXIV/JSPublic/archive/master.zip',
      progressDebounce: 0,
      devmode: false
     });
