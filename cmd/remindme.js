@@ -50,6 +50,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: ['remind'],
+    aliases: ['remind', 'settimer'],
     permLevel: 1
 };
