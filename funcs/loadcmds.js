@@ -7,7 +7,7 @@ module.exports = (bot, Discord, fs) => {
         console.log(`Loading a total of ${files.length} commands.`);
         files.forEach(f => {
             let props = require(`../cmd/${f}`);
-            console.log(` Loading Command: ${props.help.name}.`);
+            console.log(` Loading Command: ${props.help.name}`);
             bot.commands.set(props.help.name, props);
             props.conf.aliases.forEach(alias => {
                 bot.aliases.set(alias, props.help.name);
