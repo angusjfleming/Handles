@@ -17,7 +17,6 @@ bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
 
 bot.funcs.loadcmds(bot, Discord, fs);
-bot.funcs.loadstorage(bot, fs)
 
 bot.login(token);
 
