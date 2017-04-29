@@ -4,7 +4,6 @@
   "description": "Javascript discord bot",
   "main": "bot.js",
   "dependencies": {
-    "auto-updater": "^1.0.2",
     "discord.js": "^11.0.0",
     "exec": "^0.2.1",
     "google-search": "0.0.4",
