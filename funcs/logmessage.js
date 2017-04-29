@@ -12,10 +12,10 @@ if (!fs.existsSync(`localstorage/${msg.guild.id}.json`)){
 
 setTimeout(function() {
 var obj = require(`localstorage/${msg.guild.id}.json`);
-var msgdata
-msgdata.[msg.id][0] = msg.author;
-msgdata.[msg.id][1] = msg.createdAt;
-msgdata.[msg.id][2] = msg.content;
+var msgdata = []
+msgdata[msg.id][0] = msg.author;
+msgdata[msg.id][1] = msg.createdAt;
+msgdata[msg.id][2] = msg.content;
 obj.concat(msgdata)
 
 fs.writeFile(`localstorage/${msg.guild.id}.json`, JSON.stringify(obj), function (err) {
