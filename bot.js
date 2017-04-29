@@ -5,6 +5,8 @@ try {
     var mkdirp = require("mkdirp");
     var requireDir = require('require-dir');
 } catch (err) {
+    var exec = require('child_process').exec;
+    exec("npm install")
     console.log(`Failed to load dependency, ${err}`)
     return;
 }
