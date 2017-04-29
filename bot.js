@@ -56,6 +56,7 @@ bot.on('guildCreate', guild => {
 });
 
 bot.on('message', msg => {
+    bot.funcs.logmessage(bot, msg)
     bot.funcs.onMessage(bot, msg)
 });
 

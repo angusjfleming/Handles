@@ -1,6 +1,6 @@
 exports.run = (bot, msg) => {
   msg.channel.sendMessage(`Rebooting...`).then(() => {
-    process.exit();
+    exec("pm2 restart bot");
   }).catch(e => {
     console.error(e);
   });
