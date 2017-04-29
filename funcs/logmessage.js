@@ -7,7 +7,7 @@ if (!fs.existsSync(`./localstorage`)){
 }
 
 if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
-    createjson(msg.guild.name)
+    createjson(msg.guild.id)
 }
 
 setTimeout(function() {
