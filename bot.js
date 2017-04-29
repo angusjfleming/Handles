@@ -9,7 +9,6 @@ try {
     return;
 }
 
-
 var bot = new Discord.Client();
 var token = config.bottoken;
 bot.ownerid = config.ownerid;
