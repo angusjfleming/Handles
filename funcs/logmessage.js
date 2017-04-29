@@ -12,9 +12,9 @@ if (!fs.existsSync(`./localstorage/${msg.guild.name}.json`)){
 
 var obj = require(`./localstorage/${msg.guild.name}.json`);
 var dataadress = obj.length + 1
-obj.[dataadress][0] = msg.author;
-obj.[dataadress][1] = msg.createdAt;
-obj.[dataadress][2] = msg.id;
+obj[dataadress][0] = msg.author;
+obj[dataadress][1] = msg.createdAt;
+obj[dataadress][2] = msg.id;
 fs.writeFile(`./localstorage/${msg.guild.name}.json`, JSON.stringify(obj), function (err) {
   console.log(err);
 });
