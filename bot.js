@@ -43,7 +43,7 @@ bot.on('guildCreate', guild => {
 
 bot.on('message', msg => {
     bot.funcs.onMessage(bot, msg)
-    bot.funcs.logmessage(bot, msg, logs)
+    //bot.funcs.logmessage(bot, msg, logs)
 });
 
 process.on("unhandledRejection", err => {
