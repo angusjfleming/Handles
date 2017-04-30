@@ -1,17 +1,19 @@
 const fs = require('fs')
+var requireDir = require('require-dir');
 
 module.exports = (bot, msg) => {
+
+var logs = requireDir("./localstorage/");
 
 if (!fs.existsSync(`./localstorage`)){
     fs.mkdirSync(`./localstorage`);
 }
 
-/*
 if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
     createjson(msg.guild.id, msg)
 }
-*/
-var obj = require(`./localstorage/${msg.guild.id}.json`);
+
+var obj = logs.(msg.guild.id)
 console.log(obj)
 var msgdata = []
 msgdata[msg.id][0] = msg.author;
