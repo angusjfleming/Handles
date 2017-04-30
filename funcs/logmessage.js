@@ -10,9 +10,10 @@ if (!fs.existsSync(`./localstorage`)){
 }
 
 if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
-    createjson(msg.guild.id, msg)
+    createjson(msg.guild.id)
 }
 
+setTimeout(function() {
 var obj = logs.(msg.guild.id)
 console.log(obj)
 var msgdata = []
@@ -25,9 +26,10 @@ console.log(obj)
 fs.writeFile(`./localstorage/${msg.guild.id}.json`, JSON.stringify(obj), function (err) {
   console.log(err);
 });
+}, 500)
 }
 
-function createjson(jsonname, msg) {
+function createjson(jsonname) {
       fs.writeFile(`./localstorage/${jsonname}.json`, JSON.stringify({}), (err) => {
           if (err) console.log(err);
       });
