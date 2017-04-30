@@ -17,6 +17,7 @@ bot.ownerid = config.ownerid;
 bot.prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
+var logs = requireDir("./localstorage/");
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -42,7 +43,7 @@ bot.on('guildCreate', guild => {
 
 bot.on('message', msg => {
     bot.funcs.onMessage(bot, msg)
-    bot.funcs.logmessage(bot, msg)
+    bot.funcs.logmessage(bot, msg, logs)
 });
 
 process.on("unhandledRejection", err => {

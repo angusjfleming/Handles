@@ -1,10 +1,8 @@
 const fs = require('fs')
 var requireDir = require('require-dir');
 
-module.exports = (bot, msg) => {
+module.exports = (bot, msg, logs) => {
 var idvar = msg.guild.id
-
-var logs = requireDir("../localstorage/");
 
 if (!fs.existsSync(`./localstorage`)){
     fs.mkdirSync(`./localstorage`);
