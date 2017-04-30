@@ -6,10 +6,11 @@ if (!fs.existsSync(`./localstorage`)){
     fs.mkdirSync(`./localstorage`);
 }
 
+/*
 if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
     createjson(msg.guild.id, msg)
 }
-
+*/
 var obj = require(`./localstorage/${msg.guild.id}.json`);
 console.log(obj)
 var msgdata = []
