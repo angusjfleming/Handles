@@ -17,7 +17,7 @@ bot.ownerid = config.ownerid;
 bot.prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
-var logs = requireDir("./localstorage/");
+//var logs = requireDir("./localstorage/");
 
 bot.funcs.loadcmds(bot, Discord, fs);
 

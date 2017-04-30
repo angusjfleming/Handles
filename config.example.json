@@ -1,5 +1,6 @@
 {
 	"bottoken" : "YOURBOTTOKEN",
 	"ownerid" : "YOURID",
-	"commandrole" : "Admin"
+	"commandrole" : "Admin",
+	"prefix" : "-"
 }
