@@ -15,10 +15,10 @@ if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
 setTimeout(function() {
 var obj = logs.idvar
 console.log(obj)
-var msgdata = []
-msgdata[msg.id][0] = msg.author;
-msgdata[msg.id][1] = msg.createdAt;
-msgdata[msg.id][2] = msg.content;
+var msgdata = {};
+msgdata[msg.id].author = msg.author;
+msgdata[msg.id].createdAt = msg.createdAt;
+msgdata[msg.id].content = msg.content;
 obj.concat(msgdata)
 console.log(obj)
 
