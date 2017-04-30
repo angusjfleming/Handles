@@ -10,7 +10,7 @@ if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
     createjson(msg.guild.id, msg)
 }
 
-var obj = require(`../localstorage/${msg.guild.id}.json`);
+var obj = require(`./localstorage/${msg.guild.id}.json`);
 console.log(obj)
 var msgdata = []
 msgdata[msg.id][0] = msg.author;
