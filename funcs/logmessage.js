@@ -2,6 +2,7 @@ const fs = require('fs')
 var requireDir = require('require-dir');
 
 module.exports = (bot, msg) => {
+var idvar = msg.guild.id
 
 var logs = requireDir("./localstorage/");
 
@@ -14,7 +15,7 @@ if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
 }
 
 setTimeout(function() {
-var obj = logs.(msg.guild.id)
+var obj = logs.idvar
 console.log(obj)
 var msgdata = []
 msgdata[msg.id][0] = msg.author;
