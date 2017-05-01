@@ -45,7 +45,9 @@ bot.on('message', msg => {
 	if (!fs.existsSync(`./logs/${msg.guild.id}.json`)){
     createjson(msg.guild.id)
 	}
+	setTimeout(function(){
     bot.funcs.logmessage(bot, msg)
+	}, 500)
 });
 
 process.on("unhandledRejection", err => {
