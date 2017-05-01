@@ -1,35 +1,39 @@
 const fs = require('fs')
 var requireDir = require('require-dir');
 
-module.exports = (bot, msg, logs) => {
-var idvar = msg.guild.id
-
-if (!fs.existsSync(`./localstorage`)){
-    fs.mkdirSync(`./localstorage`);
+module.exports = (bot, msg) => {
+if (!fs.existsSync(`./logs`)){
+    fs.mkdirSync(`./logs`);
 }
 
-if (!fs.existsSync(`./localstorage/${msg.guild.id}.json`)){
-    createjson(msg.guild.id)
-}
+
+bot.logs = [];
+    fs.readdir("./logs/", (err, files) => {
+        if (err)
+            console.error(err);
+        //console.log(`Loading ${files.length} log files.`);
+        files.forEach(f => {
+            let props = require(`../logs/${f}`);
+            //console.log(` Loading log: ${f}`);
+            bot.logs[msg.guild.id] = props;
+        });
+    });
+
+	console.log(bot.logs)
 
 setTimeout(function() {
-var obj = logs.idvar
-console.log(obj)
-var msgdata = {};
-msgdata[msg.id].author = msg.author;
-msgdata[msg.id].createdAt = msg.createdAt;
-msgdata[msg.id].content = msg.content;
-obj.concat(msgdata)
-console.log(obj)
+var obj = bot.logs[msg.guild.id]
+var msgdata = [];
+msgdata = {}
+msgdata.author = msg.author;
+msgdata.createdAt = msg.createdAt;
+msgdata.content = msg.content;
+msgdata.guildid = msg.guild.id
+msgdata.channelid = msg.channel.id
+obj[msg.id] = msgdata
 
-fs.writeFile(`./localstorage/${msg.guild.id}.json`, JSON.stringify(obj), function (err) {
+fs.writeFile(`./logs/${msg.guild.id}.json`, JSON.stringify(obj), function (err) {
   console.log(err);
 });
 }, 500)
-}
-
-function createjson(jsonname) {
-      fs.writeFile(`./localstorage/${jsonname}.json`, JSON.stringify({}), (err) => {
-          if (err) console.log(err);
-      });
 }

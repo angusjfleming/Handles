@@ -17,7 +17,6 @@ bot.ownerid = config.ownerid;
 bot.prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.funcs = requireDir("./funcs/");
-//var logs = requireDir("./localstorage/");
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -43,10 +42,19 @@ bot.on('guildCreate', guild => {
 
 bot.on('message', msg => {
     bot.funcs.onMessage(bot, msg)
-    //bot.funcs.logmessage(bot, msg, logs)
+	if (!fs.existsSync(`./logs/${msg.guild.id}.json`)){
+    createjson(msg.guild.id)
+	}
+    bot.funcs.logmessage(bot, msg)
 });
 
 process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
 });
+
+function createjson(jsonname) {
+      fs.writeFile(`./logs/${jsonname}.json`, JSON.stringify({}), (err) => {
+          if (err) console.log(err);
+      });
+}
