@@ -47,7 +47,7 @@ bot.on('message', msg => {
 	}
 	setTimeout(function(){
     bot.funcs.logmessage(bot, msg)
-	}, 500)
+	}, 5000)
 });
 
 process.on("unhandledRejection", err => {

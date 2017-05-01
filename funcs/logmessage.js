@@ -17,10 +17,13 @@ bot.logs = [];
             //console.log(` Loading log: ${f}`);
             bot.logs[msg.guild.id] = props;
         });
+        something(bot, msg)
     });
 
 
-setTimeout(function() {
+}
+
+function something(bot, msg) {
 var obj = bot.logs[msg.guild.id]
 var msgdata = [];
 msgdata = {}
@@ -30,9 +33,14 @@ msgdata.content = msg.content;
 msgdata.guildid = msg.guild.id
 msgdata.channelid = msg.channel.id
 obj[msg.id] = msgdata
-
-fs.writeFile(`./logs/${msg.guild.id}.json`, JSON.stringify(obj), function (err) {
+fs.writeFile(`./logs/${msg.guild.id}write.json`, JSON.stringify(obj), function (err) {
   console.log(err);
 });
+setTimeout(function(){
+  if (fs.existsSync(`./logs/${msg.guild.id}write.json`)){
+  fs.renameSync(`./logs/${msg.guild.id}write.json`, `./logs/${msg.guild.id}.json`, function (err) {
+    console.log(err);
+  });
+}
 }, 500)
 }
