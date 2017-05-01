@@ -19,7 +19,6 @@ bot.logs = [];
         });
     });
 
-	console.log(bot.logs)
 
 setTimeout(function() {
 var obj = bot.logs[msg.guild.id]
