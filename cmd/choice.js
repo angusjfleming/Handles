@@ -1,5 +1,5 @@
 exports.run = (bot, msg, params = []) => {
-    if (params = "") {
+    if ((params = "") = false) {
     } else {
     var choices = params.join(` `)
     var tokens = [].concat.apply([], choices.split('"').map(function(v, i) {
