@@ -13,7 +13,7 @@ setInterval(function(){
     console.log(err);
   });
 }
-}, 100)
+}, 50)
 
 
 bot.logs = [];
@@ -34,8 +34,13 @@ bot.logs = [];
 }
 
 function something(bot, msg) {
-var obj = bot.logs[msg.channel.id]
-var msgdata = [];
+    var obj
+if (fs.existsSync(`./logs/${msg.channel.id}.json`)){
+    obj = bot.logs[msg.channel.id]
+} else {
+    obj = {}
+}
+msgdata = [];
 msgdata = {}
 msgdata.author = msg.author.tag;
 msgdata.authorid = msg.author.id
@@ -46,8 +51,10 @@ msgdata.channelid = msg.channel.id;
 obj[msg.id] = msgdata
 fs.writeFile(`./logs/${msg.channel.id}write.json`, safeJsonStringify(obj), function (err) {
   console.log(err);
+obj = {}
 });
+
+}
 
 process.on("unhandledRejection", err => {
 });
-}

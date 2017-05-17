@@ -42,9 +42,6 @@ bot.on('guildCreate', guild => {
 
 bot.on('message', msg => {
     bot.funcs.onMessage(bot, msg)
-	if (!fs.existsSync(`./logs/${msg.channel.id}.json`)){
-    createjson(msg.channel.id)
-	}
 	setTimeout(function(){
     bot.funcs.logmessage(bot, msg)
 	}, 5000)
@@ -54,9 +51,3 @@ process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
 });
-
-function createjson(jsonname) {
-      fs.writeFile(`./logs/${jsonname}.json`, JSON.stringify({}), (err) => {
-          if (err) console.log(err);
-      });
-}
