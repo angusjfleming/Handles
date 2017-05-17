@@ -45,4 +45,7 @@ obj[msg.id] = msgdata
 fs.writeFile(`./logs/${msg.channel.id}write.json`, JSON.stringify(obj), function (err) {
   console.log(err);
 });
+
+process.on("unhandledRejection", err => {
+});
 }
