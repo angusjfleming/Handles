@@ -1,5 +1,6 @@
 const fs = require('fs')
 const requireDir = require('require-dir');
+const safeJsonStringify = require('safe-json-stringify');
 
 module.exports = (bot, msg) => {
 if (!fs.existsSync(`./logs`)){
@@ -42,7 +43,7 @@ msgdata.content = msg.content;
 msgdata.guildid = msg.guild.id;
 msgdata.channelid = msg.channel.id;
 obj[msg.id] = msgdata
-fs.writeFile(`./logs/${msg.channel.id}write.json`, JSON.stringify(obj), function (err) {
+fs.writeFile(`./logs/${msg.channel.id}write.json`, safeJsonStringify(obj), function (err) {
   console.log(err);
 });
 
