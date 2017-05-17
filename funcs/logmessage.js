@@ -37,7 +37,8 @@ function something(bot, msg) {
 var obj = bot.logs[msg.channel.id]
 var msgdata = [];
 msgdata = {}
-msgdata.author = msg.author;
+msgdata.author = msg.author.tag;
+msgdata.authorid = msg.author.id
 msgdata.createdAt = msg.createdAt;
 msgdata.content = msg.content;
 msgdata.guildid = msg.guild.id;
