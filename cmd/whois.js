@@ -3,7 +3,7 @@ exports.run = (bot, msg, params = []) => {
         var checkuser = msg.mentions.users.first()
         var guilduser = msg.guild.members.get(checkuser.id)
     } catch (err) {
-        msg.channel.sendMessage(`You didn't give me a user to analyze.`)
+        msg.channel.send(`You didn't give me a user to analyze.`)
         return;
     }
     try {
@@ -54,7 +54,7 @@ Bot?: ${checkuser.bot}`,
 				}],
 				thumbnail: {url: `${thumbneil}`},
 			};
-msg.channel.sendMessage("", {
+msg.channel.send("", {
         embed
     }).catch(err => console.log(err));
 };

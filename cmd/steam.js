@@ -5,7 +5,7 @@ exports.run = (bot, msg, params = []) => {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body)
       } else {
-        msg.channel.sendMessage(`API seems to be down, try again soon.`)
+        msg.channel.send(`API seems to be down, try again soon.`)
         return;
       }
       var empty = "";
@@ -32,7 +32,7 @@ Game Coordinator: ${info.ISteamGameCoordinator[440].online} ${empty}
 \`\`\``)
 message = message.replace(/: 1 /g, ": [Online] ");
 message = message.replace(/: 2 /g, ": Offline ");
-      msg.channel.sendMessage(message)
+      msg.channel.send(message)
   })
 };
 

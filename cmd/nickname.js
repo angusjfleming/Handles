@@ -5,7 +5,7 @@ exports.run = (bot, msg, params = []) => {
             var nickuser = msg.mentions.users.first()
             nickuser = msg.guild.member(nickuser)
         } catch (err) {
-            msg.channel.sendMessage(`You didn't give me a user to set the nickname of.`)
+            msg.channel.send(`You didn't give me a user to set the nickname of.`)
             return;
         }
         try {

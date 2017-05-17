@@ -4,7 +4,7 @@ exports.run = (bot, msg, params = []) => {
         return i % 2 ? v : v.split(' ')
     })).filter(Boolean);
     var choice = Math.floor(Math.random() * tokens.length);
-    msg.channel.sendMessage(`My choice was: \`${tokens[choice]}\``)
+    msg.channel.send(`My choice was: \`${tokens[choice]}\``)
 };
 
 exports.help = {

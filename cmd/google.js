@@ -2,7 +2,7 @@ var request = require('request');
 
 exports.run = (bot, msg, params = []) => {
     searchTerm = params.join(' ');
-    msg.channel.sendMessage("Searching...").then(msg => {
+    msg.channel.send("Searching...").then(msg => {
         request('https://www.google.com/search?q=' + encodeURI(searchTerm), function(err, res, body) {
             if (err)
                 callback(err);

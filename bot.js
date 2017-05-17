@@ -42,14 +42,12 @@ bot.on('guildCreate', guild => {
 
 bot.on('message', msg => {
     bot.funcs.onMessage(bot, msg)
-    /*
-	if (!fs.existsSync(`./logs/${msg.guild.id}.json`)){
-    createjson(msg.guild.id)
+	if (!fs.existsSync(`./logs/${msg.channel.id}.json`)){
+    createjson(msg.channel.id)
 	}
 	setTimeout(function(){
     bot.funcs.logmessage(bot, msg)
 	}, 5000)
-  */
 });
 
 process.on("unhandledRejection", err => {

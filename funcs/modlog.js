@@ -14,7 +14,7 @@ module.exports = (msg, commandname, info, hex) => {
         "timestamp": msg.createdAt
     }
     if (modlogchannel){
-    modlogchannel.sendMessage("", {
+    modlogchannel.send("", {
         embed
     }).catch(err => msg.reply(err));
   }

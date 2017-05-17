@@ -45,7 +45,7 @@ ${channels.filter(e => e.type === 'voice').map(r => r.name).join('\n')}
             url: `${thumbneil}`
         },
     };
-    msg.channel.sendMessage("", {
+    msg.channel.send("", {
         embed
     }).catch(err => console.log(err));
 };

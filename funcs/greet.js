@@ -1,6 +1,6 @@
 module.exports = (guild, bot) => {
     guilddefault = guild.defaultChannel;
-    guilddefault.sendMessage(`Hi, I'm ${bot.user.username}!
+    guilddefault.send(`Hi, I'm ${bot.user.username}!
 You've added me to your server, maybe you were tricked but if you added me to use me, here are some things you should know:
 
 @${bot.user.username} help will give you a list of commands, by default only containing commands everyone can use.

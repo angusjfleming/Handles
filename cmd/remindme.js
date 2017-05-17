@@ -3,7 +3,7 @@ var humanizeDuration = require('humanize-duration')
 exports.run = (bot, msg, params = []) => {
     msg.delete()
     if (!isNumeric(params[0])) {
-        msg.channel.sendMessage(`Sorry, you didn't enter a valid quantity of time.`).then(m => {
+        msg.channel.send(`Sorry, you didn't enter a valid quantity of time.`).then(m => {
             setTimeout(m.delete.bind(m), 10000)
         })
         return;

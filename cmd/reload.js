@@ -8,9 +8,9 @@ exports.run = (bot, msg, params = []) => {
     }
 
     if (!command) {
-        return msg.channel.sendMessage(`I cannot find the command: ${params[0]}`);
+        return msg.channel.send(`I cannot find the command: ${params[0]}`);
     } else {
-        msg.channel.sendMessage(`Reloading: ${command}`).then(m => {
+        msg.channel.send(`Reloading: ${command}`).then(m => {
             var startTime = now();
             bot.funcs.reload(command, bot).then(() => {
                 var endTime = now();

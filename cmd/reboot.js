@@ -1,5 +1,5 @@
 exports.run = (bot, msg) => {
-  msg.channel.sendMessage(`Rebooting...`).then(() => {
+  msg.channel.send(`Rebooting...`).then(() => {
     process.exit();
   }).catch(e => {
     console.error(e);

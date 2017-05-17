@@ -3,13 +3,13 @@ exports.run = (bot, msg, params = []) => {
     var code = params.join(" ")
     var child = exec(code);
     child.stdout.on('data', function(data) {
-        msg.channel.sendMessage(`\`\`\`${data}\`\`\``);
+        msg.channel.send(`\`\`\`${data}\`\`\``);
     });
     child.stderr.on('data', function(data) {
-        msg.channel.sendMessage(`\`\`\`${data}\`\`\``);
+        msg.channel.send(`\`\`\`${data}\`\`\``);
     });
     child.on('close', function(code) {
-        msg.channel.sendMessage(`\`closing code:\` ${code}`);
+        msg.channel.send(`\`closing code:\` ${code}`);
     });
 
 };

@@ -41,7 +41,7 @@ exports.run = (bot, msg, params, perms = []) => {
             ]);
         }
 
-        msg.channel.sendMessage([
+        msg.channel.send([
             '```ini', ...message,
             '```'
         ])
@@ -50,7 +50,7 @@ exports.run = (bot, msg, params, perms = []) => {
 
         let command;
         if (params[0].toLowerCase() == `admin`) {
-            msg.channel.sendMessage(['```ini', `[Admin Command Information]`,
+            msg.channel.send(['```ini', `[Admin Command Information]`,
                 '',
                 'Certain commands will send a log of the admin command that\'s been run. This requires a channel in your sever called #mod_log',
                 '```'
@@ -62,7 +62,7 @@ exports.run = (bot, msg, params, perms = []) => {
             command = bot.aliases.get(params[0]);
         } else return false;
         command = bot.commands.get(command);
-        msg.channel.sendMessage([
+        msg.channel.send([
             '```ini', `[ Command: ${command.help.name} ]`, ``, `Description`, `= ${command.help.description || command.help.summary}`,
             ``,
             `Usage`,

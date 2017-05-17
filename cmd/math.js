@@ -3,9 +3,9 @@ exports.run = (bot, msg, params = []) => {
   var code = params.join(" ");
   try {
     var evaled = math.eval(code);
-    msg.channel.sendMessage(`\`\`\`${evaled}\`\`\``)
+    msg.channel.send(`\`\`\`${evaled}\`\`\``)
   } catch (err) {
-    msg.channel.sendMessage(`Sorry bro, i just couldn\'t find it in me to maths that.
+    msg.channel.send(`Sorry bro, i just couldn\'t find it in me to maths that.
 ${err}`)
   }
 };

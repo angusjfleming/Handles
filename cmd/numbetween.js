@@ -3,7 +3,7 @@ exports.run = (bot, msg, params = []) => {
  var num2 = params[1]
   var choice = Math.floor(Math.random() * num2);
   if (choice < num1){choice = num1}
-  msg.channel.sendMessage(`Between ${num1} and ${num2}, I chose: \`${choice}\``)
+  msg.channel.send(`Between ${num1} and ${num2}, I chose: \`${choice}\``)
 };
 
 exports.help = {

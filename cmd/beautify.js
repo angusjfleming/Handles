@@ -35,7 +35,7 @@ exports.run = (bot, msg, params = []) => {
         }
 
         if (!code) {
-            return msg.channel.sendMessage(`:x: No JavaScript code blocks found.`);
+            return msg.channel.send(`:x: No JavaScript code blocks found.`);
         }
 
         let beautifiedCode = beautify(code, {
@@ -44,7 +44,7 @@ exports.run = (bot, msg, params = []) => {
         });
         beautifiedCode = reduceIndentation(beautifiedCode);
 
-        msg.channel.sendMessage(`${ '```js'}\n${beautifiedCode}\n${ '```'}`);
+        msg.channel.send(`${ '```js'}\n${beautifiedCode}\n${ '```'}`);
 };
 
 exports.help = {
