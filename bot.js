@@ -41,6 +41,7 @@ bot.on('guildCreate', guild => {
 });
 
 bot.on('message', msg => {
+    if (msg.channel.type == 'dm' || msg.channel.type == "group") {}
     bot.funcs.onMessage(bot, msg)
 	setTimeout(function(){
     bot.funcs.logmessage(bot, msg)
