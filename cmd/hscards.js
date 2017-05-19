@@ -117,7 +117,6 @@ var embed = {
       }
     ]
     }
-console.log(out)
 msg.channel.send("", {
         embed
     }).catch(err => msg.reply(err));
