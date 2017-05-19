@@ -4,12 +4,10 @@ const FuzzySet = require('fuzzyset.js')
 exports.run = (bot, msg, params = []) => {
   baseparams = params.join(" ")
   params = params.join(" ")
-  fuzzy = FuzzySet(bot.cardnames)
+  fuzzy = FuzzySet(bot.cardnames, true, 6, 8)
   var fuzzyout = fuzzy.get(params)
-  fuzzyout[0][1] = fuzzyout[0][1]
-  console.log(fuzzyout[0][1])
 
-if (!fuzzyout[0][1]){
+if (!fuzzyout){
   msg.channel.send(`Could not find card: ${baseparams}, please try again.`)
   return;
 }
