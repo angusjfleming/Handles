@@ -16,7 +16,10 @@ var token = config.bottoken;
 bot.ownerid = config.ownerid;
 bot.prefix = config.prefix;
 bot.hubchannel = config.hubid;
+bot.hsapikey = config.hsapikey;
 bot.funcs = requireDir("./funcs/");
+bot.cardinfo = require("./hsinfo/cardinfo.json")
+bot.cardnames = require("./hsinfo/cardnames.json")
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
