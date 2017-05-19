@@ -10,78 +10,78 @@ exports.run = (bot, msg, params = []) => {
   console.log(fuzzyout[0][1])
 
 if (!fuzzyout[0][1]){
-  msg.reply(`Could not find card: ${baseparams}, please try again.`)
+  msg.channel.send(`Could not find card: ${baseparams}, please try again.`)
   return;
 }
 
 if (true) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Basic"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Classic"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Promo"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
-    data: bot.cardinfo["Reward"]
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
+    data: bot.cardinfo["Hall of Fame"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Naxxramas"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Goblins vs Gnomes"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Blackrock Mountain"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["The Grand Tournament"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["The League of Explorers"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Whispers of the Old Gods"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["One Night in Karazhan"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Mean Streets of Gadgetzan"]
   }).value
 }
 if (!out) {
-    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero]`, {
+    var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
     data: bot.cardinfo["Journey to Un'Goro"]
   }).value
 } 
 
 if (!out) (
-  msg.reply(`Could not find card: ${baseparams}, please try again.`)
+  msg.channel.send(`Could not find card: ${baseparams}, please try again.`)
 )
 if (out){
     var stats = ""
