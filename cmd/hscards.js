@@ -1,6 +1,7 @@
 var hex = "00ffff";
 const jsonQuery = require('json-query')
 const FuzzySet = require('fuzzyset.js')
+const toMarkdown = require('to-markdown');
 exports.run = (bot, msg, params = []) => {
   baseparams = params.join(" ")
   params = params.join(" ")
@@ -89,6 +90,9 @@ if (out){
     if (out.type == "Spell") {
         stats = `${out.cost} mana`
     }
+    out.text = out.text.replace(/\\n_/g, " ")
+    out.text = out.text.replace(/\\n/g, " ")
+    out.text = out.text.replace(/\[x]/g, " ")
 var embed = {
         "title": `${out.name}`,
     "url": "http://hearthstone.gamepedia.com/Hearthstone_Wiki",
@@ -111,7 +115,7 @@ var embed = {
       },
       {
         "name": "Card text",
-        "value": (out.text ? out.text : "None")
+        "value": (out.text ? toMarkdown(out.text) : "None")
       }
     ]
     }

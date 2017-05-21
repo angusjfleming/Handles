@@ -18,6 +18,7 @@
     "request": "^2.78.0",
     "require-dir": "^0.3.1",
     "safe-json-stringify": "^1.0.4",
+    "to-markdown": "^3.0.4",
     "uws": "^0.14.1"
   },
   "devDependencies": {},
