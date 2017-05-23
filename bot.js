@@ -30,8 +30,8 @@ bot.on('ready', () => {
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
     setTimeout(function() {
-    process.exit()
-}, 3600000)
+        process.exit()
+    }, 3600000)
 });
 
 bot.on('disconnect', () => {
@@ -46,9 +46,9 @@ bot.on('guildCreate', guild => {
 bot.on('message', msg => {
     if (msg.channel.type == 'dm' || msg.channel.type == "group") {}
     bot.funcs.onMessage(bot, msg)
-	setTimeout(function(){
-    bot.funcs.logmessage(bot, msg)
-	}, 5000)
+    setTimeout(function() {
+        bot.funcs.logmessage(bot, msg)
+    }, 5000)
 });
 
 process.on("unhandledRejection", err => {
