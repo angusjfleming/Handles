@@ -93,6 +93,7 @@ exports.run = (bot, msg, params = []) => {
         out.text = out.text.replace(/\\n_/g, " ")
         out.text = out.text.replace(/\\n/g, " ")
         out.text = out.text.replace(/\[x]/g, " ")
+        out.text = out.text.replace(/\_/g, " ")
         var embed = {
             "title": `${out.name}`,
             "url": "http://hearthstone.gamepedia.com/Hearthstone_Wiki",
@@ -102,7 +103,7 @@ exports.run = (bot, msg, params = []) => {
                 "text": (out.flavor ? out.flavor : "")
             },
             "image": {
-                "url": out.imgGold
+                "url": (out.img ? out.imgGold : out.img)
             },
             "fields": [{
                     "name": "Info",
