@@ -1,21 +1,28 @@
-var request = require('request');
+var scraper = require('google-search-scraper');
 
 exports.run = (bot, msg, params = []) => {
+    var first = true
     searchTerm = params.join(' ');
+
+    var options = {
+        query: searchTerm,
+        limit: "1"
+    };
     msg.channel.send("Searching...").then(msg => {
-        request('https://www.google.com/search?q=' + encodeURI(searchTerm), function(err, res, body) {
-            if (err)
-                callback(err);
-            else {
-                if (body.indexOf('/url?q=') > -1) {
-                    body = body.slice(body.indexOf('/url?q=') + 7);
-                    body = body.slice(0, body.indexOf('&'));
-                    body = decodeURIComponent(body);
-                    msg.edit("First result found for query `" + searchTerm + "`: " + body);
-                } else
-                    msg.edit("There is no result found for query `" + searchTerm + "`");
+
+        setTimeout(function() {
+            if (first) {
+                msg.edit("No result was found for query `" + searchTerm + "`");
             }
-        });
+        }, 1000);
+
+        scraper.search(options, function(err, url) {
+            if (err) throw err;
+            if (first) {
+                first = false
+                msg.edit("First result found for query `" + searchTerm + "`: " + url);
+            }
+        })
     });
 };
 
