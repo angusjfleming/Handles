@@ -4,10 +4,11 @@
   "description": "Javascript discord bot",
   "main": "bot.js",
   "dependencies": {
-    "discord.js": "^11.0.0",
+    "discord.js": "11.1.0",
     "exec": "^0.2.1",
     "fuzzyset.js": "0.0.1",
     "google-search": "0.0.4",
+    "google-search-scraper": "0.0.3",
     "humanize-duration": "^3.10.0",
     "js-beautify": "^1.6.4",
     "json-query": "^2.2.2",
