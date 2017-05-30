@@ -8,8 +8,8 @@ module.exports = (bot, msg) => {
     }
 
     setInterval(function() {
-        if (fs.existsSync(`./logs/${msg.channel.id}write.json`)) {
-            fs.renameSync(`./logs/${msg.channel.id}write.json`, `./logs/${msg.channel.id}.json`, function(err) {
+        if (fs.existsSync(`./logs/${msg.guild.id}write.json`)) {
+            fs.renameSync(`./logs/${msg.guild.id}write.json`, `./logs/${msg.guild.id}.json`, function(err) {
                 console.log(err);
             });
         }
@@ -24,7 +24,7 @@ module.exports = (bot, msg) => {
         files.forEach(f => {
             let props = require(`../logs/${f}`);
             //console.log(` Loading log: ${f}`);
-            bot.logs[msg.channel.id] = props;
+            bot.logs[msg.guild.id] = props;
         });
         setTimeout(function() {
             something(bot, msg)
@@ -35,12 +35,12 @@ module.exports = (bot, msg) => {
 
 function something(bot, msg) {
     var obj
-    if (fs.existsSync(`./logs/${msg.channel.id}.json`)) {
-        obj = bot.logs[msg.channel.id]
+    if (fs.existsSync(`./logs/${msg.guild.id}.json`)) {
+        obj = bot.logs[msg.guild.id]
     } else {
         obj = {}
     }
-    msgdata = [];
+    var msgdata = [];
     msgdata = {}
     msgdata.author = msg.author.tag;
     msgdata.authorid = msg.author.id
@@ -48,11 +48,13 @@ function something(bot, msg) {
     msgdata.content = msg.content;
     msgdata.guildid = msg.guild.id;
     msgdata.channelid = msg.channel.id;
+    if (typeof msg.attachments.first() !== 'undefined' && msg.attachments.first().url) {
+        msgdata.attachments = msg.attachments.first().url
+    } else {
+        msgdata.attachments = "";
+    }
     obj[msg.id] = msgdata
-    fs.writeFile(`./logs/${msg.channel.id}write.json`, safeJsonStringify(obj), function(err) {
-        console.log(err);
-        obj = {}
-    });
+    fs.writeFileSync(`./logs/${msg.guild.id}write.json`, safeJsonStringify(obj))
 
 }
 
