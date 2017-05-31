@@ -103,7 +103,7 @@ exports.run = (bot, msg, params = []) => {
                 "text": (out.flavor ? out.flavor : "")
             },
             "image": {
-                "url": (out.img ? out.imgGold : out.img)
+                "url": out.img
             },
             "fields": [{
                     "name": "Info",
@@ -127,7 +127,7 @@ exports.run = (bot, msg, params = []) => {
 
 exports.help = {
     name: "hscards",
-    description: "Tries to find hearthstone card matching your query.",
+    description: "Tries to find a hearthstone card matching your query.",
     usage: "hscards <card name>"
 };
 
