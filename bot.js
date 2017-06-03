@@ -11,6 +11,11 @@ try {
     return;
 }
 
+if (!fs.existsSync(`./guildconfigs.json`)) {
+        fs.writeFileSync(`./guildconfigs.json`, "{}")
+    }
+
+
 var bot = new Discord.Client();
 var token = config.bottoken;
 bot.ownerid = config.ownerid;
@@ -20,6 +25,7 @@ bot.hsapikey = config.hsapikey;
 bot.funcs = requireDir("./funcs/");
 bot.cardinfo = require("./hsinfo/cardinfo.json")
 bot.cardnames = require("./hsinfo/cardnames.json")
+bot.guildconfigs = require("./guildconfigs.json")
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -41,6 +47,10 @@ bot.on('disconnect', () => {
 
 bot.on('guildCreate', guild => {
     console.log(`ADDED TO ${guild.name} (${guild.id})`)
+});
+
+bot.on('guildMemberAdd', guildmember => {
+    bot.funcs.announcenewusers(bot, guildmember)
 });
 
 bot.on('message', msg => {

@@ -3,6 +3,7 @@ node_modules/
 .git
 .eslintrc.json
 config.json
+guildconfigs.json
 /.vs
 /logs/
 error.txt
