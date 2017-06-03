@@ -1,6 +1,6 @@
 exports.run = (bot, msg, params = []) => {
     msg.delete()
-    msg.channel.send(`Invite for SOY: https://discordapp.com/oauth2/authorize?&client_id=251034567857799169&scope=bot&permissions=8`).then(m => {setTimeout(m.delete.bind(m), 120000)});
+    msg.channel.send(`Invite for ${bot.user.username}: https://discordapp.com/oauth2/authorize?&client_id=${bot.user.id}&scope=bot&permissions=8`).then(m => {setTimeout(m.delete.bind(m), 120000)});
 };
 
 exports.help = {
