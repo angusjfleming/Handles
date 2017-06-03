@@ -3,7 +3,7 @@ module.exports = (bot, guildmember) => {
         return;
     }
     if (bot.guildconfigs[guildmember.guild.id].announcenewusers == true) {
-        guildmember.guild.defaultChannel.send(`<@${guildmember.user.id}> joined the server.`)
+        guildmember.guild.defaultChannel.send(`Welcome, <@${guildmember.user.id}> to ${msg.guild.name}!.`)
     }
     
 };
