@@ -1,10 +1,11 @@
 exports.run = (bot, msg, params = []) => {
+    msg.delete()
     var dubya = msg.guild.members.find('id', '83864099842195456')
     dubya.setVoiceChannel(msg.guild.channels.filter(e => e.type === 'voice').random())
 };
 
 exports.conf = {
-    aliases: ["gtfow2"],
+    aliases: ["gtfo"],
     permLevel: 3
 };
 
