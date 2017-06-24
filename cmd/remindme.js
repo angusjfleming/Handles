@@ -1,6 +1,8 @@
-var parse = require('parse-duration')
-var humanizeDuration = require('humanize-duration')
+const parse = require('parse-duration')
+const humanizeDuration = require('humanize-duration')
+const fs = require('fs')
 exports.run = (bot, msg, params = []) => {
+    var currentDate = new Date();
     msg.delete()
     if (!isNumeric(params[0])) {
         msg.channel.send(`Sorry, you didn't enter a valid quantity of time.`).then(m => {
@@ -19,19 +21,24 @@ exports.run = (bot, msg, params = []) => {
         msg.reply(`I'll remind you in ${humanizeDuration(time)}.`).then(m => {
             setTimeout(m.delete.bind(m), 10000)
         })
+        var obj = {"time": new Date(currentDate.getTime() + time), "authorid": msg.author.id}
+        fs.writeFileSync(`./reminders/${bot.funcs.randomstring(32, "aA")}.json`, JSON.stringify(obj))
     } else {
         msg.reply(`I'll remind you of \`${reminder}\` in ${humanizeDuration(time)}.`).then(m => {
             setTimeout(m.delete.bind(m), 10000)
         })
+        var obj = {"time": new Date(currentDate.getTime() + time), "authorid": msg.author.id, "message" : reminder}
+        fs.writeFileSync(`./reminders/${bot.funcs.randomstring(32, "aA")}.json`, JSON.stringify(obj))
     }
-    setTimeout(function() {
+    /*setTimeout(function() {
         reply(msg, reminder);
-    }, time);
+    }, time);*/
 
-    function isNumeric(n) {
+};
+
+function isNumeric(n) {
         return !isNaN(parseFloat(n));
     }
-};
 
 function reply(msg, reminder) {
     if (!reminder) {
