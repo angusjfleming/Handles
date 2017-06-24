@@ -13,7 +13,7 @@ try {
 
 if (!fs.existsSync(`./guildconfigs.json`)) {
         fs.writeFileSync(`./guildconfigs.json`, "{}")
-    }
+}
 
 
 var bot = new Discord.Client();
@@ -35,9 +35,9 @@ bot.on('ready', () => {
     bot.user.setGame(`@${bot.user.username} help`)
     startdate = new Date()
     console.log("Bot online (" + startdate + ")")
-    setTimeout(function() {
-        process.exit()
-    }, 3600000)
+    setInterval(function(){
+        bot.funcs.checkreminders(bot,fs)
+    },5000 )
 });
 
 bot.on('disconnect', () => {
@@ -54,11 +54,12 @@ bot.on('guildMemberAdd', guildmember => {
 });
 
 bot.on('message', msg => {
-    if (msg.channel.type == 'dm' || msg.channel.type == "group") {}
+    if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) {}
     bot.funcs.onMessage(bot, msg)
-    setTimeout(function() {
+    /*setTimeout(function() {
         bot.funcs.logmessage(bot, msg)
-    }, 5000)
+    }, 5000)*/
+    //logging is currently broken
 });
 
 process.on("unhandledRejection", err => {
