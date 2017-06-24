@@ -4,6 +4,8 @@ node_modules/
 .eslintrc.json
 config.json
 guildconfigs.json
+/reminders/
+/data/
 /.vs
 /logs/
 error.txt
