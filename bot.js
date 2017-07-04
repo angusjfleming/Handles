@@ -58,7 +58,7 @@ bot.on('guildMemberAdd', guildmember => {
 });
 
 bot.on('message', msg => {
-    if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) {}
+    if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) return;
     bot.funcs.onMessage(bot, msg)
     db.run(`
 CREATE TABLE IF NOT EXISTS msglogs (
