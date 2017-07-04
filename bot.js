@@ -63,7 +63,7 @@ bot.on('message', msg => {
     db.run(`
 CREATE TABLE IF NOT EXISTS msglogs (
 	userid varchar(255),
-	messagecontent varchar(255),
+	msgcontent varchar(255),
     usertag varchar(255),
 	msgid varchar(255),
     guildid varchar(255),
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS msglogs (
 	PRIMARY KEY(msgid)
 );`);
 
-    db.run("INSERT INTO msglogs (userid, messagecontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
+    db.run("INSERT INTO msglogs (userid, msgcontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
 });
 
 process.on("unhandledRejection", err => {
