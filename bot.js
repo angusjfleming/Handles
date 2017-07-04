@@ -16,8 +16,8 @@ if (!fs.existsSync(`./guildconfigs.json`)) {
 }
 
 
-const sql = require("sqlite");
-sql.open("./msglogs.sqlite");
+const sql = require("sqlite3");
+var db = new sql.Database('msglogs.sqlite');
 
 
 var bot = new Discord.Client();
@@ -60,7 +60,7 @@ bot.on('guildMemberAdd', guildmember => {
 bot.on('message', msg => {
     if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) {}
     bot.funcs.onMessage(bot, msg)
-    sql.run(`
+    db.run(`
 CREATE TABLE IF NOT EXISTS msglogs (
 	userid varchar(255),
 	messagecontent varchar(255),
@@ -70,9 +70,9 @@ CREATE TABLE IF NOT EXISTS msglogs (
     channelid varchar(255),
     createddate varchar(255),
 	PRIMARY KEY(msgid)
-);`).then(() => {});
+);`);
 
-    sql.run("INSERT INTO msglogs (userid, messagecontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
+    db.run("INSERT INTO msglogs (userid, messagecontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
 });
 
 process.on("unhandledRejection", err => {
