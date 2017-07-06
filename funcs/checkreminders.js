@@ -6,12 +6,13 @@ module.exports = (bot, fs) => {
     files.forEach(f => {
       let reminder = require(`../reminders/${f}`);
       if (new Date(reminder.time) < new Date(currentDate)) {
+        var fetchchannel = bot.guilds.find('id', reminder.guildid).channels.find('id', reminder.channelid);
         if (reminder.message) {
-          bot.users.find("id", reminder.authorid).send(`Reminding you of \`${reminder.message}\`.`).then(m => {
+          fetchchannel.send(`<@${reminder.userid}>, reminding you of \`${reminder.message}\` from ${reminder.datesent}.`).then(m => {
             setTimeout(m.delete.bind(m), 120000)
           })
         } else {
-          bot.users.find("id", reminder.authorid).send(`Reminding you.`).then(m => {
+          fetchchannel.send(`<@${reminder.userid}>, reminding you from ${reminder.datesent}.`).then(m => {
             setTimeout(m.delete.bind(m), 120000)
           })
         }

@@ -13,6 +13,7 @@
     "json-query": "^2.2.2",
     "mathjs": "^3.8.0",
     "mkdirp": "^0.5.1",
+    "moment": "^2.18.1",
     "parse-duration": "^0.1.1",
     "performance-now": "^0.2.0",
     "request": "^2.78.0",
