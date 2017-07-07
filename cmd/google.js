@@ -9,18 +9,13 @@ exports.run = (bot, msg, params = []) => {
         limit: "1"
     };
     msg.channel.send("Searching...").then(msg => {
-
-        setTimeout(function() {
-            if (first) {
-                msg.edit("No result was found for query `" + searchTerm + "`");
-            }
-        }, 1000);
+        setTimeout(function(){ if(first) {return msg.edit("No result was found for query `" + searchTerm + "`");} }, 5000);
 
         scraper.search(options, function(err, url) {
             if (err) throw err;
             if (first) {
                 first = false
-                msg.edit("First result found for query `" + searchTerm + "`: " + url);
+                return msg.edit("First result found for query `" + searchTerm + "`: " + url);
             }
         })
     });

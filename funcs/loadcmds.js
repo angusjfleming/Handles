@@ -4,14 +4,14 @@ module.exports = (bot, Discord, fs) => {
     fs.readdir("./cmd/", (err, files) => {
         if (err)
             console.error(err);
-        console.log(`Loading a total of ${files.length} commands.`);
+        console.log(`Loading commands.`);
         files.forEach(f => {
             let props = require(`../cmd/${f}`);
-            console.log(` Loading Command: ${props.help.name}`);
             bot.commands.set(props.help.name, props);
             props.conf.aliases.forEach(alias => {
                 bot.aliases.set(alias, props.help.name);
             });
         });
+        console.log(`${files.length} commands loaded.`)
     });
 };

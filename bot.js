@@ -11,10 +11,6 @@ try {
     return;
 }
 
-if (!fs.existsSync(`./guildconfigs.json`)) {
-    fs.writeFileSync(`./guildconfigs.json`, "{}")
-}
-
 
 const sql = require("sqlite3");
 var db = new sql.Database('msglogs.sqlite');
@@ -29,7 +25,6 @@ bot.hsapikey = config.hsapikey;
 bot.funcs = requireDir("./funcs/");
 bot.cardinfo = require("./hsinfo/cardinfo.json")
 bot.cardnames = require("./hsinfo/cardnames.json")
-bot.guildconfigs = require("./guildconfigs.json")
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -38,7 +33,7 @@ bot.login(token);
 bot.on('ready', () => {
     bot.user.setGame(`@${bot.user.username} help`)
     startdate = new Date()
-    console.log("Bot online (" + startdate + ")")
+    console.log(`Bot online: ${bot.user.username} ${startdate} `)
     setInterval(function() {
         bot.funcs.checkreminders(bot, fs)
     }, 5000)
@@ -53,9 +48,6 @@ bot.on('guildCreate', guild => {
     console.log(`ADDED TO ${guild.name} (${guild.id})`)
 });
 
-bot.on('guildMemberAdd', guildmember => {
-    bot.funcs.announcenewusers(bot, guildmember)
-});
 
 bot.on('message', msg => {
     if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) return;

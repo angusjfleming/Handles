@@ -1,4 +1,5 @@
 var hex = "00ffff";
+var twoweeks = 1209600000
 exports.run = (bot, msg, params = []) => {
     messagecount = parseInt(params[0]) ? parseInt(params[0]) : 1;
     msg.channel.fetchMessages({
