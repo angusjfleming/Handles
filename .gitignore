@@ -9,3 +9,4 @@ msglogs.sqlite
 /.vs
 /logs/
 error.txt
+package-lock.json
