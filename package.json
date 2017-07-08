@@ -1,5 +1,5 @@
 {
-  "name": "soyjspublic",
+  "name": "carnelian",
   "version": "2.0.3",
   "description": "Javascript discord bot",
   "main": "bot.js",
@@ -29,12 +29,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/realXIV/JSPublic.git"
+    "url": "git+https://github.com/realXIV/Carnelian.git"
   },
   "author": "XIV",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/realXIV/JSPublic/issues"
+    "url": "https://github.com/realXIV/Carnelian/issues"
   },
-  "homepage": "https://github.com/realXIV/JSPublic#readme"
+  "homepage": "https://github.com/realXIV/Carnelian#readme"
 }
