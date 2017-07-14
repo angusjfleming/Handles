@@ -35,7 +35,6 @@ module.exports = (bot, msg) => {
     a = FuzzySet(commandarray) 
     try { 
     fuzzycmd = a.get(command)[0]
-    console.log(fuzzycmd[0])
     if (fuzzycmd[0] >= 0.6) {command = fuzzycmd[1]}
     } catch (err) { 
     fuzzycmd = null} 
