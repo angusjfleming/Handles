@@ -1,3 +1,4 @@
+const FuzzySet = require('fuzzyset.js')
 module.exports = (bot, msg) => {
     var prefixtrue = false;
     if (msg.content.startsWith(`<@!${bot.user.id}> `)) {
@@ -26,6 +27,18 @@ module.exports = (bot, msg) => {
 
     if (!command)
         return;
+
+    basecmdarray = Array.from(bot.commands.keys())
+    cmdaliasarray = Array.from(bot.aliases.keys())
+    commandarray = basecmdarray.concat(cmdaliasarray)
+
+    a = FuzzySet(commandarray) 
+    try { 
+    fuzzycmd = a.get(command)[0]
+    console.log(fuzzycmd[0])
+    if (fuzzycmd[0] >= 0.6) {command = fuzzycmd[1]}
+    } catch (err) { 
+    fuzzycmd = null} 
 
     if (bot.commands.has(command)) {
         cmd = bot.commands.get(command);
