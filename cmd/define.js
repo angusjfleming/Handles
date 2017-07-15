@@ -4,7 +4,8 @@ exports.run = (bot, msg, params = []) => {
     var word = params[0]
     defined = defineWord.define(word)
     if (defined.definitions[0] == null) {
-        return msg.channel.send(`Sorry, I could not define ${word}.`)
+        msg.delete(5000)
+        return msg.channel.send(`Sorry, I could not define ${word}.`).then(m => {setTimeout(m.delete.bind(m), 5000)})
     } else {
         defined.definitions = defined.definitions.clean("")
         constructedstring = (`${word} : ${defined.type} | ${defined.definitions[0]}`)
@@ -44,6 +45,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: [],
+    aliases: ['def', 'definition', 'dict', 'dictionary'],
     permLevel: 1
 };
