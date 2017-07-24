@@ -24,7 +24,6 @@ bot.hubchannel = config.hubid;
 bot.hsapikey = config.hsapikey;
 bot.funcs = requireDir("./funcs/");
 global.responses = require('./responses.js')
-console.log(responses)
 
 bot.cardinfo = require("./hsinfo/cardinfo.json")
 bot.cardnames = require("./hsinfo/cardnames.json")
