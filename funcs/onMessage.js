@@ -37,5 +37,21 @@ module.exports = (bot, msg) => {
         if (perms < cmd.conf.permLevel)
             return;
         cmd.run(bot, msg, params, perms);
+
+        const responsecollector = msg.channel.createCollector(m => m.author === msg.author && m.channel === msg.channel, {
+            time: 5000
+        });
+        responsecollector.on('collect', m => {
+            if (new RegExp(responses.swears.join("|")).test(m.content)) {
+                response = randomElement(responses.swearreact)
+                m.channel.send(response)
+                responsecollector.stop()
+            }
+            if (new RegExp(responses.thanks.join("|")).test(m.content)) {
+                response = randomElement(responses.thankreact)
+                m.channel.send(response)
+                responsecollector.stop()
+            }
+        });
     }
 }

@@ -1,23 +1,23 @@
 var math = require('mathjs');
 exports.run = (bot, msg, params = []) => {
-  var code = params.join(" ");
-  try {
-    var evaled = math.eval(code);
-    msg.channel.send(`\`\`\`${evaled}\`\`\``)
-  } catch (err) {
-    msg.channel.send(`Sorry bro, i just couldn\'t find it in me to maths that.
-${err}`)
-  }
+    var code = params.join(" ");
+    try {
+        var evaled = math.eval(code);
+        msg.channel.send(`\`\`\`${evaled}\`\`\``)
+    } catch (err) {
+        response = randomElement(responses.matherr).replace("<<token>>", `${err}`)
+        msg.channel.send(response)
+    }
 };
 
 exports.help = {
-  name: `math`,
-  description: `Evaluates maths`,
-  usage: `math <maths>`
+    name: `math`,
+    description: `Evaluates maths`,
+    usage: `math <maths>`
 };
 
 exports.conf = {
-  enabled: true,
-  aliases: ['calc', 'maths'],
-  permLevel: 1
+    enabled: true,
+    aliases: ['calc', 'maths'],
+    permLevel: 1
 };

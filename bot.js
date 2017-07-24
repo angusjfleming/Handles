@@ -23,6 +23,9 @@ bot.prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.hsapikey = config.hsapikey;
 bot.funcs = requireDir("./funcs/");
+global.responses = require('./responses.js')
+console.log(responses)
+
 bot.cardinfo = require("./hsinfo/cardinfo.json")
 bot.cardnames = require("./hsinfo/cardnames.json")
 
@@ -71,3 +74,7 @@ process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
 });
+
+randomElement = function(array) {
+    return array[Math.floor(Math.random() * array.length)]
+}

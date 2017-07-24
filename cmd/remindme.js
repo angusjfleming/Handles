@@ -20,7 +20,7 @@ exports.run = (bot, msg, params = []) => {
         })
         var obj = {
             "time": new Date(currentDate.getTime() + time),
-            "userid" : msg.author.id,
+            "userid": msg.author.id,
             "channelid": msg.channel.id,
             "guildid": msg.guild.id,
             "datesent": moment().format('MMMM Do YYYY, h:mm a')
@@ -32,7 +32,7 @@ exports.run = (bot, msg, params = []) => {
         })
         var obj = {
             "time": new Date(currentDate.getTime() + time),
-            "userid" : msg.author.id,
+            "userid": msg.author.id,
             "channelid": msg.channel.id,
             "guildid": msg.guild.id,
             "message": reminder,
@@ -40,10 +40,6 @@ exports.run = (bot, msg, params = []) => {
         }
         fs.writeFileSync(`./reminders/${bot.funcs.randomstring(32, "aA")}.json`, JSON.stringify(obj))
     }
-    /*setTimeout(function() {
-        reply(msg, reminder);
-    }, time);*/
-
 };
 
 function isNumeric(n) {
