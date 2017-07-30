@@ -24,6 +24,17 @@ module.exports = (bot, msg) => {
     let perms = bot.funcs.elevation(msg, bot);
     let cmd;
 
+    if (msg.isMentioned(bot.user)) {
+        if (new RegExp(responses.swears.join("|")).test(msg.content)) {
+                response = randomElement(responses.swearreact)
+                msg.channel.send(response)
+            }
+        if (new RegExp(responses.thanks.join("|")).test(msg.content)) {
+                response = randomElement(responses.thankreact)
+                msg.channel.send(response)
+            }
+    }
+
     if (!command)
         return;
 
