@@ -1,7 +1,7 @@
 const sql = require("sqlite");
 sql.open("./localdb.sqlite");
 exports.run = (bot, msg, params = []) => {
-sql.run(`
+    sql.run(`
 CREATE TABLE IF NOT EXISTS tags (
 	userid varchar(255),
 	tagcontent varchar(255),
@@ -24,9 +24,17 @@ CREATE TABLE IF NOT EXISTS tags (
                     params.shift()
                     var tagname = params[0]
                     params.shift()
+                    console.log(params)
+                    if (params[0] == undefined) {
+                        msg.delete(5000)
+                        return msg.channel.send("You entered no tag content.").then(m => {
+                            setTimeout(m.delete.bind(m), 5000)
+                        })
+                    }
                     var tagcontent = params.join(" ")
+
                     sql.get("SELECT * FROM tags WHERE tagname=(?) AND userid=(?)", [tagname, msg.author.id]).then(row => {
-                        if (!row) {
+                        if (!row && tagcontent != " ") {
                             sql.run("INSERT INTO tags (userid, tagcontent, tagname) VALUES( ?, ?, ?)", [msg.author.id, tagcontent, tagname])
                             msg.channel.send(`Created tag \`${tagname}\``)
                         } else {
@@ -38,6 +46,12 @@ CREATE TABLE IF NOT EXISTS tags (
                     params.shift()
                     var tagname = params[0]
                     params.shift()
+                    if (params[0] == undefined) {
+                        msg.delete(5000)
+                        return msg.channel.send("You entered no tag content.").then(m => {
+                            setTimeout(m.delete.bind(m), 5000)
+                        })
+                    }
                     var tagcontent = params.join(" ")
                     sql.get("SELECT * FROM tags WHERE tagname=(?) AND userid=(?)", [tagname, msg.author.id]).then(row => {
                         if (!row) {
