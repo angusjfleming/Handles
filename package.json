@@ -1,5 +1,5 @@
 {
-  "name": "carnelian",
+  "name": "RoyalCrystal",
   "version": "2.0.3",
   "description": "Javascript discord bot",
   "main": "bot.js",
@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/realXIV/Carnelian.git"
+    "url": "git+https://github.com/realXIV/Royal-Crystal.git"
   },
   "author": "XIV",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/realXIV/Carnelian/issues"
+    "url": "https://github.com/realXIV/Royal-Crystal/issues"
   },
-  "homepage": "https://github.com/realXIV/Carnelian#readme"
+  "homepage": "https://github.com/realXIV/Royal-Crystal#readme"
 }
