@@ -5,7 +5,7 @@ node_modules/
 config.json
 guildconfigs.json
 /reminders/
-msglogs.sqlite
+localdb.sqlite
 /.vs
 /logs/
 error.txt
