@@ -11,11 +11,6 @@ try {
     return;
 }
 
-
-const sql = require("sqlite3");
-var db = new sql.Database('msglogs.sqlite');
-
-
 var bot = new Discord.Client();
 var token = config.bottoken;
 bot.ownerid = config.ownerid;
@@ -29,6 +24,9 @@ bot.cardinfo = require("./hsinfo/cardinfo.json")
 bot.cardnames = require("./hsinfo/cardnames.json")
 
 bot.funcs.loadcmds(bot, Discord, fs);
+
+const sql = require("sqlite");
+sql.open("./localdb.sqlite")
 
 bot.login(token);
 
@@ -54,7 +52,8 @@ bot.on('guildCreate', guild => {
 bot.on('message', msg => {
     if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) return;
     bot.funcs.onMessage(bot, msg)
-    db.run(`
+        
+        sql.run(`
 CREATE TABLE IF NOT EXISTS msglogs (
 	userid varchar(255),
 	msgcontent varchar(255),
@@ -64,9 +63,9 @@ CREATE TABLE IF NOT EXISTS msglogs (
     channelid varchar(255),
     createddate varchar(255),
 	PRIMARY KEY(msgid)
-);`);
-
-    db.run("INSERT INTO msglogs (userid, msgcontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
+);`)
+.then(() => {sql.run("INSERT INTO msglogs (userid, msgcontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
+});
 });
 
 process.on("unhandledRejection", err => {
