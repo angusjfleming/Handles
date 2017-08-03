@@ -50,7 +50,7 @@ module.exports = (bot, msg) => {
         cmd.run(bot, msg, params, perms);
 
         const responsecollector = msg.channel.createCollector(m => m.author === msg.author && m.channel === msg.channel, {
-            time: 5000
+            time: 10000
         });
         responsecollector.on('collect', m => {
             if (new RegExp(responses.swears.join("|")).test(m.content)) {
