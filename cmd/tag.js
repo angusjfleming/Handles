@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS tags (
                     params.shift()
                     var tagname = params[0]
                     params.shift()
-                    console.log(params)
                     if (params[0] == undefined) {
                         msg.delete(5000)
                         return msg.channel.send("You entered no tag content.").then(m => {
