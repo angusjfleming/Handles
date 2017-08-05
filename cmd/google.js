@@ -11,7 +11,7 @@ exports.run = (bot, msg, params = []) => {
     msg.channel.send("Searching...").then(msg => {
         setTimeout(function() {
             if (first) {
-                response = responses.googlenotfound.randomElement().replace("<<token>>", `${searchTerm}`)
+                response = randomElement(responses.googlenotfound).replace("<<token>>", `${searchTerm}`)
                 return msg.edit(response);
             }
         }, 5000);
@@ -20,7 +20,7 @@ exports.run = (bot, msg, params = []) => {
             if (err) throw err;
             if (first) {
                 first = false
-                response = responses.googlefound.randomElement().replace("<<token>>", `${url}`)
+                response = randomElement(responses.googlefound).replace("<<token>>", `${url}`)
                 return msg.edit(response);
             }
         })
