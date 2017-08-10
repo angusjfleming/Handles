@@ -1,5 +1,6 @@
 var math = require('mathjs');
 exports.run = (bot, msg, params = []) => {
+    if (!params[0]) return;
     var code = params.join(" ");
     try {
         var evaled = math.eval(code);
