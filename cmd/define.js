@@ -1,6 +1,7 @@
 const defineWord = require('define-word');
 
 exports.run = (bot, msg, params = []) => {
+    if (!params[0]) return;
     var word = params[0]
     defined = defineWord.define(word)
     if (defined.definitions[0] == null) {
