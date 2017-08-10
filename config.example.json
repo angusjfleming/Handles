@@ -2,5 +2,6 @@
 	"bottoken" : "YOURBOTTOKEN",
 	"ownerid" : "YOURID",
 	"commandrole" : "Admin",
-	"prefix" : "-"
+	"prefix" : "-",
+	"mashapekey": "your mashape key"
 }
