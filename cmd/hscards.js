@@ -1,128 +1,59 @@
-var hex = "00ffff";
-const jsonQuery = require('json-query')
-const FuzzySet = require('fuzzyset.js')
-const toMarkdown = require('to-markdown');
+var hex = "BF5FFF";
+const hssql = require("hearthstone-sql")
+const toMarkdown = require("to-markdown");
+const sql = require("sqlite")
 exports.run = (bot, msg, params = []) => {
-    baseparams = params.join(" ")
-    params = params.join(" ")
-    fuzzy = FuzzySet(bot.cardnames, true, 6, 8)
-    var fuzzyout = fuzzy.get(params)
-
-    if (!fuzzyout) {
-        msg.channel.send(`Could not find card: ${baseparams}, please try again.`)
-        return;
-    }
-
-    if (true) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Basic"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Classic"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Promo"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Hall of Fame"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Naxxramas"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Goblins vs Gnomes"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Blackrock Mountain"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["The Grand Tournament"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["The League of Explorers"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Whispers of the Old Gods"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["One Night in Karazhan"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Mean Streets of Gadgetzan"]
-        }).value
-    }
-    if (!out) {
-        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Hero & type!=Enchantment & collectible=true]`, {
-            data: bot.cardinfo["Journey to Un'Goro"]
-        }).value
-    }
-
-    if (!out)(
-        msg.channel.send(`Could not find card: ${baseparams}, please try again.`)
-    )
-    if (out) {
-        var stats = ""
-        if (out.type == "Minion") {
-            stats = `${out.cost} mana ${out.attack}/${out.health}`
-        }
-        if (out.type == "Spell") {
-            stats = `${out.cost} mana`
-        }
-        out.text = out.text.replace(/\\n_/g, " ")
-        out.text = out.text.replace(/\\n/g, " ")
-        out.text = out.text.replace(/\[x]/g, " ")
-        out.text = out.text.replace(/\_/g, " ")
-        var embed = {
-            "title": `${out.name}`,
-            "url": "http://hearthstone.gamepedia.com/Hearthstone_Wiki",
-            "color": 32767,
-            "timestamp": msg.createdAt,
-            "footer": {
-                "text": (out.flavor ? out.flavor : "")
-            },
-            "image": {
-                "url": out.img
-            },
-            "fields": [{
-                    "name": "Info",
-                    "value": `${stats}\nRarity: **${out.rarity}**`
-                },
-                {
-                    "name": "Set",
-                    "value": out.cardSet
-                },
-                {
-                    "name": "Card text",
-                    "value": (out.text ? toMarkdown(out.text) : "None")
+    sql.open(hssql.dbpath, {
+            Promise
+        })
+        .then(carddb => {
+            carddb.get("SELECT * FROM cardinfo WHERE name LIKE (?) AND rarity <> (?)", [params.join(" ") + "%", "Free"]).then(row => {
+                if (row) {
+                    var stats = ""
+                    if (row.type == "Minion") {
+                        stats = `${row.cost} mana ${row.attack}/${row.health}`
+                    }
+                    if (row.type == "Spell") {
+                        stats = `${row.cost} mana`
+                    }
+                    row.cardText = row.cardText.replace(/\\n_/g, " ")
+                    row.cardText = row.cardText.replace(/\\n/g, " ")
+                    row.cardText = row.cardText.replace(/\[x]/g, " ")
+                    row.cardText = row.cardText.replace(/\_/g, " ")
+                    var embed = {
+                        "title": `${row.name}`,
+                        "url": "http://hearthstone.gamepedia.com/Hearthstone_Wiki",
+                        "color": 32767,
+                        "timestamp": msg.createdAt,
+                        "footer": {
+                            "text": (row.flavor ? row.flavor : "")
+                        },
+                        "image": {
+                            "url": row.img
+                        },
+                        "fields": [{
+                                "name": "Info",
+                                "value": `${stats}\nRarity: **${row.rarity}**`
+                            },
+                            {
+                                "name": "Set",
+                                "value": row.cardSet
+                            },
+                            {
+                                "name": "Card text",
+                                "value": (row.cardText ? toMarkdown(row.cardText) : "None")
+                            }
+                        ]
+                    }
+                    msg.channel.send("", {
+                        embed
+                    }).catch(err => msg.reply(err));
+                } else {
+                    return msg.channel.send(`Could not find card: ${params.join(" ")}, please try again.`)
                 }
-            ]
-        }
-        msg.channel.send("", {
-            embed
-        }).catch(err => msg.reply(err));
-    }
+                sql.close()
+            })
+        })
 };
 
 exports.help = {
@@ -133,6 +64,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: ['card', 'hs'],
+    aliases: ['card'],
     permLevel: 1
 };
