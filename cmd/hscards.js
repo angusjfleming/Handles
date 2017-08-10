@@ -78,6 +78,11 @@ exports.run = (bot, msg, params = []) => {
             data: bot.cardinfo["Journey to Un'Goro"]
         }).value
     }
+    if (!out) {
+        var out = jsonQuery(`[name=${fuzzyout[0][1]} & type!=Enchantment & collectible=true]`, {
+            data: bot.cardinfo["Knights of the Frozen Throne"]
+        }).value
+    }
 
     if (!out)(
         msg.channel.send(`Could not find card: ${baseparams}, please try again.`)
