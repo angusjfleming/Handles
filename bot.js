@@ -17,16 +17,18 @@ bot.ownerid = config.ownerid;
 bot.prefix = config.prefix;
 bot.hubchannel = config.hubid;
 bot.hsapikey = config.hsapikey;
+bot.mashapekey = config.mashapekey ? config.mashapekey : null
 bot.funcs = requireDir("./funcs/");
 global.responses = require('./responses.js')
 
-bot.cardinfo = require("./hsinfo/cardinfo.json")
-bot.cardnames = require("./hsinfo/cardnames.json")
-
 bot.funcs.loadcmds(bot, Discord, fs);
 
+
 const sql = require("sqlite");
-sql.open("./localdb.sqlite")
+sql.open("./localdb.sqlite", { Promise })
+  .then(maindb => {
+      bot.maindb = maindb
+  })
 
 bot.login(token);
 
@@ -53,7 +55,7 @@ bot.on('message', msg => {
     if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) return;
     bot.funcs.onMessage(bot, msg)
         
-        sql.run(`
+        bot.maindb.run(`
 CREATE TABLE IF NOT EXISTS msglogs (
 	userid varchar(255),
 	msgcontent varchar(255),
@@ -64,7 +66,7 @@ CREATE TABLE IF NOT EXISTS msglogs (
     createddate varchar(255),
 	PRIMARY KEY(msgid)
 );`)
-.then(() => {sql.run("INSERT INTO msglogs (userid, msgcontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
+.then(() => {bot.maindb.run("INSERT INTO msglogs (userid, msgcontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
 });
 });
 
