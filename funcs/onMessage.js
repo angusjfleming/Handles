@@ -48,11 +48,12 @@ module.exports = (bot, msg) => {
         if (perms < cmd.conf.permLevel)
             return;
         cmd.run(bot, msg, params, perms);
-
+/*
         const responsecollector = msg.channel.createCollector(m => m.author === msg.author && m.channel === msg.channel, {
-            time: 10000
+            time: 1000000
         });
         responsecollector.on('collect', m => {
+            m.content == m.content.toLowerCase()
             var random = Math.random()
             if (new RegExp(responses.swears.join("|")).test(m.content)) {
                 response = randomElement(responses.swearreact)
@@ -65,5 +66,6 @@ module.exports = (bot, msg) => {
                 responsecollector.stop()
             }
         });
+        */
     }
 }
