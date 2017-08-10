@@ -53,14 +53,15 @@ module.exports = (bot, msg) => {
             time: 10000
         });
         responsecollector.on('collect', m => {
+            var random = Math.random()
             if (new RegExp(responses.swears.join("|")).test(m.content)) {
                 response = randomElement(responses.swearreact)
-                m.channel.send(response)
+                if (random < 0.25) m.channel.send(response)
                 responsecollector.stop()
             }
             if (new RegExp(responses.thanks.join("|")).test(m.content)) {
                 response = randomElement(responses.thankreact)
-                m.channel.send(response)
+                if (random < 0.25) m.channel.send(response)
                 responsecollector.stop()
             }
         });
