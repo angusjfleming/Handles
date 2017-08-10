@@ -7,7 +7,7 @@ exports.run = (bot, msg, params = []) => {
             Promise
         })
         .then(carddb => {
-            carddb.get("SELECT * FROM cardinfo WHERE name LIKE (?) AND rarity <> (?)", [params.join(" ") + "%", "Free"]).then(row => {
+            carddb.get("SELECT * FROM cardinfo WHERE name LIKE (?) AND rarity <> (?)", ["%" + params.join(" ") + "%", "Free"]).then(row => {
                 if (row) {
                     var stats = ""
                     if (row.type == "Minion") {
