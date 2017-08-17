@@ -7,7 +7,7 @@ exports.run = (bot, msg, params = []) => {
             Promise
         })
         .then(carddb => {
-            carddb.get("SELECT * FROM cardinfo WHERE name LIKE (?) AND rarity <> (?)", ["%" + params.join(" ") + "%", "Free"]).then(row => {
+            carddb.get("SELECT * FROM cardinfo WHERE name LIKE (?) AND NOT (rarity = (?) and type = (?))", ["%" + params.join(" ") + "%", "Free", "Hero"]).then(row => {
                 if (row) {
                     var stats = ""
                     if (row.type == "Minion") {
@@ -16,10 +16,12 @@ exports.run = (bot, msg, params = []) => {
                     if (row.type == "Spell") {
                         stats = `${row.cost} mana`
                     }
+                    if (row.cardText) {
                     row.cardText = row.cardText.replace(/\\n_/g, " ")
                     row.cardText = row.cardText.replace(/\\n/g, " ")
                     row.cardText = row.cardText.replace(/\[x]/g, " ")
                     row.cardText = row.cardText.replace(/\_/g, " ")
+                    }
                     var embed = {
                         "title": `${row.name}`,
                         "url": "http://hearthstone.gamepedia.com/Hearthstone_Wiki",
