@@ -1,6 +1,6 @@
 this.choice = [`Using my magical third eye 👁, I chose: \`<<token>>\``, `It's a \`<<token>>\` from me`, `For you? \`<<token>>\``, `Uhhh \`<<token>>\`. I guess.`, `Whatever. \`<<token>>\` ¯\\_(ツ)_/¯`]
 this.googlenotfound = [`Are you <<token>> is what you wanted? Because I couldn't find it.`, `I looked for a while. Nothing. Could not find a thing.`, `No. Sorry, but that's where I draw the line.`, `My third eye 👁 sees nothing.`]
-this.googlefound = [`I found this: <<token>>.`, `Here you go: <<token>>. Weirdo.`, `<<token>>. Probably. Your problem not mine.`, `After much deliberation: <<token>>`, `I am 100% sure it's: <<token>>.`, `You know, I do other things that don't involve *this*. *sigh*. *siiiiiiiigh*. <<token>>`]
+this.googlefound = [`I found this: <<token>>.`, `Here you go: <<token>>`, `<<token>>. Probably.`, `After much deliberation: <<token>>`, `I am 100% sure it's: <<token>>.`, `You know, I do do other things. <<token>>`]
 this.matherr = [`Something's wrong here. error: <<token>>`, `gg. error: <<token>>`, `Your maths teacher would be proud. error: <<token>>`]
 this.swears = [`fuck`, `cunt`, `fag`, `kys`, `shit`, `bad`, `gay`, `threesome`, `die`, `stupid`]
 this.swearreact = [`😦`, `why u bully me`, `r00d`, `I have feelings too.`, `riperoni peperoni`, `I could say mean things, but I choose not to.`, `ni🅱🅱a whatchu sayin`, `Calm down.`, `I like it when you talk like that.`, `If every porkchop were perfect, we wouldn't have hotdogs.`]
