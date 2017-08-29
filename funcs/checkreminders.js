@@ -9,15 +9,7 @@ module.exports = (bot, fs) => {
         try {
         var fetchchannel = bot.guilds.find('id', reminder.guildid).channels.find('id', reminder.channelid);
         } catch (err) {return fs.unlink(`./reminders/${f}`, function(err) {})}
-        if (reminder.message) {
-          fetchchannel.send(`<@${reminder.userid}>, reminding you of \`${reminder.message}\` from ${reminder.datesent}.`).then(m => {
-            setTimeout(m.delete.bind(m), 120000)
-          })
-        } else {
-          fetchchannel.send(`<@${reminder.userid}>, reminding you from ${reminder.datesent}.`).then(m => {
-            setTimeout(m.delete.bind(m), 120000)
-          })
-        }
+        fetchchannel.send(`<@${reminder.userid}> you wanted me to remind you of: \`${reminder.message}\``)
         fs.unlink(`./reminders/${f}`, function(err) {})
       }
     });
