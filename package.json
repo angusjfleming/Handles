@@ -5,15 +5,15 @@
   "main": "bot.js",
   "dependencies": {
     "define-word": "^1.0.5",
-    "discord.js": "git+https://github.com/hydrabolt/discord.js.git",
+    "discord.js": "11.1.0",
     "exec": "^0.2.1",
     "fuzzyset.js": "0.0.1",
     "google-search-scraper": "0.0.3",
-    "hearthstone-sql": "^1.0.4",
+    "hearthstone-sql": "^1.0.2",
     "humanize-duration": "^3.10.1",
     "js-beautify": "^1.6.4",
     "json-query": "^2.2.2",
-    "mathjs": "^3.16.2",
+    "mathjs": "^3.15.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.18.1",
     "parse-duration": "^0.1.1",
@@ -23,8 +23,7 @@
     "safe-json-stringify": "^1.0.4",
     "sqlite": "^2.8.0",
     "to-markdown": "^3.1.0",
-    "uws": "^0.14.1",
-    "webshot": "^0.18.0"
+    "uws": "^0.14.1"
   },
   "devDependencies": {},
   "scripts": {
