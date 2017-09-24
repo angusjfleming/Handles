@@ -12,8 +12,8 @@ exports.run = (bot, msg, params = []) => {
     var time = parse(params[0]);
     params.shift();
     var reminder = params.join(" ")
-    if (reminder == "``") {
-        return msg.channel.send(`Sorry you didn't enter a reminder.`)
+    if (reminder == "") {
+        reminder = "Nothing"
     }
         msg.channel.send(`I'll remind you of \`${reminder}\` in ${humanizeDuration(time)}.`)
         var obj = {
