@@ -1,7 +1,11 @@
 exports.run = (bot, msg, params = []) => {
     try {
+        if (msg.mentions.users.has(bot.user)){
+        var checkuser = msg.mentions.users.first(2)[1]
+        } else {
         var checkuser = msg.mentions.users.first()
         var guilduser = msg.guild.members.get(checkuser.id)
+        }
     } catch (err) {
         msg.channel.send(`You didn't give me a user to analyze.`)
         return;
