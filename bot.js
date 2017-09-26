@@ -70,6 +70,11 @@ CREATE TABLE IF NOT EXISTS msglogs (
 });
 });
 
+bot.on('messageUpdate', (oldmsg, newmsg) => {
+    if (newmsg.channel.type == 'dm' || newmsg.channel.type == "group" || newmsg.author == bot.user) return;
+    bot.funcs.onMessage(bot, newmsg)
+});
+
 process.on("unhandledRejection", err => {
     fs.appendFile("error.txt", err.stack + "\n", function(error) {});
     console.log("Unhandled Error: \n" + err.stack);
