@@ -11,6 +11,9 @@ exports.run = (bot, msg, params = []) => {
         return;
     }
     params.shift()
+    if (guilduser.id === bot.ownerid) {
+      return msg.channel.send("No")
+    }
     guilduser.ban(params.join(" ")).then(() => {
         msg.channel.send(`Successfully banned ${checkuser.tag}`)
     }).catch((err) => {
