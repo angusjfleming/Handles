@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS msglogs (
 
 bot.on('messageUpdate', (oldmsg, newmsg) => {
     if (newmsg.channel.type == 'dm' || newmsg.channel.type == "group" || newmsg.author == bot.user) return;
+    if (newmsg.edits.length > 2) return;
     bot.funcs.onMessage(bot, newmsg)
 });
 
