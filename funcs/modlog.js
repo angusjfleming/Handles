@@ -1,8 +1,8 @@
 module.exports = (msg, commandname, info, hex) => {
-  var modlogchannel = ";"
+  var modlogchannel = ";";
     try {
-        modlogchannel = msg.guild.channels.find('name', 'mod_log');
-    } catch (err) {console.log(`LOGGING || Tried to modlog action but no mod_log channel was found.`);}
+        modlogchannel = msg.guild.channels.find("name", "mod_log");
+    } catch (err) {console.log("LOGGING || Tried to modlog action but no mod_log channel was found.");}
     let embed = {
         "color": parseInt(hex, 16),
         "description": `​**Command:** ${commandname}
@@ -12,7 +12,7 @@ module.exports = (msg, commandname, info, hex) => {
             "icon_url": msg.author.avatarURL
         },
         "timestamp": msg.createdAt
-    }
+    };
     if (modlogchannel){
     modlogchannel.send("", {
         embed

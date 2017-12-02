@@ -42,14 +42,14 @@ exports.run = (bot, msg, params, perms = []) => {
         }
 
         msg.channel.send([
-            '```ini', ...message,
-            '```'
+            "```ini", ...message,
+            "```"
         ])
 
     } else {
 
         let command;
-        if (params[0].toLowerCase() == `admin`) {
+        if (params[0].toLowerCase() == "admin") {
             msg.channel.send(['```ini', `[Admin Command Information]`,
                 '',
                 'Certain commands will send a log of the admin command that\'s been run. This requires a channel in your sever called #mod_log',
@@ -82,25 +82,25 @@ exports.run = (bot, msg, params, perms = []) => {
             '```'
         ])
     }
-}
+};
 
 function permLevelToWord(permLvl) {
     if (!permLvl || permLvl === 1)
-        return 'Everyone'
+        return "Everyone";
     if (permLvl === 3)
-        return 'Admin';
+        return "Admin";
     if (permLvl === 4)
-        return 'Owner';
+        return "Owner";
 }
 
 exports.help = {
-    name: `help`,
-    description: `Returns list of commands if no command specified; else returns help about a specific command.`,
-    usage: `help [command]`
+    name: "help",
+    description: "Returns list of commands if no command specified; else returns help about a specific command.",
+    usage: "help [command]"
 };
 
 exports.conf = {
     enabled: true,
-    aliases: ['command', 'commands'],
+    aliases: ["command", "commands"],
     permLevel: 1
 };

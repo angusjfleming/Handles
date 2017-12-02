@@ -1,4 +1,4 @@
-var beautify = require('js-beautify').js_beautify
+var beautify = require("js-beautify").js_beautify
 
 function reduceIndentation(string) {
     let whitespace = string.match(/^(\s+)/);
@@ -6,9 +6,9 @@ function reduceIndentation(string) {
     if (!whitespace)
         return string;
 
-    whitespace = whitespace[0].replace('\n', '');
+    whitespace = whitespace[0].replace("\n", "");
 
-    let lines = string.split('\n');
+    let lines = string.split("\n");
     let reformattedLines = [];
 
     lines.forEach((line) => {

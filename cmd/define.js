@@ -3,12 +3,12 @@ const defineWord = require('define-word');
 exports.run = (bot, msg, params = []) => {
     if (!params[0]) return;
     var word = params[0]
-    defined = defineWord.define(word)
+    var defined = defineWord.define(word)
     if (defined.definitions[0] == null) {
-        return msg.channel.send(`Sorry, I could not define ${word}.`)
+        return msg.channel.send(`Sorry, I could not define ${word}.`);
     } else {
         defined.definitions = defined.definitions.clean("")
-        constructedstring = (`${word} : ${defined.type} | ${defined.definitions[0]}`)
+        var constructedstring = (`${word} : ${defined.type} | ${defined.definitions[0]}`);
         var embed = {
             "title": `${word}`,
             "description": `${defined.type}`,

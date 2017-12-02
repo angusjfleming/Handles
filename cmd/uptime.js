@@ -1,12 +1,12 @@
-var humanizeDuration = require('humanize-duration')
+var humanizeDuration = require("humanize-duration")
 exports.run = (bot, msg, params = []) => {
-    msg.channel.send(humanizeDuration(bot.uptime))
+    msg.channel.send(humanizeDuration(bot.uptime));
 };
 
 exports.help = {
-    name: `uptime`,
-    description: `Returns bot uptime`,
-    usage: `uptime`
+    name: "uptime",
+    description: "Returns bot uptime",
+    usage: "uptime"
 };
 
 exports.conf = {

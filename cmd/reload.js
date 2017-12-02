@@ -1,4 +1,4 @@
-const now = require('performance-now');
+const now = require("performance-now");
 exports.run = (bot, msg, params = []) => {
     let command;
     if (bot.commands.has(params[0])) {
@@ -22,15 +22,16 @@ exports.run = (bot, msg, params = []) => {
     }
 };
 
+exports.help = {
+    name: "reload",
+    description: "Reloads the command file, if its been updated or modified.",
+    usage: "reload <commandname>"
+};
+
+
 exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ["r"],
     permLevel: 4
-};
-
-exports.help = {
-    name: `reload`,
-    description: `Reloads the command file, if its been updated or modified.`,
-    usage: `reload <commandname>`
 };

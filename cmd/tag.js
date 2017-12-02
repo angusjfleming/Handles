@@ -15,42 +15,40 @@ CREATE TABLE IF NOT EXISTS main.tags (
 );`)
                 .then(() => {
                     if (!params[0]) return;
-                    var paramstemp = []
+                    var paramstemp = [];
                     params.forEach(function(element) {
-                        element = element.replace("@everyone", "ateveryone")
-                        element = element.replace("@here", "athere")
-                        paramstemp.push(element)
+                        element = element.replace("@everyone", "ateveryone");
+                        element = element.replace("@here", "athere");
+                        paramstemp.push(element);
                     });
                     params = paramstemp
 
                     switch (params[0]) {
                         case "create":
-                            params.shift()
-                            var tagname = params[0]
+                            params.shift();
+                            var tagname = params[0];
                             params.shift()
                             if (params[0] == undefined) {
-                                msg.delete(5000)
                                 return msg.channel.send("You entered no tag content.").then(m => {
                                     setTimeout(m.delete.bind(m), 5000)
                                 })
-                            }
-                            var tagcontent = params.join(" ")
+                            };
+                            var tagcontent = params.join(" ");
 
                             localdb.get("SELECT * FROM main.tags WHERE tagname=(?) AND userid=(?)", [tagname, msg.author.id]).then(row => {
                                 if (!row && tagcontent != " ") {
                                     localdb.run("INSERT INTO main.tags (userid, tagcontent, tagname) VALUES( ?, ?, ?)", [msg.author.id, tagcontent, tagname])
-                                    msg.channel.send(`Created tag \`${tagname}\``)
+                                    msg.channel.send(`Created tag \`${tagname}\``);
                                 } else {
-                                    msg.channel.send(`You already have a tag named \`${tagname}\`. You can use ${bot.prefix}tag update ${tagname} to change the content of your tag.`)
+                                    msg.channel.send(`You already have a tag named \`${tagname}\`. You can use ${bot.prefix}tag update ${tagname} to change the content of your tag.`);
                                 }
                             }).catch(() => {});
                             break;
                         case "update":
-                            params.shift()
+                            params.shift();
                             var tagname = params[0]
                             params.shift()
                             if (params[0] == undefined) {
-                                msg.delete(5000)
                                 return msg.channel.send("You entered no tag content.").then(m => {
                                     setTimeout(m.delete.bind(m), 5000)
                                 })
@@ -61,7 +59,7 @@ CREATE TABLE IF NOT EXISTS main.tags (
                                     msg.channel.send(`You have no tag named \`${tagname}\``)
                                 } else {
                                     localdb.run("UPDATE main.tags SET tagcontent =(?) WHERE tagname=(?) AND userid=(?)", [tagcontent, tagname, msg.author.id]).then(() => {
-                                        msg.channel.send(`Updated tag \`${tagname}\`.`)
+                                        msg.channel.send(`Updated tag \`${tagname}\`.`);
                                     })
                                 }
                             }).catch(() => {});
@@ -83,7 +81,6 @@ CREATE TABLE IF NOT EXISTS main.tags (
                             var tagname = params[0]
                             localdb.get("SELECT * FROM main.tags WHERE tagname=(?) AND userid=(?)", [tagname, msg.author.id]).then(row => {
                                 if (!row) {
-                                    msg.delete(10000)
                                     msg.channel.send(`You have no tag named \`${tagname}\``).then(m => {
                                         setTimeout(m.delete.bind(m), 10000)
                                     })
@@ -97,9 +94,9 @@ CREATE TABLE IF NOT EXISTS main.tags (
 };
 
 exports.help = {
-    name: `tag`,
-    description: `Prints / creates / deletes a tag`,
-    usage: `tag <tagname> | tag create <tagname>| tag delete <tag name>`
+    name: "tag",
+    description: "Prints / creates / deletes a tag",
+    usage: "tag <tagname> | tag create <tagname>| tag delete <tag name>"
 };
 
 exports.conf = {

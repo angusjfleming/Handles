@@ -5,7 +5,7 @@ exports.run = (bot, msg, params = []) => {
     } catch (err) {
          return msg.channel.send(`:thumbsdown:\`\`\`xl\n'${code}' failed with error: ${err} \n\`\`\``);
     }
-    evaled = require('util').inspect(evaled);
+    evaled = require("util").inspect(evaled);
     try {
         if (evaled.length > 2000) {
             return msg.channel.send(`:thumbsdown:\`\`\`xl\n'${code}' failed because the output was greater than 2000 characters.\`\`\``);
@@ -16,13 +16,13 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: `eval`,
-    description: `Evaluates Javascript`,
-    usage: `eval <code>`
+    name: "eval",
+    description: "Evaluates Javascript",
+    usage: "eval <code>"
 };
 
 exports.conf = {
     enabled: true,
-    aliases: ['ev'],
+    aliases: ["ev"],
     permLevel: 4
 };

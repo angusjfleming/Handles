@@ -1,4 +1,4 @@
-const hssql = require("hearthstone-sql")
+const hssql = require("hearthstone-sql");
 exports.run = (bot, msg, params = []) => {
     hssql.fetchdata(bot.mashapekey)
     .then(() => {
@@ -9,9 +9,9 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: `fetchcardinfo`,
-    description: `fetches card info the hs card command.`,
-    usage: `fetchcardinfo`
+    name: "fetchcardinfo",
+    description: "fetches card info the hs card command.",
+    usage: "fetchcardinfo"
 };
 
 exports.conf = {

@@ -1,13 +1,13 @@
 module.exports = (bot, msg) => {
     var prefixtrue = false;
     if (msg.content.startsWith(`<@!${bot.user.id}> `)) {
-        msg.content = msg.content.replace('!', '');
+        msg.content = msg.content.replace("!", "");
     }
 
     if (msg.content.startsWith(bot.prefix))
         prefixtrue = true;
 
-    if (msg.channel.type !== 'text' || msg.author.bot)
+    if (msg.channel.type !== "text" || msg.author.bot)
         return;
 
     if (!msg.content.startsWith(`<@${bot.user.id}> `) && !prefixtrue)
