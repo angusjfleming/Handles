@@ -6,7 +6,7 @@ exports.run = (bot, msg, params = []) => {
                 msg.reply("Topics cannot be greater than 1024 characters")
                 return;
             }
-            if (params.length == 0) {
+            if (params.length === 0) {
                 msg.delete()
                 msg.reply("You have to *enter a new topic* for the topic to change. :eyes:")
             } else {

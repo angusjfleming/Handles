@@ -45,6 +45,6 @@ exports.help = {
 
 exports.conf = {
     enabled: true,
-    aliases: ['def', 'definition', 'dict', 'dictionary'],
+    aliases: ["def", "definition", "dict", "dictionary"],
     permLevel: 1
 };

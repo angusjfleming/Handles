@@ -10,10 +10,10 @@ exports.run = (bot, msg, params = []) => {
             carddb.get("SELECT * FROM cardinfo WHERE name LIKE (?) AND NOT (rarity = (?) and type = (?)) AND type <> (?)", ["%" + params.join(" ") + "%", "Free", "Hero", "Enchantment"]).then(row => {
                 if (row) {
                     var stats = ""
-                    if (row.type == "Minion") {
+                    if (row.type === "Minion") {
                         stats = `${row.cost} mana ${row.attack}/${row.health}`;
                     }
-                    if (row.type == "Spell") {
+                    if (row.type === "Spell") {
                         stats = `${row.cost} mana`;
                     }
                     if (row.cardText) {

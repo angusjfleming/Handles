@@ -10,7 +10,7 @@ exports.run = (bot, msg, params = []) => {
         }
         try {
             params.shift();
-            if (params.join(` `).length > 32) {
+            if (params.join(" ").length > 32) {
                 msg.reply(`Nicknames cannot be longer than 32 characters`).then(m => {setTimeout(m.delete.bind(m), 5000)});
                 return;
             }
@@ -18,7 +18,7 @@ exports.run = (bot, msg, params = []) => {
                 nickuser.setNickname(params.join(" "))
                 var info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
             } else {
-                nickuser.setNickname(params.join(` `))
+                nickuser.setNickname(params.join(" "))
                 var info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
     }
   } catch (err) {

@@ -2,13 +2,14 @@ exports.run = (bot, msg, params = []) => {
 
     var guild = msg.guild;
     var channels = guild.channels;
+    var servericon
 
     if (guild.iconURL) {
-        var thumbneil = guild.iconURL;s
-        var servericon = `[Here](${guild.iconURL})`;
+        var thumbneil = guild.iconURL;
+        servericon = `[Here](${guild.iconURL})`;
     } else {
-        var servericon = "None"
         var thumbneil = ``;
+        servericon = "None"
     }
 
     let embed = {

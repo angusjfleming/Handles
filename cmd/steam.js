@@ -20,9 +20,9 @@ exports.run = (bot, msg, params = []) => {
             "fields": [{
                     "name": "Steam",
                     "value": `Steam: ${(info.ISteamClient.online == 1) ? "**Online** ✅" : "Offline ❌"}
-Steam Community: ${(info.SteamCommunity.online == 1) ? "**Online** ✅" : "Offline ❌"} (${info.SteamCommunity.time}ms)
-Steam Store: ${(info.SteamStore.online == 1) ? "**Online** ✅" : "Offline ❌"} (${info.SteamStore.time}ms)
-Steam User API: ${(info.ISteamUser.online == 1) ? "**Online** ✅" : "Offline ❌"} (${info.ISteamUser.time}ms)`
+Steam Community: ${(info.SteamCommunity.online === 1) ? "**Online** ✅" : "Offline ❌"} (${info.SteamCommunity.time}ms)
+Steam Store: ${(info.SteamStore.online === 1) ? "**Online** ✅" : "Offline ❌"} (${info.SteamStore.time}ms)
+Steam User API: ${(info.ISteamUser.online === 1) ? "**Online** ✅" : "Offline ❌"} (${info.ISteamUser.time}ms)`
                 },
                 {
                     "name": "Dota 2",

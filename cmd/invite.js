@@ -3,9 +3,9 @@ exports.run = (bot, msg, params = []) => {
 };
 
 exports.help = {
-    name: `invite`,
-    description: `Returns bot invite`,
-    usage: `invite`
+    name: "invite",
+    description: "Returns bot invite",
+    usage: "invite"
 };
 
 exports.conf = {

@@ -1,7 +1,7 @@
 exports.run = (bot, msg, params = []) => {
     var choices = params.join(" ")
     var substrs = [].concat.apply([], choices.split('"').map(function(v, i) {
-        return i % 2 ? v : v.split(' ')
+        return i % 2 ? v : v.split(" ")
     })).filter(Boolean);
     var choice = Math.floor(Math.random() * substrs.length);
     var response = randomElement(responses.choice).replace("<<token>>", `${substrs[choice]}`)
