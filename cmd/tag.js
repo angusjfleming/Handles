@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS main.tags (
                                 return msg.channel.send("You entered no tag content.").then(m => {
                                     setTimeout(m.delete.bind(m), 5000)
                                 })
-                            };
+                            }
                             var tagcontent = params.join(" ");
 
                             localdb.get("SELECT * FROM main.tags WHERE tagname=(?) AND userid=(?)", [tagname, msg.author.id]).then(row => {
