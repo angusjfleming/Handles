@@ -3,9 +3,9 @@ try {
     var config = require("./config.json");
     var fs = require("fs");
     var mkdirp = require("mkdirp");
-    var requireDir = require('require-dir');
+    var requireDir = require("require-dir");
 } catch (err) {
-    var exec = require('child_process').exec;
+    var exec = require("child_process").exec;
     exec("npm install")
     console.log(`Failed to load dependency, ${err}`)
     return;
@@ -19,7 +19,7 @@ bot.hubchannel = config.hubid;
 bot.hsapikey = config.hsapikey;
 bot.mashapekey = config.mashapekey ? config.mashapekey : null
 bot.funcs = requireDir("./funcs/");
-global.responses = require('./responses.js')
+global.responses = require("./responses.js")
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -32,27 +32,27 @@ sql.open("./localdb.sqlite", { Promise })
 
 bot.login(token);
 
-bot.on('ready', () => {
+bot.on("ready", () => {
     bot.user.setGame(`@${bot.user.username} help`)
-    startdate = new Date()
+    startdate = new Date();
     console.log(`Bot online: ${bot.user.username} ${startdate} `)
     setInterval(function() {
-        bot.funcs.checkreminders(bot, fs)
-    }, 5000)
+        bot.funcs.checkreminders(bot, fs);
+    }, 5000);
 });
 
-bot.on('disconnect', () => {
+bot.on("disconnect", () => {
     console.log("Bot disconnected, trying to restart.")
     process.exit()
 });
 
-bot.on('guildCreate', guild => {
+bot.on("guildCreate", guild => {
     console.log(`ADDED TO ${guild.name} (${guild.id})`)
 });
 
 
-bot.on('message', msg => {
-    if (msg.channel.type == 'dm' || msg.channel.type == "group" || msg.author == bot.user) return;
+bot.on("message", msg => {
+    if (msg.channel.type == "dm" || msg.channel.type == "group" || msg.author == bot.user) return;
     bot.funcs.onMessage(bot, msg)
         
         bot.maindb.run(`
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS msglogs (
 });
 });
 
-bot.on('messageUpdate', (oldmsg, newmsg) => {
-    if (newmsg.channel.type == 'dm' || newmsg.channel.type == "group" || newmsg.author == bot.user) return;
+bot.on("messageUpdate", (oldmsg, newmsg) => {
+    if (newmsg.channel.type == "dm" || newmsg.channel.type == "group" || newmsg.author == bot.user) return;
     if (newmsg.edits.length > 2) return;
     bot.funcs.onMessage(bot, newmsg)
 });

@@ -2,20 +2,21 @@ exports.run = (bot, msg, params = []) => {
 
     var guild = msg.guild;
     var channels = guild.channels;
+    var servericon
 
     if (guild.iconURL) {
-        var thumbneil = guild.iconURL
-        var servericon = `[Here](${guild.iconURL})`
+        var thumbneil = guild.iconURL;
+        servericon = `[Here](${guild.iconURL})`;
     } else {
-        var servericon = "None"
         var thumbneil = ``;
+        servericon = "None"
     }
 
     let embed = {
         color: parseInt('079f41', 16),
-        description: '❯ Server Info',
+        description: "❯ Server Info",
         fields: [{
-            name: '❯ Server Information',
+            name: "❯ Server Information",
             value: `Server Name: ${guild.name}
 
 Server ID: ${guild.id}
@@ -31,14 +32,14 @@ Creation Date: ${guild.createdAt}
 Region: ${guild.region}`,
             inline: true
         }, {
-            name: '❯ Channel Information',
+            name: "❯ Channel Information",
             value: `Text Channels:
-#${channels.filter(e => e.type === 'text').map(r => r.name).join('\n#')}
-(${channels.filter(e => e.type === 'text').size} total)
+#${channels.filter(e => e.type === "text").map(r => r.name).join("\n#")}
+(${channels.filter(e => e.type === "text").size} total)
 
 Voice Channels:
-${channels.filter(e => e.type === 'voice').map(r => r.name).join('\n')}
-(${channels.filter(e => e.type === 'voice').size} total)`,
+${channels.filter(e => e.type === "voice").map(r => r.name).join("\n")}
+(${channels.filter(e => e.type === "voice").size} total)`,
             inline: true
         }],
         thumbnail: {

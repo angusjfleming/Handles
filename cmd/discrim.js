@@ -1,8 +1,8 @@
 exports.run = (bot, msg, params = []) => {
-    userlist = bot.users.filter(u => u.discriminator === params[0]).map(e => e.username);
+    var userlist = bot.users.filter(u => u.discriminator === params[0]).map(e => e.username);
     msg.channel.send(`**Found ${userlist.length} users with the discriminator ${params[0]}**:
 ${userlist.join(", ")}
-`)
+`);
 };
 
 exports.help = {

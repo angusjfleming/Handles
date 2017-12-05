@@ -2,7 +2,7 @@ var scraper = require('google-search-scraper');
 
 exports.run = (bot, msg, params = []) => {
     var first = true
-    searchTerm = params.join(' ');
+    var searchTerm = params.join(' ');
 
     var options = {
         query: searchTerm,
@@ -23,18 +23,18 @@ exports.run = (bot, msg, params = []) => {
                 response = randomElement(responses.googlefound).replace("<<token>>", `${url}`)
                 return msg.edit(response);
             }
-        })
+        });
     });
 };
 
 exports.help = {
-    name: `google`,
-    description: `Searches google`,
-    usage: `google <search terms>`
+    name: "google",
+    description: "Searches google",
+    usage: "google <search terms>"
 };
 
 exports.conf = {
     enabled: true,
-    aliases: ['search'],
+    aliases: ["search"],
     permLevel: 1
 };

@@ -1,13 +1,13 @@
-var exec = require('child_process').exec;
+var exec = require("child_process").exec;
 exports.run = (bot, msg, params = []) => {
-    exec(`git pull`, (e, stdout, stderr) => {
+    exec("git pull", (e, stdout, stderr) => {
         if (e) {
             console.log(`=====GIT PULL FAILED=====
 ${e}`);
             msg.channel.send(`\`\`\`=====GIT PULL FAILED=====
 ${e}\`\`\``);
         } else {
-            console.log(`=====GIT PULL SUCCESSFUL=====`);
+            console.log("=====GIT PULL SUCCESSFUL=====");
             console.log(stdout);
             msg.channel.send(`\`\`\`=====GIT PULL SUCCESSFUL=====
 ${stdout}\`\`\``)
@@ -27,8 +27,8 @@ ${e}\`\`\``);
 ${stdout}\`\`\``)
             console.error(stderr);
             msg.channel.send(`\`Update complete, reloading commands.\``).then(() => {
-              console.log(`Update complete, rebooting.`)
-              process.exit()
+              console.log("Update complete, rebooting.")
+              process.exit();
             }).catch(e => {
                 console.error(e);
             });
@@ -38,9 +38,9 @@ ${stdout}\`\`\``)
 };
 
 exports.help = {
-    name: `update`,
-    description: `**Guess**`,
-    usage: `update`
+    name: "update",
+    description: "**Guess**",
+    usage: "update"
 };
 
 exports.conf = {
