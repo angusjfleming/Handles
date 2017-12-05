@@ -1,5 +1,5 @@
 exports.run = (bot, msg) => {
-  msg.channel.send(`Rebooting...`).then(() => {
+  msg.channel.send("Rebooting...").then(() => {
     process.exit();
   }).catch(e => {
     console.error(e);
@@ -7,13 +7,13 @@ exports.run = (bot, msg) => {
 }
 
 exports.help = {
-  name: `reboot`,
-  description: `Reboots the bot. **fast**`,
-  usage: `reboot`
+  name: "reboot",
+  description: "Reboots the bot. **fast**",
+  usage: "reboot"
 };
 
 exports.conf = {
   enabled: true,
-  aliases: ['restart', 'reboot'],
+  aliases: ["restart", "reboot"],
   permLevel: 4
 };

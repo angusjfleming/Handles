@@ -10,3 +10,8 @@ localdb.sqlite
 /logs/
 error.txt
 package-lock.json
+Message.mp3
+news.png
+npm-debug.log.1672669422
+npm-debug.log.981994379
+webshot test.js

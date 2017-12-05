@@ -5,7 +5,7 @@ exports.run = (bot, msg, params = []) => {
             limit: 100
         })
         .then(messages => {
-            msg_array = messages.array();
+            var msg_array = messages.array();
             if (messagecount + 1 > msg_array.length) {
                 deletedno = msg_array.length;
                 msg.channel.bulkDelete(msg_array)
