@@ -19,7 +19,7 @@ bot.hubchannel = config.hubid;
 bot.hsapikey = config.hsapikey;
 bot.mashapekey = config.mashapekey ? config.mashapekey : null
 bot.funcs = requireDir("./funcs/");
-global.responses = require("./responses.js")
+global.responses = require("./responses.json")
 
 bot.funcs.loadcmds(bot, Discord, fs);
 
@@ -53,21 +53,9 @@ bot.on("guildCreate", guild => {
 
 bot.on("message", msg => {
     if (msg.channel.type == "dm" || msg.channel.type == "group" || msg.author == bot.user) return;
-    bot.funcs.onMessage(bot, msg)
-        
-        bot.maindb.run(`
-CREATE TABLE IF NOT EXISTS msglogs (
-	userid varchar(255),
-	msgcontent varchar(255),
-    usertag varchar(255),
-	msgid varchar(255),
-    guildid varchar(255),
-    channelid varchar(255),
-    createddate varchar(255),
-	PRIMARY KEY(msgid)
-);`)
-.then(() => {bot.maindb.run("INSERT INTO msglogs (userid, msgcontent, usertag, msgid, guildid, channelid, createddate) VALUES( ?, ?, ?, ?, ?, ?, ?)", [msg.author.id, msg.content, msg.author.tag, msg.id, msg.guild.id, msg.channel.id, msg.createdAt])
-});
+    bot.funcs.onmessage(bot, msg)
+    bot.funcs.logmessage(bot,msg)
+
 });
 
 bot.on("messageUpdate", (oldmsg, newmsg) => {
