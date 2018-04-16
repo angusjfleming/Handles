@@ -1,8 +1,0 @@
-exports.choice = ["Using my magical third eye 👁, I chose: \`<<token>>\`", "It's a \`<<token>>\` from me", "For you? \`<<token>>\`", "Uhhh \`<<token>>\`. I guess.", "Whatever. \`<<token>>\` ¯\\_(ツ)_/¯"]
-exports.googlenotfound = ["Are you <<token>> is what you wanted? Because I couldn't find it.", "I looked for a while. Nothing. Could not find a thing.", "No. Sorry, but that's where I draw the line.", "My third eye 👁 sees nothing."]
-exports.googlefound = ["I found: <<token>>", "Here you go: <<token>>", "<<token>> Probably.", "After much deliberation: <<token>>", "I am 100% sure it's: <<token>>", "You know, I do do other things. <<token>>"]
-exports.matherr = ["Something's wrong here. error: <<token>>", "gg. error: <<token>>", "Your maths teacher would be proud. error: <<token>>"]
-exports.swears = ["fuck", "cunt", "fag", "kys", "shit", "bad", "gay", "threesome", "die", "stupid"]
-exports.swearreact = ["😦", "why u bully me", "r00d", "I have feelings too.", "riperoni peperoni", "I could say mean things, but I choose not to.", "ni🅱🅱a whatchu sayin", "Calm down.", "I like it when you talk like that.", "If every porkchop were perfect, we wouldn't have hotdogs."]
-exports.thanks = ["thanks", "good job", "good", "thnx", "ty", "love", "💋", "sexy"]
-exports.thankreact = ["Love you too.", "Call me. 😉", "bingo bongo", "Call me sexy.", "💋", "*smooch*", "Thanks.", "ty", "If I could be attracted to you, I totally would be."]
