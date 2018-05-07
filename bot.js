@@ -33,7 +33,7 @@ sql.open("./localdb.sqlite", { Promise })
 bot.login(token);
 
 bot.on("ready", () => {
-    bot.user.setGame(`@${bot.user.username} help`)
+    bot.user.setPresence({ activity: { name: `@${bot.user.username} help` }, status: 'online' })
     startdate = new Date();
     console.log(`Bot online: ${bot.user.username} ${startdate} `)
     setInterval(function() {
