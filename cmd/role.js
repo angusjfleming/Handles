@@ -1,7 +1,7 @@
-createrolearray = function(array, msg) {
+var createrolearray = function(array, msg) {
     var rolearray = []
     array.forEach(element => {
-        role = msg.guild.roles.find(val => val.id === element)
+        var role = msg.guild.roles.find(val => val.id === element)
         if (role) {
             rolearray.push(role)
         }
@@ -9,7 +9,7 @@ createrolearray = function(array, msg) {
     return rolearray
 }
 exports.run = (bot, msg, params = []) => {
-    if (msg.mentions.members.first() == bot.user) {
+    if (msg.mentions.members.first() === bot.user) {
         msg.mentions.members.first().delete()
     }
     switch (params[0]) {
@@ -28,8 +28,6 @@ exports.run = (bot, msg, params = []) => {
                 console.log(e)
             }
             break;
-        default:
-            console.log(nice)
     }
 };
 
