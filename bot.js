@@ -43,7 +43,7 @@ bot.on("ready", () => {
 
 bot.on("disconnect", () => {
     console.log("Bot disconnected, trying to restart.")
-    process.exit()
+    bot.login(token);
 });
 
 bot.on("guildCreate", guild => {
