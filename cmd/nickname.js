@@ -11,18 +11,20 @@ exports.run = (bot, msg, params = []) => {
         try {
             params.shift();
             if (params.join(" ").length > 32) {
-                msg.reply(`Nicknames cannot be longer than 32 characters`).then(m => {setTimeout(m.delete.bind(m), 5000)});
+                msg.channel.send(`Nicknames cannot be longer than 32 characters`)
                 return;
             }
             if (params.length == 0) {
                 nickuser.setNickname(params.join(" "))
-                var info = `Reset ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname.`
+                var info = `Reset ${msg.mentions.users.first().username}\'s nickname.`
+                msg.channel.send(info)
             } else {
                 nickuser.setNickname(params.join(" "))
-                var info = `Set ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator}\'s nickname to ${params.join(` `)}`;
+                var info = `Set ${msg.mentions.users.first()}\'s nickname to ${params.join(` `)}`;
+                msg.channel.send(info)
     }
   } catch (err) {
-    msg.reply(`Failed with error ${err}`).then(m => {setTimeout(m.delete.bind(m), 5000)});
+    msg.channel.send(`Failed with error ${err}`)
   }
 if (info){
   bot.funcs.modlog(msg, exports.help.name, info, hex);
