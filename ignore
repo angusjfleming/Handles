@@ -1,0 +1,8 @@
+var dehumanize = require("dehumanize-date")
+let date = require('date-and-time');
+var parsed = require('parse-duration')
+var beans = "3hrs and 12mins"
+console.log(parsed(beans), "  1")
+beans = dehumanize(beans)
+
+console.log(date.parse(beans, 'YYYY MM DD') , "  2")

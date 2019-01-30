@@ -53,7 +53,7 @@ bot.on("guildCreate", guild => {
 
 bot.on("message", msg => {
     if (msg.channel.type == "dm" || msg.channel.type == "group" || msg.author == bot.user) return;
-    bot.funcs.onmessage(bot, msg)
+    bot.funcs.onMessage(bot, msg)
     bot.funcs.logmessage(bot,msg)
 
 });
