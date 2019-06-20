@@ -19,7 +19,6 @@ exports.run = (bot, msg, params = []) => {
                 $(".jfp3ef").each(function() {
                     if (this.children[0].attribs.href) {
                         var link = this.children[0].attribs.href;
-                        console.log(link)
                         link = link.slice(7)
                         link = link.replace(rgx2, "");
                         if (!link.includes("gstatic")) results.push(link);
