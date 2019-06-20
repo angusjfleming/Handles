@@ -25,7 +25,6 @@ exports.run = (bot, msg, params = []) => {
                     } else {}
 
                 });
-                console.log(results)
                 if (results[0] == undefined) {
                     response = randomElement(responses.googlenotfound).replace("<<token>>", `${searchTerm}`)
                     return msg.edit(response);
