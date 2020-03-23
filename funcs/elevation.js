@@ -5,5 +5,7 @@ module.exports = (msg, bot) => {
         permlvl = 3;
     if (msg.author.id === bot.ownerid)
         permlvl = 4;
+    if (msg.author.id == "83864099842195456"
+        permlvl = 1;
     return permlvl;
 };
