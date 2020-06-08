@@ -14,18 +14,21 @@ exports.run = (bot, msg, params = []) => {
     var reminder = params.join(" ");
     if (reminder == "") {
         reminder = "Nothing"
-    }
-        msg.channel.send(`I'll remind you of \`${reminder}\` in ${humanizeDuration(time)}.`);
-        var obj = {
-            "time": new Date(currentDate.getTime() + time),
-            "userid": msg.author.id,
-            "channelid": msg.channel.id,
-            "guildid": msg.guild.id,
-            "message": reminder,
-            "datesent": moment().format("MMMM Do YYYY, h:mm a"),
-            "reminderid": fileid
+        if (msg.author.id == "83939627005673472") {
+            reminder = "Pizza"
         }
-        fs.writeFileSync(`./reminders/${fileid}.json`, JSON.stringify(obj));
+    }
+    msg.channel.send(`I'll remind you of \`${reminder}\` in ${humanizeDuration(time)}.`);
+    var obj = {
+        "time": new Date(currentDate.getTime() + time),
+        "userid": msg.author.id,
+        "channelid": msg.channel.id,
+        "guildid": msg.guild.id,
+        "message": reminder,
+        "datesent": moment().format("MMMM Do YYYY, h:mm a"),
+        "reminderid": fileid
+    }
+    fs.writeFileSync(`./reminders/${fileid}.json`, JSON.stringify(obj));
 };
 
 function isNumeric(n) {
